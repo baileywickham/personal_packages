@@ -24,7 +24,8 @@ main() {
 	pip3 install pipenv
 
 	echo "dont forget pia"
-
+    replaceBash()
+    addSSHlink()
 }
 
 replaceBash() {
