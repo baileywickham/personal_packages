@@ -1,0 +1,17 @@
+"this is the windows version, todo: switch with my laptop version
+set nocompatible
+set showcmd
+set noerrorbells
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+nore ; :
+nore , ;
+set nu!
+set nobackup
