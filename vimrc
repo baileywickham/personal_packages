@@ -2,6 +2,7 @@
 set nocompatible
 set showcmd
 set noerrorbells
+inorempap ;; <esc>
 
 filetype plugin indent on
 " show existing tab with 4 spaces width
