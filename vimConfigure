@@ -1,0 +1,1 @@
+./configure --with-python3-config-dir=/usr/local/lib/python3.8/python-3.8m-x86_64-linux-gnu --enable-python3interp --enable-pythoninterp --with-features=huge

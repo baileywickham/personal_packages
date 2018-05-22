@@ -12,7 +12,7 @@ packages () {
 
 	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 	
-	apt install software-properties-common python-software-properties -y
+	apt install software-properties-common python-software-properties python3-dev -y
 	add-apt-repository ppa:pypa/ppa
 }
 
@@ -20,7 +20,7 @@ main() {
 	packages()
 
 	apt update
-	apt install gpp python3-pip spotify-client sublime-text discord vim git vlc htop pipenv -y
+	apt install -y gpp python3-pip spotify-client sublime-text discord vim git vlc htop pipenv 
 	pip3 install pipenv
 
 	echo "dont forget pia"
