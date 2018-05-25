@@ -10,7 +10,7 @@ set laststatus=2
 set showcmd
 set noerrorbells
 inoremap ;; <esc>
-nore ; :
+nore ; : "these two lines changed my life.
 nore , ;
 set nu!
 set nobackup 
