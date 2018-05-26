@@ -10,7 +10,7 @@ set laststatus=2
 set showcmd
 set noerrorbells
 inoremap ;; <esc>
-nore ; : "these two lines changed my life.
+nore ; :
 nore , ;
 set nu!
 set nobackup 
@@ -53,7 +53,7 @@ set expandtab
 
 "virtualenv support, no idea if comp with pipenv
 
-py << EOF
+py3 << EOF
 import os
 import sys
 

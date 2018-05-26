@@ -20,7 +20,7 @@ main() {
 	packages()
 
 	apt update
-	apt install -y gpp python3-pip spotify-client sublime-text discord vim git vlc htop pipenv 
+	apt install -y gpp python3-pip spotify-client sublime-text discord vim git vlc htop pipenv python3-dev python-dev build-essential cmake
 	pip3 install pipenv
 
 	echo "dont forget pia"
