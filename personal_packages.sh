@@ -17,20 +17,24 @@ packages () {
 }
 
 main() {
-	packages()
-
-	apt update
-	apt install -y gpp python3-pip spotify-client sublime-text discord vim git vlc htop pipenv python3-dev python-dev build-essential cmake
+	packages
+        apt-get update;
+	apt-get install -y gpp python3-pip spotify-client sublime-text discord vim git vlc htop pipenv python3-dev python-dev build-essential cmake
 	pip3 install pipenv
 
 	echo "dont forget pia"
-    replaceBash()
-    addSSHlink()
+    replaceBash
+    addSSHlink
 }
 
 replaceBash() {
-	cp bashrc ~/.bashrc
+        if [ ! -f "~/.bashrc" ]
+        then
+            rm ~/.bashrc
+        fi 
+            ln -s $PWD/bashrc ~/.bashrc
 }
+      
 
 addSSHLink() {
 	if [ ! -f  "~/.ssh/config" ]
@@ -41,4 +45,4 @@ addSSHLink() {
 	fi
 }
 
-main()
+replaceBash
