@@ -100,6 +100,7 @@ alias pip='pip3'
 alias svr='ssh -p 3001 main@74.91.125.179'
 alias yd='youtube-dl -x --audio-format mp3'
 alias spotify='spotify --show-console'
+alias df='df -h'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
