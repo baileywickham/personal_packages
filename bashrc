@@ -3,6 +3,12 @@
 # for examples
 
 # If not running interactively, don't do anything
+
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
+
+
 case $- in
     *i*) ;;
       *) return;;
@@ -95,9 +101,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias python='python3'
-alias pip='pip3'
-alias svr='ssh -p 3001 main@74.91.125.179'
 alias yd='youtube-dl -x --audio-format mp3'
 alias spotify='spotify --show-console'
 alias df='df -h'

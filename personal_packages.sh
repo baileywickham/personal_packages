@@ -1,4 +1,5 @@
 #!/bin/bash
+# This whole file is a really bad idea. DO NOT copy any of this code.
 packages () {
 	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 
@@ -18,8 +19,8 @@ packages () {
 
 main() {
 	packages
-        apt-get update;
-	apt-get install -y gpp python3-pip spotify-client sublime-text discord vim git vlc htop pipenv python3-dev python-dev build-essential cmake
+        apt-get update
+        apt-get install -y git gpp python3-pip spotify-client sublime-text discord vim vlc htop pipenv python3-dev python-dev build-essential cmake
 	pip3 install pipenv
 
 	echo "dont forget pia"
@@ -45,4 +46,10 @@ addSSHLink() {
 	fi
 }
 
+add2FA() {
+    cp 70-u2f.rules /etc/udev/rules.d/
+}
+add2FA
 replaceBash
+addSSHLink
+packages
