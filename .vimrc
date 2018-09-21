@@ -4,9 +4,17 @@ set laststatus=2
 "shortcuts
 set showcmd
 set noerrorbells
-inoremap hh <esc>
-nore h :
+"set dovark keybindings
+noremap d h
+noremap h j
+noremap t k
+noremap n l
+inoremap ;; <esc>
+nore ; :
 nore , ;
+nore q e
+nore e d
+
 set nu!
 set nobackup 
 set splitbelow
@@ -17,6 +25,7 @@ nnoremap <C-H> <C-W><C-J>
 nnoremap <C-T> <C-W><C-K>
 nnoremap <C-N> <C-W><C-L>
 nnoremap <C-S> <C-W><C-H>
+ 
 "vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
