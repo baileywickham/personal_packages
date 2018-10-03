@@ -1,5 +1,4 @@
-import shutil
-import argparse
+import shutil, argparse, os, subprocess
 from pathlib import Path
 from sys import argv, exit
 
@@ -10,10 +9,14 @@ home = Path.home()
 def moveFile(*, file, path):
     path = Path(path)
     file = Path(file)
- 
+
+
+def linkFile(*, file, path): 
+    os.link(file, path)
+
 
 def main():
-    pass
+    #subprocess.Popen(['vim', '-c', 'PluginInstall'])
 
 
 if __name__ == '__main__':
