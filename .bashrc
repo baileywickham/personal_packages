@@ -101,12 +101,15 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias python='python3'
 alias yd='youtube-dl -x --audio-format mp3'
 alias spotify='spotify --show-console'
 alias df='df -h'
+alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
+alias obse='watchman-make -p 'exp_eval.py' --run "python3 exp_eval.py"'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 export PYTHONPATH=~/PYLIB:$PYTHONPATH
 # Alias definitions.
 # You may want to put all your additions into a separate file like

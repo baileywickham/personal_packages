@@ -32,11 +32,15 @@ filetype off                  " required
 
 "Python syntax defaults. 
 filetype plugin indent on
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab   
 
+au BufNewFile,BufRead *.py:
+        \ set shiftwidth=4
+        \ set expandtab   
+au BufNewFile,BufRead *.c*,*.h
+	\ set tabstop=4
+	\ set softtabstop=4
+	\ set shiftwidth=4
+	\ set noexpandtab
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -58,6 +62,7 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+let g:ycm_autoclose_preview_window_after_completion=1
 
 "virtualenv support, no idea if comp with pipenv
 
