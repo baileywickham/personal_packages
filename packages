@@ -1,0 +1,19 @@
+git
+gpp
+python3-pip
+discord
+vim
+vlc
+htop
+pipenv
+python3-dev
+cmake
+g++
+build-essential
+
+
+#requires key installs
+spotify-client
+sublime-text
+
+
