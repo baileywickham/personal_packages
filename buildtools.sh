@@ -10,9 +10,8 @@ while getopts "hi:" opt; do
 			exit 0
 			;;
 		i)
-			echo "input watchfile"
-			read f
-			export WATCHFILE=$f
+			echo hello world
+			export WATCHFILE=$OPTFILE
 			;;
 	esac
 done
