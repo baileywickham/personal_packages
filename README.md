@@ -1,4 +1,4 @@
-# Persoal Packages
+# Personal Packages
 Soon to be dotfiles
 
 ## Use
