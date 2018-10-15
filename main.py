@@ -19,9 +19,11 @@ def main():
     vim()
     bash()
     tmux() 
-    copyFile(Path('70-utf.rules'),Path('/etc/udev/rules.d'/))
     ssh()
-
+    if remote:
+        copyFile(Path('70-utf.rules'),Path('/etc/udev/rules.d'/))
+        copyFile(Path('google-chrome.list',Path('/etc/apt/sources.list.d/google-chrome.list'))
+    
 
 def vim():
     if (home / Path('.vimrc')).exists():
