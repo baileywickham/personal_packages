@@ -33,9 +33,14 @@ filetype off                  " required
 "Python syntax defaults. 
 filetype plugin indent on
 
+set shiftwidth=4
+set expandtab
+set tabstop=4
+
+
 au BufNewFile,BufRead *.py:
-        \ set shiftwidth=4
-        \ set expandtab   
+    \ set shiftwidth=4
+    \ set expandtab   
 au BufNewFile,BufRead *.c*,*.h
 	\ set tabstop=4
 	\ set softtabstop=4
@@ -54,7 +59,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-sensible'
+Plugin 'tmhedberg/SimpylFold'
+"Plugin 'shougo/deoplete.nvim'
+"Plugin 'davidhalter/jedi-vim'
 call vundle#end()
+
 let g:ycm_python_binary_path='python'
 set t_Co=256
 syntax enable
@@ -63,6 +72,7 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 let g:ycm_autoclose_preview_window_after_completion=1
+autocmd FileType python setlocal completeopt-=preview
 
 "virtualenv support, no idea if comp with pipenv
 
