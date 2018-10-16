@@ -21,8 +21,9 @@ def main():
     tmux() 
     ssh()
     if remote:
-        copyFile(Path('70-utf.rules'),Path('/etc/udev/rules.d'/))
-        copyFile(Path('google-chrome.list',Path('/etc/apt/sources.list.d/google-chrome.list'))
+        pass
+        #copyFile(Path('70-utf.rules'),Path('/etc/udev/rules.d'/))
+        #copyFile(Path('google-chrome.list',Path('/etc/apt/sources.list.d/google-chrome.list'))
     
 
 def vim():
@@ -49,7 +50,7 @@ def tmux():
 def ssh():
     if not Path(home / '.ssh/config').exists():
         os.mkdir(Path(home / '.ssh'))
-        linkFile(file='config',Path(home / '.ssh/'))
+        linkFile(file='config',path=Path(home / '.ssh/'))
 
 if __name__ == '__main__':
     main()
