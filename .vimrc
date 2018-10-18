@@ -10,6 +10,8 @@ noremap h j
 noremap t k
 noremap n l
 inoremap ;; <esc>
+nnoremap <F2> :e! ~/.vimrc<CR>
+
 nore ; :
 nore , ;
 nore q e
@@ -34,7 +36,6 @@ filetype off                  " required
 filetype plugin indent on
 
 set shiftwidth=4
-set expandtab
 set tabstop=4
 
 
@@ -59,7 +60,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-sensible'
-Plugin 'tmhedberg/SimpylFold'
+"Plugin 'tmhedberg/SimpylFold'
 "Plugin 'shougo/deoplete.nvim'
 "Plugin 'davidhalter/jedi-vim'
 call vundle#end()
