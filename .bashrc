@@ -107,6 +107,13 @@ alias spotify='spotify --show-console'
 alias df='df -h'
 alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
 alias obse='watchman-make -p '*test*.py' --run "python3 *test*.py"'
+alias observe='watchman-make -p '*test*.py' --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'
+alias dock='sudo docker exec -it $(sudo docker ps -q --filter name=src_web_1) bash'
+alias docker_clean_images='sudo docker rmi $(sudo docker images -a --filter=dangling=true -q)'
+alias docker_clean_ps='sudo docker rm $(sudo docker ps --filter=status=exited --filter=status=created -q)'
+
+
+bind '"\eOQ":"vim ~/.bashrc \n "'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 #alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -158,3 +165,7 @@ ex ()
   fi
 }
 
+export http_proxy=''
+export https_proxy=''
+export ftp_proxy=''
+export socks_proxy=''

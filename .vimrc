@@ -1,9 +1,9 @@
-"soloarized plugin
 "sets powerline to turn on
 set laststatus=2
 "shortcuts
 set showcmd
 set noerrorbells
+set hlsearch
 "set dovark keybindings
 noremap d h
 noremap h j
@@ -22,11 +22,6 @@ set nobackup
 set splitbelow
 set splitright
 set backspace=indent,eol,start
-"window editing.
-nnoremap <C-H> <C-W><C-J>
-nnoremap <C-T> <C-W><C-K>
-nnoremap <C-N> <C-W><C-L>
-nnoremap <C-S> <C-W><C-H>
  
 "vundle
 set nocompatible              " be iMproved, required
@@ -35,19 +30,17 @@ filetype off                  " required
 "Python syntax defaults. 
 filetype plugin indent on
 
-set shiftwidth=4
-set tabstop=4
-
-
 au BufNewFile,BufRead *.py:
+	\ set tabstop=4
     \ set shiftwidth=4
     \ set expandtab   
-au BufNewFile,BufRead *.c*,*.h
+au BufNewFile,BufRead *.c, *.h:
 	\ set tabstop=4
 	\ set softtabstop=4
 	\ set shiftwidth=4
 	\ set noexpandtab
-" set the runtime path to include Vundle and initialize
+
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
@@ -73,7 +66,7 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 let g:ycm_autoclose_preview_window_after_completion=1
-autocmd FileType python setlocal completeopt-=preview
+"autocmd FileType python setlocal completeopt-=preview
 
 "virtualenv support, no idea if comp with pipenv
 
