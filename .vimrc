@@ -30,16 +30,17 @@ filetype off                  " required
 "Python syntax defaults. 
 filetype plugin indent on
 
+set tabstop=4
+set shiftwidth=4
+set noexpandtab
 au BufNewFile,BufRead *.py:
-	\ set tabstop=4
+    \ set tabstop=4
     \ set shiftwidth=4
     \ set expandtab   
-au BufNewFile,BufRead *.c, *.h:
-	\ set tabstop=4
-	\ set softtabstop=4
-	\ set shiftwidth=4
-	\ set noexpandtab
-
+augroup myvimrchooks
+    au!
+    autocmd bufwritepost .vimrc source ~/.vimrc
+augroup END
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -48,6 +49,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
+Plugin 'fatih/vim-go'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
