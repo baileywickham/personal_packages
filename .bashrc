@@ -111,6 +111,7 @@ alias observe='watchman-make -p '*test*.py' --run "for file in *test*.py; do cov
 alias dock='sudo docker exec -it $(sudo docker ps -q --filter name=src_web_1) bash'
 alias docker_clean_images='sudo docker rmi $(sudo docker images -a --filter=dangling=true -q)'
 alias docker_clean_ps='sudo docker rm $(sudo docker ps --filter=status=exited --filter=status=created -q)'
+alias traceroute='mtr'
 
 
 bind '"\eOQ":"vim ~/.bashrc \n "'

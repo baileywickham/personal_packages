@@ -20,6 +20,9 @@ def main():
     bash()
     tmux() 
     #ssh()
+    linkFile('.gitignore_global')
+    #do git
+    #git config --global core.excludefile ~/.gitignore_global
     if remote:
         pass
         #copyFile(Path('70-utf.rules'),Path('/etc/udev/rules.d'/))
@@ -30,8 +33,8 @@ def vim():
     if (home / Path('.vimrc')).exists():
         os.remove(home / Path('.vimrc'))
     linkFile('.vimrc')
-    #subprocess.Popen(['git','clone','https://github.com/VundleVim/Vundle.vim.git', '~/.vim/bundle/Vundle.vim'])
-    #subprocess.Popen(['vim', '-c', 'PluginInstall'])
+    subprocess.Popen(['git','clone','https://github.com/VundleVim/Vundle.vim.git', '~/.vim/bundle/Vundle.vim'])
+     #subprocess.Popen(['vim', '-c', 'PluginInstall'])
 
 
 def bash():

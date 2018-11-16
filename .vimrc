@@ -5,17 +5,11 @@ set showcmd
 set noerrorbells
 set hlsearch
 "set dovark keybindings
-noremap d h
-noremap h j
-noremap t k
-noremap n l
 inoremap ;; <esc>
 nnoremap <F2> :e! ~/.vimrc<CR>
 
 nore ; :
 nore , ;
-nore q e
-nore e d
 
 set nu!
 set nobackup 
