@@ -8,19 +8,19 @@ nnoremap <F2> :e! ~/.vimrc<CR>
 nore ; :
 nore , ;
 
-set nu! "line numbers
+set nu "line numbers
 set nobackup
 set noerrorbells
 set autowrite "writes on make
 set autoread "reads modified files
-
-"vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible              
+filetype off
 
 "Search options
 set hlsearch
 set smartcase
+set incsearch
+set wildmenu
 
 "set indent and plugins for filetype
 filetype plugin indent on
@@ -42,6 +42,9 @@ augroup myvimrchooks
 	autocmd bufwritepost .vimrc source ~/.vimrc
 augroup END
 
+autocmd FileType c,cpp setlocal equalprg=clang-format
+
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
@@ -53,10 +56,9 @@ Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-sensible'
+Plugin 'JamshedVesuna/vim-markdown-preview' 
 "Plugin 'tmhedberg/SimpylFold'
 "Plugin 'shougo/deoplete.nvim'
-"Plugin 'davidhalter/jedi-vim'
 call vundle#end()
 
 let g:ycm_python_binary_path='python'
@@ -69,6 +71,12 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 map <C-n> :NERDTreeToggle<CR>
+
+let g:go_highlight_types = 1
+let g:go_auto_type_info = 1
+
+let vim_markdown_preview_toggle=3
+let vim_markdown_preview_browser='Google Chrome'
 
 
 "virtualenv autocomplete support
