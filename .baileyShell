@@ -13,3 +13,4 @@ alias docker_clean_ps='sudo docker rm $(sudo docker ps --filter=status=exited --
 alias traceroute='mtr'
 alias unhibernate='service network-manager restart'
 alias rm='rm -I'
+alias vi='nvim'

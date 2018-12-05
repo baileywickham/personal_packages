@@ -1,10 +1,11 @@
+
 "sets powerline to turn on
 set laststatus=2
 set showcmd
 
 "Key remaps
 inoremap ;; <esc>
-nnoremap <F2> :e! ~/.vimrc<CR>
+nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 nore ; :
 nore , ;
 
@@ -37,30 +38,22 @@ au BufNewFile,BufRead *.py:
 			\ set tabstop=4
 			\ set shiftwidth=4
 			\ set expandtab
-"Auto refresh vimrc
-augroup myvimrchooks
-	au!
-	autocmd bufwritepost .vimrc source ~/.vimrc
-augroup END
 
 autocmd FileType c,cpp setlocal equalprg=clang-format
 
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
-Plugin 'fatih/vim-go'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'scrooloose/nerdtree'
-Plugin 'JamshedVesuna/vim-markdown-preview' 
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe'
+Plug 'fatih/vim-go'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'JamshedVesuna/vim-markdown-preview' 
 "Plugin 'tmhedberg/SimpylFold'
 "Plugin 'shougo/deoplete.nvim'
-call vundle#end()
+call plug#end()
 
 let g:ycm_python_binary_path='python'
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -78,6 +71,8 @@ let g:go_auto_type_info = 1
 
 let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
+
+let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
 
 
 "virtualenv autocomplete support
