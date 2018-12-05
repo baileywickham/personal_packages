@@ -1,7 +1,0 @@
-Host mellohServer
-     HostName 74.91.125.179
-     User main
-     Port 3001
-Host centerStageDance
-     HostName 159.203.116.213
-     User root
