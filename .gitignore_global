@@ -2,5 +2,6 @@
 *.coverage
 *.swp
 *.swo
+compile_commands.json
 __pycache__/
 

@@ -1,7 +1,6 @@
 git
 gpp
 python3-pip
-discord
 vim
 vlc
 htop
@@ -10,10 +9,14 @@ python3-dev
 cmake
 g++
 build-essential
+apt-transport-https \
+ca-certificates \
+curl \
+software-properties-common
 
 
 #requires key installs
 spotify-client
 sublime-text
-
+discord
 

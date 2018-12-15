@@ -4,14 +4,14 @@ from sys import argv, exit
 
 import appends
 remote = False
-home = Path.home()
+home = str(Path.home())
 
 def copyFile(*, file, path):
     path = Path(path)
     file = Path(file)
     shutil.copy2(file,path)
 
-def linkFile(file, loc=str(Path.home())): 
+def linkFile(file, loc=home): 
     subprocess.Popen(['ln','-sf',os.getcwd()+f'/{file}',loc+f'/{file}'])
 
 
