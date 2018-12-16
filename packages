@@ -1,6 +1,5 @@
 git
 gpp
-python3-pip
 vim
 vlc
 htop
@@ -13,10 +12,4 @@ apt-transport-https \
 ca-certificates \
 curl \
 software-properties-common
-
-
-#requires key installs
-spotify-client
-sublime-text
-discord
 

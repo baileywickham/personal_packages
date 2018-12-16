@@ -29,7 +29,6 @@ def main():
         #copyFile(Path('google-chrome.list',Path('/etc/apt/sources.list.d/google-chrome.list'))
     
 def nvim():
-    pass
    
 def tmux():
     if (home / Path('.vimrc')).exists() and (home / Path('.tmux.conf.local')).exists():
