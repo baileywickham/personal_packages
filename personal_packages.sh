@@ -23,11 +23,10 @@ dir() {
 replace() {
     source ./declares.sh
     for i in ${!dotFile[@]}; do
-        echo '"../config/${dotFile[i]}" "${HOME}/${dotFile[i]}"'
- 
-        yes | ln -sf "../config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
+        echo "copying ${dotFile[i]}" 
+        yes | ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
     done
-    ln -sf "../config/init.vim" "${HOME}/.config/nvim/"
+    ln -sf "${PWD}/config/init.vim" "${HOME}/.config/nvim/"
 }
 
 
