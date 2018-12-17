@@ -51,6 +51,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'JamshedVesuna/vim-markdown-preview' 
+Plug 'christoomey/vim-tmux-navigator'
 "Plugin 'tmhedberg/SimpylFold'
 "Plugin 'shougo/deoplete.nvim'
 call plug#end()
