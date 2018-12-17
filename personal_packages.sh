@@ -25,8 +25,9 @@ replace() {
     for i in ${!dotFile[@]}; do
         echo '"../config/${dotFile[i]}" "${HOME}/${dotFile[i]}"'
  
-        yes | ln -sf "../config/${dotFile[i]}" "${HOME}/.${dotFile[i]}"
+        yes | ln -sf "../config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
     done
+    ln -sf "../config/init.vim" "${HOME}/.config/nvim/"
 }
 
 
@@ -52,4 +53,10 @@ main() {
     replace
     addSSHlink
 }
-main
+
+if [ $# -gt 0 ] && [ $1 = "-c" ];
+then
+    replace
+else
+    main
+fi
