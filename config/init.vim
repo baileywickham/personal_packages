@@ -52,9 +52,14 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'JamshedVesuna/vim-markdown-preview' 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'Chiel92/vim-autoformat'
+Plug 'lilydjwg/colorizer'
+Plug 'luochen1990/rainbow'
 "Plugin 'tmhedberg/SimpylFold'
 "Plugin 'shougo/deoplete.nvim'
 call plug#end()
+
+let g:rainbow_active=1
 
 let g:ycm_python_binary_path='python'
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -66,6 +71,8 @@ let g:solarized_termcolors=256
 colorscheme solarized
 
 map <C-n> :NERDTreeToggle<CR>
+
+au BufWrite *.py,*.sh,*.json,*.c,*.h :Autoformat
 
 let g:go_highlight_types = 1
 let g:go_auto_type_info = 1
