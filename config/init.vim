@@ -59,7 +59,7 @@ Plug 'luochen1990/rainbow'
 "Plugin 'shougo/deoplete.nvim'
 call plug#end()
 
-let g:rainbow_active=1
+"let g:rainbow_active=1
 
 let g:ycm_python_binary_path='python'
 let g:ycm_autoclose_preview_window_after_completion=1
