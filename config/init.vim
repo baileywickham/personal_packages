@@ -4,7 +4,7 @@ set laststatus=2
 set showcmd
 
 "Key remaps
-inoremap ;; <esc>
+inoremap hh <esc>
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 nore ; :
 nore , ;
