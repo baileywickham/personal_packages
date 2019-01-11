@@ -4,4 +4,4 @@
 *.swo
 compile_commands.json
 __pycache__/
-
+.idea/
