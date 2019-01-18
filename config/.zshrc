@@ -9,7 +9,7 @@ fi
 
 source ~/.baileyShell
 
-export MATERIALS_DIR_203="/home/y/workspace/CSC203/materials"
+export MATERIALS_DIR_203="/home/y/workspace/203/materials"
 
 bindkey -s "\eOQ" "vim ~/.zshrc \n"
 

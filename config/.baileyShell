@@ -3,7 +3,6 @@ alias yd='youtube-dl -x --audio-format mp3'
 alias spotify='spotify --show-console'
 alias df='df -h'
 alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
-alias diff='diff -q'
 
 alias obse='watchman-make -p "*test*.py" --run "python3 *test*.py"'
 alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'

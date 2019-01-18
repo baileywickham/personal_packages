@@ -77,7 +77,7 @@ au BufWrite *.py,*.sh,*.json,*.c,*.h :Autoformat
 let g:go_highlight_types = 1
 let g:go_auto_type_info = 1
 
-let vim_markdown_preview_toggle=3
+"let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 
 let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
