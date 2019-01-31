@@ -8,6 +8,8 @@ inoremap hh <esc>
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 nore ; :
 nore , ;
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
 
 set nu "line numbers
 set nobackup
@@ -77,6 +79,8 @@ au BufWrite *.py,*.sh,*.json,*.c,*.h :Autoformat
 let g:go_highlight_types = 1
 let g:go_auto_type_info = 1
 
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<F9>'
 "let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 
