@@ -56,7 +56,7 @@ main() {
     dir
     add2FA
     replace
-    addSSHlink
+    addSSHLink
 }
 
 if [ $# -gt 0 ] && [ $1 = "-c" ];
