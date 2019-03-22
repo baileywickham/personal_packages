@@ -10,6 +10,9 @@ nore ; :
 nore , ;
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
+:command FixIt YcmCompleter FixIt
+:command GoTo YcmCompleter GoTo
+:command GoToDefinition YcmCompleter GoToDefinition
 
 set nu "line numbers
 set nobackup
@@ -57,6 +60,9 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lilydjwg/colorizer'
 Plug 'luochen1990/rainbow'
+Plug 'brennier/quicktex'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vheon/vim-polyglot' "A set of language packs
 "Plugin 'tmhedberg/SimpylFold'
 "Plugin 'shougo/deoplete.nvim'
 call plug#end()

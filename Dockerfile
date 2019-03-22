@@ -1,7 +1,11 @@
 FROM ubuntu
-RUN \ 
-   sed -i 's/# \(.*bionic$\)/\1/g' /etc/apt/sources.list 
 WORKDIR /home/y
+COPY ./testing /testing
 COPY . /home/y
+RUN apt update
+RUN apt install -y \
+    build-essential \
+    gcc
+#COPY /etc/apt/sources.list /etc/apt/sources.list
 
 
