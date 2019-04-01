@@ -5,7 +5,9 @@ COPY . /home/y
 RUN apt update
 RUN apt install -y \
     build-essential \
-    gcc
+    gcc \
+    curl \
+    git
 #COPY /etc/apt/sources.list /etc/apt/sources.list
 
 

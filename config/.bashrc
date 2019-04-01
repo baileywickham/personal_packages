@@ -5,9 +5,6 @@
 # If not running interactively, don't do anything
 
 # TMUX
-if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-fi
 
 case $- in
     *i*) ;;

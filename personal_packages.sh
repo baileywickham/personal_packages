@@ -4,8 +4,12 @@ vundle () {
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
     }
+nvim() {
+    add-apt-repository ppa:neovim-ppa/stable
+    apt-get update
+    apt-get install neovim
+}
 packages () {
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg |   apt-key add -
 
@@ -25,7 +29,7 @@ dir() {
     mkdir -p ${HOME}/workspace/builds
     mkdir -p ${HOME}/.config/nvim
 }
-# Move
+# Move dotfiles
 replace() {
     source ./declares.sh
     for i in ${!dotFile[@]}; do

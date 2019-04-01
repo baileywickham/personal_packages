@@ -2,6 +2,7 @@
 "sets powerline to turn on
 set laststatus=2
 set showcmd
+set cursorline
 
 "Key remaps
 inoremap hh <esc>
@@ -13,15 +14,14 @@ noremap! <C-h> <C-w>
 :command FixIt YcmCompleter FixIt
 :command GoTo YcmCompleter GoTo
 :command GoToDefinition YcmCompleter GoToDefinition
+:command GetType YcmCompleter GetType
 
 set nu "line numbers
 set nobackup
 set noerrorbells
 set autowrite "writes on make
 set autoread "reads modified files
-set nocompatible              
 set noswapfile
-filetype off
 
 "Search options
 set hlsearch
@@ -46,11 +46,10 @@ au BufNewFile,BufRead *.py:
 
 autocmd FileType c,cpp setlocal equalprg=clang-format
 
-
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'fatih/vim-go'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -62,17 +61,18 @@ Plug 'lilydjwg/colorizer'
 Plug 'luochen1990/rainbow'
 Plug 'brennier/quicktex'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vheon/vim-polyglot' "A set of language packs
+Plug 'lervag/vimtex'
+Plug 'sirver/ultisnips'
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 "Plugin 'tmhedberg/SimpylFold'
-"Plugin 'shougo/deoplete.nvim'
 call plug#end()
 
 "let g:rainbow_active=1
 
 let g:ycm_python_binary_path='python'
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_filetype_blacklist= { 'tex': 1 }
 
-set t_Co=256
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
@@ -92,6 +92,15 @@ let vim_markdown_preview_browser='Google Chrome'
 
 let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
 
+"tex specific commands
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 "virtualenv autocomplete support
 py3 << EOF

@@ -70,3 +70,5 @@ if type nvim > /dev/null 2>&1; then
   alias vi='nvim'
   alias v='nvim'
 fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
