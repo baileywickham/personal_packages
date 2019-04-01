@@ -32,6 +32,7 @@ set shiftwidth=4
 set expandtab
 set shiftround "Rounds shift to shiftwidth
 set backspace=indent,eol,start
+set listchars=tab:▸\ ,eol:¬
 
 au BufNewFile,BufRead *.py:
 			\ set tabstop=4
@@ -46,21 +47,20 @@ augroup END
 autocmd FileType c,cpp setlocal equalprg=clang-format
 
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
-Plugin 'fatih/vim-go'
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'scrooloose/nerdtree'
-Plugin 'JamshedVesuna/vim-markdown-preview' 
+Plug 'VundleVim/Vundle.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe'
+Plug 'mdempsky/gocode', {'rtp': 'vim/'}
+Plug 'fatih/vim-go'
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'scrooloose/nerdtree'
+Plug 'JamshedVesuna/vim-markdown-preview' 
 "Plugin 'tmhedberg/SimpylFold'
 "Plugin 'shougo/deoplete.nvim'
-call vundle#end()
+call plug#end()
 
 let g:ycm_python_binary_path='python'
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -86,8 +86,8 @@ import os
 import sys
 
 if 'VIRTUAL_ENV' in os.environ:
-	project_base_dir = os.environ['VIRTUAL_ENV']
-	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-	exec(open(activate_this).read(), dict(__file__=activate_this))
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    exec(open(activate_this).read(), dict(__file__=activate_this))
 EOF
 

@@ -22,6 +22,7 @@ set noerrorbells
 set autowrite "writes on make
 set autoread "reads modified files
 set noswapfile
+set listchars=tab:▸\ ,eol:¬
 
 "Search options
 set hlsearch
