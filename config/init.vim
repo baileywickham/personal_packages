@@ -2,19 +2,16 @@
 "sets powerline to turn on
 set laststatus=2
 set showcmd
-set cursorline
+"highlight line im on
+set cursorline 
 
 "Key remaps
 inoremap hh <esc>
-nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 nore ; :
 nore , ;
+nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
-:command FixIt YcmCompleter FixIt
-:command GoTo YcmCompleter GoTo
-:command GoToDefinition YcmCompleter GoToDefinition
-:command GetType YcmCompleter GetType
 
 set nu "line numbers
 set nobackup
@@ -22,7 +19,21 @@ set noerrorbells
 set autowrite "writes on make
 set autoread "reads modified files
 set noswapfile
-set listchars=tab:▸\ ,eol:¬
+
+" coc settings
+set hidden
+"set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+":command FixIt YcmCompleter FixIt
+":command GoTo YcmCompleter GoTo
+":command GoToDefinition YcmCompleter GoToDefinition
+":command GetType YcmCompleter GetType
 
 "Search options
 set hlsearch
@@ -46,10 +57,11 @@ au BufNewFile,BufRead *.py:
 			\ set expandtab
 
 autocmd FileType c,cpp setlocal equalprg=clang-format
+autocmd BufNewFile,BufRead *.h setfiletype c
 
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'fatih/vim-go'
 Plug 'vim-airline/vim-airline'
@@ -60,11 +72,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lilydjwg/colorizer'
 Plug 'luochen1990/rainbow'
-Plug 'brennier/quicktex'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'lervag/vimtex'
-Plug 'sirver/ultisnips'
-"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+"Plug 'sirver/ultisnips'
+Plug 'KeitaNakamura/tex-conceal.vim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 "Plugin 'tmhedberg/SimpylFold'
 call plug#end()
 
@@ -79,7 +91,9 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
-map <C-n> :NERDTreeToggle<CR>
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+
 
 au BufWrite *.py,*.sh,*.json,*.c,*.h :Autoformat
 
@@ -98,10 +112,12 @@ let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
-let g:tex_conceal='abdmg'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:tex_conceal='abdgm'
+"let g:UltiSnipsExpandTrigger = '<space>'
+"let g:UltiSnipsJumpForwardTrigger = '<space>'
+"let g:UltiSnipsJumpBackwardTrigger = '<s-space>'
+
+source /home/y/.config/nvim/coc.vim
 
 "virtualenv autocomplete support
 py3 << EOF

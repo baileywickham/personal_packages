@@ -1,5 +1,9 @@
 #!/bin/bash
 # This whole file is a really bad idea. DO NOT copy any of this code.
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+
 plug () {
     # install vim-plug
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -9,19 +13,22 @@ plug () {
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     }
 nvim() {
-    add-apt-repository ppa:neovim-ppa/stable
+    echo -e "${BLUE}Installing nvim$"
+    add-apt-repository -y ppa:neovim-ppa/stable
     apt-get update
     apt-get install neovim
 }
 packages () {
-    apt install -y software-properties-common software-properties-common python3-dev python3-pip
-    add-apt-repository ppa:pypa/ppa
-    apt update -qq
+    apt install -y -qq software-properties-common software-properties-common python3-dev python3-pip
+    add-apt-repository -y ppa:pypa/ppa
+    apt-get update -qq
 }
 
 dir() {
     mkdir -p ${HOME}/workspace/builds
     mkdir -p ${HOME}/.config/nvim
+    mkdir -p /etc/udev/rules.d
+    mkdir -p ${HOME}/.ssh
 }
 # Move dotfiles
 replace() {
@@ -51,7 +58,7 @@ add2FA() {
 
 initialize() {
     # get the packages that will be used for other packages
-    apt update -qq && apt install -y curl
+    apt-update -qq && apt-install -y curl
     \ wget
     \ gnupg
     \ gnupg1
@@ -60,6 +67,7 @@ initialize() {
 }
 
 main() {
+    initialize
     packages
     dir
     add2FA

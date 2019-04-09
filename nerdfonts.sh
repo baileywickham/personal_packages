@@ -1,4 +1,4 @@
 # Incosada regualr
 cd $HOME
-git clone git@github.com:ryanoasis/nerd-fonts.git .nerdfonts
+git clone https://github.com/ryanoasis/nerd-fonts.git .nerdfonts
 ./install.sh

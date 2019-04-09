@@ -11,7 +11,6 @@ bindkey -s "\eOQ" "vi ~/.zshrc \n"
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export SSH_KEY_PATH="~/.ssh/rsa_id"
-export MATERIALS_DIR_203="/home/y/workspace/203/materials"
 export ZSH=$HOME/.oh-my-zsh
 
 source ~/.baileyShell
@@ -64,11 +63,13 @@ source $ZSH/oh-my-zsh.sh
 plugins=(
     command-not-found
     )
+
 if type nvim > /dev/null 2>&1; then
-    #progressivly more lazy
+#progressivly more lazy
   alias vim='nvim'
   alias vi='nvim'
   alias v='nvim'
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/home/y/workspace/builds/cquery/build/release/bin:$PATH"
