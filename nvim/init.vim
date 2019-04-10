@@ -1,8 +1,12 @@
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
 
 "sets powerline to turn on
 set laststatus=2
 set showcmd
-"highlight line im on
 set cursorline 
 
 "Key remaps
@@ -10,7 +14,7 @@ inoremap hh <esc>
 nore ; :
 nore , ;
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
-noremap! <C-BS> <C-w>
+noremap! <C-BS> <C-w> "ctrl backspace 
 noremap! <C-h> <C-w>
 
 set nu "line numbers
@@ -19,9 +23,9 @@ set noerrorbells
 set autowrite "writes on make
 set autoread "reads modified files
 set noswapfile
+set hidden
 
 " coc settings
-set hidden
 "set cmdheight=2
 set updatetime=300
 set shortmess+=c
@@ -30,11 +34,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-":command FixIt YcmCompleter FixIt
-":command GoTo YcmCompleter GoTo
-":command GoToDefinition YcmCompleter GoToDefinition
-":command GetType YcmCompleter GetType
-
+"
 "Search options
 set hlsearch
 set smartcase
@@ -61,35 +61,27 @@ autocmd BufNewFile,BufRead *.h setfiletype c
 
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
-"Plug 'ervandew/supertab'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'fatih/vim-go'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'JamshedVesuna/vim-markdown-preview' 
+Plug 'JamshedVesuna/vim-markdown-preview' " f9? to preview
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lilydjwg/colorizer'
 Plug 'luochen1990/rainbow'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'lervag/vimtex'
-"Plug 'sirver/ultisnips'
 Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-"Plugin 'tmhedberg/SimpylFold'
 call plug#end()
 
 "let g:rainbow_active=1
-
-let g:ycm_python_binary_path='python'
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_filetype_blacklist= { 'tex': 1 }
 
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+let g:airline_theme='solarized'
 
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
@@ -113,9 +105,9 @@ let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdgm'
-"let g:UltiSnipsExpandTrigger = '<space>'
-"let g:UltiSnipsJumpForwardTrigger = '<space>'
-"let g:UltiSnipsJumpBackwardTrigger = '<s-space>'
+
+
+call SourceIfExists("/home/y/.config/nvim/coc.vim")
 
 source /home/y/.config/nvim/coc.vim
 

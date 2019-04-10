@@ -37,7 +37,7 @@ replace() {
         echo "copying ${dotFile[i]}"
         yes | ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
     done
-    ln -sf "${PWD}/config/init.vim" "${HOME}/.config/nvim/"
+    ln -sf "${PWD}/nvim" "${HOME}/.config/"
     ln -sf "${PWD}/config/.baileyShell" "${HOME}/"
 }
 
