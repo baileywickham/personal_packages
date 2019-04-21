@@ -1,12 +1,14 @@
-"sets powerline to turn on
 set laststatus=2
 set showcmd
+set cursorline
 
 "Key remaps
-inoremap ;; <esc>
-nnoremap <F2> :e! ~/.vimrc<CR>
+inoremap hh <esc>
 nore ; :
 nore , ;
+noremap! <C-BS> <C-w> "ctrl backspace
+noremap! <C-h> <C-w>
+nnoremap <F2> :e! ~/.vimrc<CR>
 
 set nu "line numbers
 set nobackup
@@ -15,6 +17,7 @@ set autowrite "writes on make
 set autoread "reads modified files
 set nocompatible              
 set noswapfile
+set hidden
 filetype off
 
 "Search options
@@ -32,34 +35,23 @@ set shiftwidth=4
 set expandtab
 set shiftround "Rounds shift to shiftwidth
 set backspace=indent,eol,start
-set listchars=tab:▸\ ,eol:¬
 
 au BufNewFile,BufRead *.py:
 			\ set tabstop=4
 			\ set shiftwidth=4
 			\ set expandtab
-"Auto refresh vimrc
-augroup myvimrchooks
-	au!
-	autocmd bufwritepost .vimrc source ~/.vimrc
-augroup END
 
 autocmd FileType c,cpp setlocal equalprg=clang-format
+autocmd BufNewFile,BufRead *.h setfiletype c
 
 
 call plug#begin('~/.vim/plugged')
 " let Vundle manage Vundle, required
-Plug 'VundleVim/Vundle.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
-Plug 'mdempsky/gocode', {'rtp': 'vim/'}
-Plug 'fatih/vim-go'
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'scrooloose/nerdtree'
-Plug 'JamshedVesuna/vim-markdown-preview' 
-"Plugin 'tmhedberg/SimpylFold'
-"Plugin 'shougo/deoplete.nvim'
 call plug#end()
 
 let g:ycm_python_binary_path='python'
@@ -73,21 +65,5 @@ colorscheme solarized
 
 map <C-n> :NERDTreeToggle<CR>
 
-let g:go_highlight_types = 1
-let g:go_auto_type_info = 1
 
-let vim_markdown_preview_toggle=3
-let vim_markdown_preview_browser='Google Chrome'
-
-
-"virtualenv autocomplete support
-py3 << EOF
-import os
-import sys
-
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    exec(open(activate_this).read(), dict(__file__=activate_this))
-EOF
 

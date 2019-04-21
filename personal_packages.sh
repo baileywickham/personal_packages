@@ -58,7 +58,7 @@ add2FA() {
 
 initialize() {
     # get the packages that will be used for other packages
-    apt-update -qq && apt-install -y curl
+    apt-get update -qq && apt-get install -y curl
     \ wget
     \ gnupg
     \ gnupg1
@@ -78,6 +78,7 @@ main() {
 if [ $# -gt 0 ] && [ $1 = "-c" ];
 then
     replace
+    plug
 else
     main
 fi

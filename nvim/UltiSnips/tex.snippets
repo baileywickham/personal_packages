@@ -34,10 +34,15 @@ snippet template "Basic template" b
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage[dutch]{babel}
+\usepackage[english]{babel}
 \usepackage{amsmath, amssymb}
 
 \begin{document}
+\begin{center}
+    {\LARGE \bf ASGN 1\\}
+    {\large Bailey Wickham}
+\end{center}
+
 	$0
 \end{document}
 endsnippet
@@ -625,15 +630,13 @@ snippet "([a-zA-Z])bar" "bar" riA
 \overline{`!p snip.rv=match.group(1)`}
 endsnippet
 
-priority 10
 context "math()"
-snippet "hat" "hat" riA
+snippet "hat" "hat" riAe
 \hat{$1}$0
 endsnippet
 
-priority 100
 context "math()"
-snippet "([a-zA-Z])hat" "hat" riA
+snippet "([a-zA-Z])hat" "hat" riAe
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
@@ -641,7 +644,24 @@ snippet letw "let omega" iA
 Let $\Omega \subset \C$ be open.
 endsnippet
 
-snippet ae "align equals" iA
+context "math()"
+snippet ae "align equals" iAe
 &=
 endsnippet
-# vim:ft=snippets
+
+context "math()"
+snippet '([A-Za-z])(\d)' "auto subscript" wrA      
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+
+snippet sympy "sympyblock " w
+sympy $1 sympy$0
+endsnippet
+
+&=

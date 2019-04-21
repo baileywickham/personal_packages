@@ -81,8 +81,8 @@ syntax enable
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-let g:airline_theme='solarized'
 
+let g:airline_theme='solarized'
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
@@ -109,7 +109,6 @@ let g:tex_conceal='abdgm'
 
 call SourceIfExists("/home/y/.config/nvim/coc.vim")
 
-source /home/y/.config/nvim/coc.vim
 
 "virtualenv autocomplete support
 py3 << EOF
