@@ -8,6 +8,12 @@
             "initializationOptions": {
                 "cacheDirectory": "/tmp/cquery"
             }
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
         }
     }
 }
