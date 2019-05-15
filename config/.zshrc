@@ -51,7 +51,6 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     status 
     background_jobs 
     dir_writeable 
-    pyenv
 )
 POWERLEVEL9K_VCS_GIT_HOOKS=(
     #vcs-detect-changes 
@@ -68,7 +67,7 @@ plugins=(
     )
 
 if type nvim > /dev/null 2>&1; then
-#progressivly more lazy
+  #progressivly more lazy
   alias vim='nvim'
   alias vi='nvim'
   alias v='nvim'
