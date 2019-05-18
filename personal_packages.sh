@@ -12,23 +12,20 @@ plug () {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     }
-nvim() {
+install_nvim() {
     echo -e "${BLUE}Installing nvim$"
-    add-apt-repository -y ppa:neovim-ppa/stable
-    apt-get update
-    apt-get install neovim
-}
-packages () {
-    apt install -y -qq software-properties-common software-properties-common python3-dev python3-pip
-    add-apt-repository -y ppa:pypa/ppa
-    apt-get update -qq
+
+    plug
+    git clone https://github.com/neovim/neovim.git ${HOME}/.builds
+    (cd ${HOME}/.builds && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install)
 }
 
 dir() {
     mkdir -p ${HOME}/workspace/builds
-    mkdir -p ${HOME}/.config/nvim
     mkdir -p /etc/udev/rules.d
     mkdir -p ${HOME}/.ssh
+    mkdir -p ${HOME}/.config
+    mkdir -p ${HOME}/.builds
 }
 # Move dotfiles
 replace() {
@@ -58,21 +55,27 @@ add2FA() {
 
 initialize() {
     # get the packages that will be used for other packages
-    apt-get update -qq && apt-get install -y curl
-    \ wget
-    \ gnupg
-    \ gnupg1
-    \ gnupg2
-    \ git
+    apt-get update -qq && apt-get install -qq -y curl \
+        wget   \
+        gnupg  \
+        gnupg1 \
+        gnupg2 \
+        git \
+        software-properties-common \
+        python3-dev \
+        python3-pip \
+        cmake
+
+    add-apt-repository -y ppa:pypa/ppa
 }
 
 main() {
     initialize
-    packages
     dir
     add2FA
     replace
     addSSHLink
+    install_nvim
 }
 
 if [ $# -gt 0 ] && [ $1 = "-c" ];

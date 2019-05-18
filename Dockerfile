@@ -2,8 +2,8 @@ FROM ubuntu
 WORKDIR /home/y
 COPY ./testing /testing
 COPY . /home/y
-RUN apt update
-RUN apt install -y \
+RUN apt-get update -qq
+RUN apt-get  install -y -qq \
     build-essential \
     gcc \
     curl \
