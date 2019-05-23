@@ -12,7 +12,6 @@ alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do cov
 alias docker_clean_images='sudo docker rmi $(sudo docker images -a --filter=dangling=true -q)'
 alias docker_clean_ps='sudo docker rm $(sudo docker ps --filter=status=exited --filter=status=created -q)'
 alias traceroute='mtr'
-alias hibernate='hibernate && service network-manager restart'
 alias unhibernate='service network-manager restart'
 alias vi='vim'
 alias v='vim'
