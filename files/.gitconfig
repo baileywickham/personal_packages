@@ -1,0 +1,5 @@
+[user]
+	email = baileywickham@gmail.com
+	name = baileywickham
+[core]
+	excludesfile = /home/y/.gitignore_global

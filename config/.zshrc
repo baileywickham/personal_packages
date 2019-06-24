@@ -50,7 +50,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     status 
     background_jobs 
-    dir_writeable 
+    dir_writable 
 )
 POWERLEVEL9K_VCS_GIT_HOOKS=(
     #vcs-detect-changes 
