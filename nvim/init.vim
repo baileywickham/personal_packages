@@ -87,7 +87,7 @@ let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_er
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 
-au BufWrite *.py,*.sh,*.json,*.c,*.h :Autoformat
+au BufWrite *.go,*.py,*.sh,*.json,*.c,*.h :Autoformat
 
 let g:go_highlight_types = 1
 let g:go_auto_type_info = 1
@@ -97,7 +97,11 @@ let vim_markdown_preview_hotkey='<F9>'
 "let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 
-let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
+if $USERNAME == 'y'
+    let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
+else
+    let g:python3_host_prog = '/usr/bin/python'
+endif
 
 "tex specific commands
 let g:tex_flavor='latex'
