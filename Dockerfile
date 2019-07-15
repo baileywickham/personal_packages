@@ -7,7 +7,8 @@ RUN apt-get install -qq \
     build-essential \
     gcc \
     curl \
-    sudo 
+    sudo \ 
+    git
 #COPY /etc/apt/sources.list /etc/apt/sources.list
 
 
