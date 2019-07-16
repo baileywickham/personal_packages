@@ -99,7 +99,7 @@ let vim_markdown_preview_hotkey='<F9>'
 "let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 
-if $USERNAME == 'y'
+if $USER == 'y'
     let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
 else
     let g:python3_host_prog = '/usr/bin/python3'
