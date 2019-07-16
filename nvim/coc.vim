@@ -1,6 +1,3 @@
-" if hidden is not set, TextEdit might fail.
-" always show signcolumns
-
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 let g:coc_force_debug = 1
@@ -19,18 +16,13 @@ inoremap <silent><expr> <TAB>
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>
 
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
