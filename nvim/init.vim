@@ -1,6 +1,8 @@
 function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
+  else
+      echo "Counld not read file'
   endif
 endfunction
 
@@ -100,7 +102,7 @@ let vim_markdown_preview_browser='Google Chrome'
 if $USERNAME == 'y'
     let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
 else
-    let g:python3_host_prog = '/usr/bin/python'
+    let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 "tex specific commands
@@ -111,7 +113,7 @@ set conceallevel=1
 let g:tex_conceal='abdgm'
 
 
-call SourceIfExists("/home/y/.config/nvim/coc.vim")
+call SourceIfExists("$HOME/.config/nvim/coc.vim")
 
 
 "virtualenv autocomplete support
