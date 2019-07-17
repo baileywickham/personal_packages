@@ -77,6 +77,11 @@ add2FA() {
     cp ./files/70-u2f.rules /etc/udev/rules.d/
 }
 
+addKeyboard() {
+    echo "copying keyboard"
+    sudo cp ./files/keyboard /etc/default
+}
+
 initialize() {
     # get the packages that will be used for other packages
     apt-get install sudo
