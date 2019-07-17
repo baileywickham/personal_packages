@@ -70,15 +70,6 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -133,6 +124,11 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+if type nvim > /dev/null 2>&1; then
+  #progressivly more lazy
+  alias vi='nvim'
+  alias v='nvim'
+fi
 
 #Sources
 source ~/.baileyShell

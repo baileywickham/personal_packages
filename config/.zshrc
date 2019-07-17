@@ -68,7 +68,6 @@ plugins=(
 
 if type nvim > /dev/null 2>&1; then
   #progressivly more lazy
-  alias vim='nvim'
   alias vi='nvim'
   alias v='nvim'
 fi

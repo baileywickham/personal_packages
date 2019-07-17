@@ -13,8 +13,6 @@ alias docker_clean_images='sudo docker rmi $(sudo docker images -a --filter=dang
 alias docker_clean_ps='sudo docker rm $(sudo docker ps --filter=status=exited --filter=status=created -q)'
 alias traceroute='mtr'
 alias unhibernate='service network-manager restart'
-alias vi='vim'
-alias v='vim'
 alias typora='/home/y/Documents/Typora-linux-x64/Typora'
 
 alias l='ls -lah'
