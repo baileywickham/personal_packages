@@ -28,3 +28,4 @@ alias t='tmux'
 
 alias gpg=gpg2
 alias "svn pull" "svn update"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
