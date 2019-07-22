@@ -84,7 +84,6 @@ addKeyboard() {
 
 initialize() {
     # get the packages that will be used for other packages
-    apt-get install sudo
     sudo apt-get update -qq && sudo apt-get install -qq curl \
         git \
         wget   \
