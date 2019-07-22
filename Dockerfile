@@ -8,7 +8,8 @@ RUN apt-get install -qq \
     gcc \
     curl \
     sudo \ 
-    git
+    git \
+    sudo
 #COPY /etc/apt/sources.list /etc/apt/sources.list
 
 
