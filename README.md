@@ -13,7 +13,8 @@ git clone https://github.com/baileywickham/personalPackages.git ~/workspace/pers
 ``` 
 To install the packages and move the dotfiles.
 
-The -c flag only copies new configs, useful for updating after pulling this repo.
+The -c flag is depricated now that all configs are sys links
+
 
 ### 'Features'
 This installs my custom bashrc, vimrc, tmux.conf, 2fa files and all packages I want.
