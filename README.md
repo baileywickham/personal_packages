@@ -7,7 +7,7 @@ The goal of this is to make my, and only my, life easier. What I mean by this is
 ### Running
 There should be as few dependencies as possible to the actual script, bash is all you need
 ```
-apt install git
+sudo apt install git
 git clone https://github.com/baileywickham/personalPackages.git ~/workspace/personalPackages && \ 
 ./personal_packages.sh
 ``` 
