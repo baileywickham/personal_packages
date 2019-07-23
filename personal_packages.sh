@@ -59,10 +59,13 @@ function replace() {
     source ./declares.sh
     for i in ${!dotFile[@]}; do
         echo "copying ${dotFile[i]}"
-        yes | ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
+        ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
     done
     ln -sf "${PWD}/nvim" "${HOME}/.config/"
     ln -sf "${PWD}/config/.baileyShell" "${HOME}/"
+    ln -sf "${PWD}/.gitignore_global" "${HOME}/"
+    ln -sf "${PWD}/files/.gitignore_global" "${HOME}/"
+
 }
 
 
