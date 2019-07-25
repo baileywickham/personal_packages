@@ -15,6 +15,7 @@ NC='\033[0m'
 
 function plug () {
     # install vim-plug
+    echo -e "${GREEN}Installing plug${NC}"
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -128,6 +129,7 @@ function help() {
     echo "-a : all"
     echo "-p : plug"
     echo "-d : docker"
+    echo "-c : configs"
 
 }
 
@@ -142,6 +144,9 @@ while getopts "adhpc:" OPT; do
             ;;
         d)
             docker
+            ;;
+        c)
+            replace
             ;;
         h)
             help
