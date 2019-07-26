@@ -8,8 +8,8 @@ The goal of this is to make my, and only my, life easier. What I mean by this is
 There should be as few dependencies as possible to the actual script, bash is all you need
 ```
 sudo apt install git
-git clone https://github.com/baileywickham/personalPackages.git ~/workspace/personalPackages && \ 
-./personal_packages.sh
+git clone https://github.com/baileywickham/personal_packages.git ~/workspace/personal_packages && \ 
+cd ~/workspace/personal_packages && ./personal_packages.sh
 ``` 
 To install the packages and move the dotfiles.
 
