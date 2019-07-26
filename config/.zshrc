@@ -16,7 +16,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 export ZSH=$HOME/.oh-my-zsh
 
-source ~/.baileyShell
+source ~/.bailey_shell
 
 ex ()
 {

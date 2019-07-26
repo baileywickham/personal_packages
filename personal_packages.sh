@@ -63,9 +63,6 @@ function replace() {
         ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
     done
     ln -sf "${PWD}/nvim" "${HOME}/.config/"
-    ln -sf "${PWD}/config/.baileyShell" "${HOME}/"
-    ln -sf "${PWD}/.gitignore_global" "${HOME}/"
-    ln -sf "${PWD}/files/.gitignore_global" "${HOME}/"
 
 }
 
