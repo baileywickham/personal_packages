@@ -3,7 +3,7 @@
 
 trap exit SIGINT
 
-if [ "$EUID" -e 0 ] &&  ! (grep -Fq "docker" /proc/1/cgroup) ; then
+if [ "$EUID" -eq "0" ] &&  ! (grep -Fq "docker" /proc/1/cgroup) ; then
     echo "Please do not run as root"
     exit
 fi
@@ -134,7 +134,7 @@ function help() {
 }
 
 
-while getopts "adhpc:" OPT; do
+while getopts "cadhp:" OPT; do
     case "${OPT}" in
         a)
             main

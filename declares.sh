@@ -1,5 +1,5 @@
 declare -a dotFile=(".zshrc"
-                    ".baileyShell"
-                    ".bashrc"
-                    ".vimrc"
-                    )
+".bailey_shell"
+".bashrc"
+".vimrc"
+)
