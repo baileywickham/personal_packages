@@ -13,8 +13,5 @@ cd ~/workspace/personal_packages && ./personal_packages.sh
 ``` 
 To install the packages and move the dotfiles.
 
-The -c flag is depricated now that all configs are sys links
-
-
 ### 'Features'
 This installs my custom bashrc, vimrc, tmux.conf, 2fa files and all packages I want.
