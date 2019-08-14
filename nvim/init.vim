@@ -26,6 +26,7 @@ set autowrite "writes on make
 set autoread "reads modified files
 set noswapfile
 set hidden
+set relativenumber
 
 " coc settings
 "set cmdheight=2
