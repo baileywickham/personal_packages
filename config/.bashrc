@@ -131,5 +131,5 @@ if type nvim > /dev/null 2>&1; then
 fi
 
 #Sources
-source ~/.baileyShell
+source ~/.bailey_shell
 
