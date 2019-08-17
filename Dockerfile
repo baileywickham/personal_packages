@@ -1,15 +1,17 @@
 FROM ubuntu
-WORKDIR /home/y
-COPY ./testing /testing
-COPY . /home/y
-RUN apt-get update -qq
+
+RUN useradd -ms /bin/bash testing
+COPY . /home/testing
+WORKDIR /home/testing
+
+RUN apt-get update -qq > /dev/null
 RUN apt-get install -qq \
     build-essential \
     gcc \
     curl \
-    sudo \ 
     git \
-    sudo
+    sudo > /dev/null
+
 #COPY /etc/apt/sources.list /etc/apt/sources.list
 
 

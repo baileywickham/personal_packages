@@ -13,20 +13,40 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+function apt_install () {
+    for package in "$@"
+    do
+        sub_sub "$package"
+        sudo apt-get -qq install "$package" > /dev/null
+    done
+}
+
+function task () {
+    echo -e " ${GREEN}[*]${NC} $1"
+}
+
+function sub () {
+    echo -e "   ${BLUE}[*]${NC} $1"
+}
+function sub_sub () {
+    echo -e "      ${RED}[*]${NC} $1"
+}
+
 function plug () {
     # install vim-plug
-    echo -e "${GREEN}Installing plug${NC}"
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    task "Installing plug"
+    curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    curl -sfLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     }
 
 function install_nvim() {
-    echo -e "${GREEN}Installing nvim${NC}"
+    task "Installing nvim"
+    sub "Installing packages"
 
-    sudo apt-get install -qq cmake \
+    apt_install cmake \
         pkg-config \
         libtool \
         m4 \
@@ -40,28 +60,34 @@ function install_nvim() {
 
 
     plug
-    git clone https://github.com/neovim/neovim.git ${HOME}/.builds
-    (cd ${HOME}/.builds && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install)
-    pip3 install --user neovim
-    nvim +PlugInstall +qa
-    sudo npm i -g bash-language-server
+    (git clone https://github.com/neovim/neovim.git ${HOME}/.builds) &> /dev/null
+    sub "Building nvim"
+    (cd ${HOME}/.builds && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install) &> /dev/null
+    sub "Installing nvim sub packages"
+    pip3 install --user neovim &> /dev/null
+    nvim +PlugInstall +qa &> /dev/null
+    sudo npm i -g bash-language-server &> /dev/null
 }
 
 function dir() {
-    echo -e "${GREEN}Creating dirs${NC}"
+    task "Creating directories"
     mkdir -p /etc/udev/rules.d
     mkdir -p ${HOME}/.ssh
     mkdir -p ${HOME}/.config
     mkdir -p ${HOME}/.builds
+    mkdir -p ${HOME}/.config
 }
 # Move dotfiles
 function replace() {
-    echo -e "${GREEN}Replacing config files${NC}"
+    # Create directories
+    dir
+    task "Replacing config files"
     source ./declares.sh
     for i in ${!dotFile[@]}; do
-        echo "copying ${dotFile[i]}"
+        sub "copying ${dotFile[i]}"
         ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
     done
+    sub "copying nvim"
     ln -sf "${PWD}/nvim" "${HOME}/.config/"
 
 }
@@ -77,18 +103,25 @@ function addSSHLink() {
 }
 
 function add2FA() {
-    echo "copying 2fa"
+    task "copying 2fa"
     cp ./files/70-u2f.rules /etc/udev/rules.d/
 }
 
 function addKeyboard() {
-    echo "copying keyboard"
+    task "copying keyboard"
     sudo cp ./files/keyboard /etc/default
 }
 
 function initialize() {
     # get the packages that will be used for other packages
-    sudo apt-get update -qq && sudo apt-get install -qq curl \
+    task "Initializing install"
+    sub "Installing packages"
+    sudo apt-get update > /dev/null
+    apt_install apt-utils \
+        gcc \
+        build-essential \
+        dialog \
+        curl \
         git \
         wget   \
         gnupg  \
@@ -99,7 +132,7 @@ function initialize() {
         python3-pip \
         apt-transport-https \
         ca-certificates \
-        gnupg-agent > /dev/null
+        gnupg-agent
 
     }
 
@@ -115,23 +148,30 @@ function main() {
 }
 
 function docker() {
+    task "Installing docker"
+    sub "Adding keys"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    sudo apt update -q
-    sudo apt-get install -qq docker-ce docker-ce-cli containerd.io
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >/dev/null
+    sudo apt-get update -qq > /dev/null
+    apt_install docker-ce docker-ce-cli containerd.io
 
 }
 
 function help() {
-    echo "-a : all"
-    echo "-p : plug"
+    echo "-a : all, Install all features including all configs, docker, zsh, go..."
+    echo "-p : plug, Install plug.vim and plug.nvim"
     echo "-d : docker"
     echo "-c : configs"
 
 }
 
+function whichos() {
+    awk -F= '$1=="PRETTY_NAME" { print $2 ;}' /etc/os-release
+}
 
-while getopts "cadhp:" OPT; do
+
+
+while getopts "pcadh:" OPT; do
     case "${OPT}" in
         a)
             main
