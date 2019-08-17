@@ -64,8 +64,10 @@ function install_nvim() {
     sub "Building nvim"
     (cd ${HOME}/.builds && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install) &> /dev/null
     sub "Installing nvim sub packages"
+    sub_sub "Installing neovim python support"
     pip3 install --user neovim &> /dev/null
     nvim +PlugInstall +qa &> /dev/null
+    sub_sub "Installing bash language server"
     sudo npm i -g bash-language-server &> /dev/null
 }
 
@@ -137,9 +139,11 @@ function initialize() {
     }
 
 function main() {
+    neoneofetch
     initialize
     dir
     add2FA
+    shell
     replace
     addSSHLink
     install_nvim
@@ -167,6 +171,56 @@ function help() {
 
 function whichos() {
     awk -F= '$1=="PRETTY_NAME" { print $2 ;}' /etc/os-release
+}
+function whichcpu() {
+    awk -F: '$1=="model name\t" {print $2;exit;}' /proc/cpuinfo
+}
+function whichrepo(){
+    echo todo
+}
+
+function neoneofetch() {
+    echo "----------------------------------------------------------------------------------------------------------------"
+    echo ""
+    echo -e "  "
+    echo -e "   "
+    echo -e "   "
+    echo -e "   "
+    echo -e "  "
+    echo -e "   "
+    echo -e "  "
+    echo -e "  "
+    echo -e "           ${BLUE}User:\e[39m           $(whoami)"
+    echo -e "           ${BLUE}Hostname:\e[39m       $(hostname)"
+    echo -e "           ${BLUE}Distro:\e[39m         $(whichos)"
+    echo -e "           ${BLUE}Kernel:\e[39m         $(uname -r)"
+    echo -e "           ${BLUE}Shell:\e[39m          $SHELL"
+    echo -e "           ${BLUE}CPU:\e[39m            $(whichcpu)"
+    echo -e "           ${BLUE}Dotfiles:\e[39m       TODO"
+    echo -e "   "
+    echo -e ""
+    echo -e " "
+    echo -e "  "
+    echo -e "   "
+    echo -e "   "
+    echo ""
+    echo "----------------------------------------------------------------------------------------------------------------"
+    echo ""
+
+}
+
+function shell() {
+    task "Installing zsh"
+    sub "Installing Packages"
+    apt_install zsh
+    sub "Installing oh-my-zsh"
+    if [ -d "~/.oh-my-zsh" ]; then
+        sub_sub "oh-my-zsh already installed"
+    else
+        sub_sub "curling oh-my-zsh"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
+    fi
+
 }
 
 

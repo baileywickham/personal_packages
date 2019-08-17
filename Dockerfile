@@ -12,6 +12,8 @@ RUN apt-get install -qq \
     git \
     sudo > /dev/null
 
+USER testing
+
 #COPY /etc/apt/sources.list /etc/apt/sources.list
 
 
