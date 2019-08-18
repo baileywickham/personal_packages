@@ -138,12 +138,18 @@ function initialize() {
 
     }
 
+function superuser () {
+    task "Getting sudo permissions"
+    sudo echo "sudo successful"
+}
+
 function main() {
     neoneofetch
+    superuser
     initialize
     dir
     add2FA
-    shell
+    #shell
     replace
     addSSHLink
     install_nvim
@@ -153,11 +159,16 @@ function main() {
 
 function docker() {
     task "Installing docker"
-    sub "Adding keys"
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >/dev/null
-    sudo apt-get update -qq > /dev/null
-    apt_install docker-ce docker-ce-cli containerd.io
+    if command -v docker > /dev/null;
+    then
+        sub "Docker already installed";
+    else
+        sub "Adding keys"
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >/dev/null
+        sudo apt-get update -qq > /dev/null
+        apt_install docker-ce docker-ce-cli containerd.io
+    fi
 
 }
 

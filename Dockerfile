@@ -4,6 +4,8 @@ RUN useradd -ms /bin/bash testing
 COPY . /home/testing
 WORKDIR /home/testing
 
+RUN echo -e "testing\ntesting" | passwd testing
+
 RUN apt-get update -qq > /dev/null
 RUN apt-get install -qq \
     build-essential \
