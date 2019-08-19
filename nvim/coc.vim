@@ -15,7 +15,7 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
