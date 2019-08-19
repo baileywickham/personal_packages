@@ -153,12 +153,12 @@ function main() {
     initialize
     dir
     add2FA
-    shell
-    replace
     addSSHLink
     install_nvim
     addKeyboard
     docker
+    shell
+    replace
 }
 
 function docker() {
