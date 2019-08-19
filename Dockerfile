@@ -1,5 +1,6 @@
 FROM ubuntu
 
+# Create user to simulate non root
 RUN useradd -ms /bin/bash user
 RUN mkdir /etc/sudoers.d/
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
@@ -7,7 +8,7 @@ RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
 COPY . /home/user
 WORKDIR /home/user
 
-
+# Install packages req
 RUN apt-get update -qq > /dev/null
 RUN apt-get install -qq \
     build-essential \
