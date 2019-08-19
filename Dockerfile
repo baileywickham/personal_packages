@@ -1,10 +1,12 @@
 FROM ubuntu
 
-RUN useradd -ms /bin/bash testing
-COPY . /home/testing
-WORKDIR /home/testing
+RUN useradd -ms /bin/bash user
+RUN mkdir /etc/sudoers.d/
+RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
+    chmod 0440 /etc/sudoers.d/user
+COPY . /home/user
+WORKDIR /home/user
 
-RUN echo -e "testing\ntesting" | passwd testing
 
 RUN apt-get update -qq > /dev/null
 RUN apt-get install -qq \
@@ -14,7 +16,7 @@ RUN apt-get install -qq \
     git \
     sudo > /dev/null
 
-USER testing
+USER user
 
 #COPY /etc/apt/sources.list /etc/apt/sources.list
 

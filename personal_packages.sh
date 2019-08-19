@@ -1,5 +1,8 @@
 #!/bin/bash
 # This whole file is a really bad idea. DO NOT copy any of this code.
+#TODO handle errors, that would probably be good
+# - add warning layer
+# - copy stderror output to waring output
 
 trap exit SIGINT
 
@@ -134,13 +137,13 @@ function initialize() {
         python3-pip \
         apt-transport-https \
         ca-certificates \
-        gnupg-agent
+        gnupg-agent &> /dev/null # this is bad, don't do this.
 
     }
 
 function superuser () {
     task "Getting sudo permissions"
-    sudo echo "sudo successful"
+    sudo sub "sudo successful"
 }
 
 function main() {
