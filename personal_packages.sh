@@ -143,7 +143,8 @@ function initialize() {
 
 function superuser () {
     task "Getting sudo permissions"
-    sudo sub "sudo successful"
+    sudo echo -n
+    sub "sudo successful"
 }
 
 function main() {
@@ -162,7 +163,7 @@ function main() {
 
 function docker() {
     task "Installing docker"
-    if command -v docker > /dev/null;
+    if ! command -v docker > /dev/null;
     then
         sub "Docker already installed";
     else
@@ -171,6 +172,11 @@ function docker() {
         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >/dev/null
         sudo apt-get update -qq > /dev/null
         apt_install docker-ce docker-ce-cli containerd.io
+        sub "Creating docker group"
+        sudo groupadd docker
+        sudo usermod -aG docker $(whoami)
+        sudo rm -rf ~/.docker
+
     fi
 
 }
@@ -178,8 +184,8 @@ function docker() {
 function help() {
     echo "-a : all, Install all features including all configs, docker, zsh, go..."
     echo "-p : plug, Install plug.vim and plug.nvim"
-    echo "-d : docker"
-    echo "-c : configs"
+    echo "-d : docker, Install docker"
+    echo "-c : configs, Install just config files"
 
 }
 
