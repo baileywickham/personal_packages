@@ -37,7 +37,7 @@ function sub_sub () {
 
 function plug () {
     # install vim-plug
-    task "Installing plug"
+    sub "Installing plug"
     curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -59,7 +59,7 @@ function install_nvim() {
         automake \
         nodejs \
         yarn \
-        npm
+        npm &> /dev/null
 
 
     plug
@@ -76,7 +76,7 @@ function install_nvim() {
 
 function dir() {
     task "Creating directories"
-    mkdir -p /etc/udev/rules.d
+    sudo mkdir -p /etc/udev/rules.d
     mkdir -p ${HOME}/.ssh
     mkdir -p ${HOME}/.config
     mkdir -p ${HOME}/.builds
@@ -153,7 +153,7 @@ function main() {
     initialize
     dir
     add2FA
-    #shell
+    shell
     replace
     addSSHLink
     install_nvim
@@ -210,13 +210,13 @@ function neoneofetch() {
     echo -e "   "
     echo -e "  "
     echo -e "  "
-    echo -e "           ${BLUE}User:\e[39m           $(whoami)"
-    echo -e "           ${BLUE}Hostname:\e[39m       $(hostname)"
-    echo -e "           ${BLUE}Distro:\e[39m         $(whichos)"
-    echo -e "           ${BLUE}Kernel:\e[39m         $(uname -r)"
-    echo -e "           ${BLUE}Shell:\e[39m          $SHELL"
-    echo -e "           ${BLUE}CPU:\e[39m            $(whichcpu)"
-    echo -e "           ${BLUE}Dotfiles:\e[39m       TODO"
+    echo -e "           ${BLUE}User:${NC}           $(whoami)"
+    echo -e "           ${BLUE}Hostname:${NC}       $(hostname)"
+    echo -e "           ${BLUE}Distro:${NC}         $(whichos)"
+    echo -e "           ${BLUE}Kernel:${NC}         $(uname -r)"
+    echo -e "           ${BLUE}Shell:${NC}          $SHELL"
+    echo -e "           ${BLUE}CPU:${NC}            $(whichcpu)"
+    echo -e "           ${BLUE}Dotfiles:${NC}       TODO"
     echo -e "   "
     echo -e ""
     echo -e " "
@@ -239,6 +239,7 @@ function shell() {
     else
         sub_sub "curling oh-my-zsh"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
+        chsh -s /bin/zsh
     fi
 
 }
