@@ -15,3 +15,6 @@ To install the packages and move the dotfiles.
 
 ### 'Features'
 This installs my custom bashrc, vimrc, tmux.conf, 2fa files and all packages I want.
+
+### Docker
+This repo includes a dockerfile and a script, ```dock.sh``` which runs the dockerfile. I am using docker as a test enviroment for making changes to the os, without braking my configs. 
