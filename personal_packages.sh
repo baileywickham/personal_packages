@@ -163,7 +163,7 @@ function main() {
 
 function docker() {
     task "Installing docker"
-    if ! command -v docker > /dev/null;
+    if command -v docker > /dev/null;
     then
         sub "Docker already installed";
     else
@@ -172,6 +172,7 @@ function docker() {
         sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >/dev/null
         sudo apt-get update -qq > /dev/null
         apt_install docker-ce docker-ce-cli containerd.io
+
         sub "Creating docker group"
         sudo groupadd docker
         sudo usermod -aG docker $(whoami)
@@ -239,7 +240,8 @@ function shell() {
     else
         sub_sub "curling oh-my-zsh"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
-        chsh -s /bin/zsh
+        sudo chsh -s /bin/zsh
+        git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k > /dev/null
     fi
 
 }
