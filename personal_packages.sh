@@ -63,7 +63,7 @@ function install_nvim() {
 
 
     plug
-    (git clone https://github.com/neovim/neovim.git ${HOME}/.builds) &> /dev/null
+    (git clone https://github.com/neovim/neovim.git ${HOME}/.builds/neovim) &> /dev/null
     sub "Building nvim"
     (cd ${HOME}/.builds && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install) &> /dev/null
     sub "Installing nvim sub packages"
