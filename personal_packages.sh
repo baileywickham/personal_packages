@@ -240,7 +240,8 @@ function shell() {
     else
         sub_sub "curling oh-my-zsh"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
-        chsh -s /bin/zsh
+        sudo chsh -s /bin/zsh
+        git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k > /dev/null
     fi
 
 }
