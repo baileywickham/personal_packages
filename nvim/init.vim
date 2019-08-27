@@ -13,6 +13,8 @@ set cursorline
 
 "Key remaps
 inoremap hh <esc>
+"Remap for term
+tnoremap hh <C-\><C-n>
 nore ; :
 nore , ;
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
@@ -74,8 +76,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lilydjwg/colorizer'
 Plug 'luochen1990/rainbow'
-Plug 'lervag/vimtex'
-Plug 'KeitaNakamura/tex-conceal.vim'
+"Plug 'lervag/vimtex'
+"Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
