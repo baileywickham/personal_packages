@@ -95,6 +95,8 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 
 au BufWrite *.go,*.py,*.sh,*.json,*.c,*.h :Autoformat
 
+map <C-n> :NERDTreeToggle<CR>
+
 let g:go_highlight_types = 1
 let g:go_auto_type_info = 1
 
