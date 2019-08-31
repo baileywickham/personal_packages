@@ -38,23 +38,3 @@ au BufNewFile,BufRead *.py:
                         \ set tabstop=4
                         \ set shiftwidth=4
                         \ set expandtab
-"Auto refresh vimrc
-
-call plug#begin('~/.vim/plugged')
-" let Vundle manage Vundle, required
-Plug 'altercation/vim-colors-solarized'
-Plug 'ervandew/supertab'
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plug 'scrooloose/nerdtree'
-call plug#end()
-
-
-set t_Co=256
-syntax enable
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-
-map <C-n> :NERDTreeToggle<CR>
-
-
