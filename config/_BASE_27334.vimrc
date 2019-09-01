@@ -17,7 +17,6 @@ set autoread "reads modified files
 set nocompatible
 set noswapfile
 set hidden
-set relativenumber
 
 "Search options
 set hlsearch
@@ -27,7 +26,6 @@ set wildmenu
 
 "set indent and plugins for filetype
 filetype plugin indent on
-syntax enable
 
 "set formating
 set tabstop=4
@@ -40,6 +38,23 @@ au BufNewFile,BufRead *.py:
                         \ set tabstop=4
                         \ set shiftwidth=4
                         \ set expandtab
+"Auto refresh vimrc
 
-autocmd BufNewFile,BufRead *.h setfiletype c
-autocmd BufNewFile,BufRead *.bailey_shell set filetype=sh
+call plug#begin('~/.vim/plugged')
+" let Vundle manage Vundle, required
+Plug 'altercation/vim-colors-solarized'
+Plug 'ervandew/supertab'
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'scrooloose/nerdtree'
+call plug#end()
+
+
+set t_Co=256
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+map <C-n> :NERDTreeToggle<CR>
+
+
