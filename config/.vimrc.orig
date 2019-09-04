@@ -40,6 +40,9 @@ au BufNewFile,BufRead *.py:
                         \ set tabstop=4
                         \ set shiftwidth=4
                         \ set expandtab
-
+<<<<<<< HEAD
 autocmd BufNewFile,BufRead *.h setfiletype c
 autocmd BufNewFile,BufRead *.bailey_shell set filetype=sh
+
+=======
+>>>>>>> eb72a3f5a207230da5a8b19014b62491ecf910b4
