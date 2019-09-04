@@ -124,12 +124,15 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-if type nvim > /dev/null 2>&1; then
-  #progressivly more lazy
-  alias vi='nvim'
-  alias v='nvim'
-fi
 
 #Sources
+if type nvim > /dev/null 2>&1; then                                         
+    #progressivly more lazy
+    alias vi='nvim'
+    alias v='nvim'
+    #alias =nvim
+fi
+
 source ~/.bailey_shell
+
 
