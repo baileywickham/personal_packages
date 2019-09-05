@@ -131,6 +131,9 @@ if type nvim > /dev/null 2>&1; then
     alias vi='nvim'
     alias v='nvim'
     #alias =nvim
+else 
+    alias vi='vim'
+    alias v='vim'
 fi
 
 source ~/.bailey_shell
