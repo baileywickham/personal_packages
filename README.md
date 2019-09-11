@@ -20,4 +20,4 @@ This installs my custom bashrc, vimrc, tmux.conf, 2fa files and all packages I w
 This repo includes a dockerfile and a script, ```dock.sh``` which runs the dockerfile. I am using docker as a test enviroment for making changes to the os, without braking my configs. 
 
 ## One liners
-```https://raw.githubusercontent.com/baileywickham/personal_packages/master/files/keyboard > /etc/default/keyboard```
+```curl https://raw.githubusercontent.com/baileywickham/personal_packages/master/files/keyboard > /etc/default/keyboard```
