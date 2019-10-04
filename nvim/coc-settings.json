@@ -13,7 +13,6 @@
             "command": "bash-language-server",
             "args": ["start"],
             "filetypes": ["sh"],
-            "ignoredRootPaths": ["~"]
         },
         "golang": {
             "command": "gopls",
