@@ -3,7 +3,7 @@
 
 #Start tmux
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#  exec tmux 
+#  exec tmux
 #fi
 #
 export TERM="xterm-256color"
@@ -48,15 +48,19 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    status 
-    background_jobs 
-    dir_writable 
+    status
+    background_jobs
+    dir_writable
 )
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_ETC_ICON=''
 POWERLEVEL9K_VCS_GIT_HOOKS=(
-    #vcs-detect-changes 
-    git-aheadbehind 
-    git-stash 
-    git-remotebranch 
+    #vcs-detect-changes
+    git-aheadbehind
+    git-stash
+    git-remotebranch
     git-tagname
 )
 

@@ -66,6 +66,9 @@ autocmd FileType c,cpp setlocal equalprg=clang-format
 autocmd BufNewFile,BufRead *.h setfiletype c
 autocmd BufNewFile,BufRead *.bailey_shell set filetype=sh
 
+autocmd BufWritePre * %s/\s\+$//e
+
+
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go'
