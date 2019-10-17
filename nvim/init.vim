@@ -1,15 +1,15 @@
 function! SourceIfExists(file)
-  if filereadable(expand(a:file))
-    exe 'source' a:file
-  else
-      echo "Counld not read file'
-  endif
+    if filereadable(expand(a:file))
+        exe 'source' a:file
+    else
+        echo "Counld not read file'
+    endif
 endfunction
 
 "sets powerline to turn on
 set laststatus=2
 set showcmd
-set cursorline 
+set cursorline
 
 "Key remaps
 inoremap hh <esc>
@@ -18,7 +18,7 @@ tnoremap hh <C-\><C-n>
 nore ; :
 nore , ;
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
-noremap! <C-BS> <C-w> "ctrl backspace 
+noremap! <C-BS> <C-w> "ctrl backspace
 noremap! <C-h> <C-w>
 
 set nu "line numbers
@@ -58,9 +58,9 @@ set shiftround "Rounds shift to shiftwidth
 set backspace=indent,eol,start
 
 au BufNewFile,BufRead *.py:
-			\ set tabstop=4
-			\ set shiftwidth=4
-			\ set expandtab
+            \ set tabstop=4
+            \ set shiftwidth=4
+            \ set expandtab
 
 autocmd FileType c,cpp setlocal equalprg=clang-format
 autocmd BufNewFile,BufRead *.h setfiletype c
@@ -92,12 +92,13 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+"add coc to airline
 let g:airline_theme='solarized'
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 
-au BufWrite *.go,*.py,*.sh,*.json,*.c,*.h :Autoformat
+au BufWrite *.go,*.py,*.sh,*.json,*.c,*.h,*.zsh :Autoformat
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -134,8 +135,8 @@ import os
 import sys
 
 if 'VIRTUAL_ENV' in os.environ:
-	project_base_dir = os.environ['VIRTUAL_ENV']
-	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-	exec(open(activate_this).read(), dict(__file__=activate_this))
-EOF
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    exec(open(activate_this).read(), dict(__file__=activate_this))
+    EOF
 
