@@ -64,17 +64,17 @@ POWERLEVEL9K_VCS_GIT_HOOKS=(
     git-tagname
 )
 
-source $ZSH/oh-my-zsh.sh
 
 plugins=(
     command-not-found
-    )
+)
+
+source $ZSH/oh-my-zsh.sh
 
 if type nvim > /dev/null 2>&1; then
   #progressivly more lazy
   alias vi='nvim'
   alias v='nvim'
-  #alias =nvim
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
