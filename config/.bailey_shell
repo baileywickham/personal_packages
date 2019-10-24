@@ -28,3 +28,4 @@ alias t='tmux'
 
 alias gpg=gpg2
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias dock="echo 'FROM ubuntu\nCOPY . /home/root/\nWORKDIR /home/root' > .Dockerfile | docker build -t tmp -f .Dockerfile . && docker run -it tmp && rm .Dockerfile"
