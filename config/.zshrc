@@ -7,6 +7,7 @@
 #fi
 #
 export TERM="xterm-256color"
+export EDITOR="vi"
 
 # Set f2 to edit zshrc
 bindkey -s "\eOQ" "vi ~/.zshrc \n"

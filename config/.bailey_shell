@@ -9,11 +9,10 @@ alias obse='watchman-make -p "*test*.py" --run "python3 *test*.py"'
 alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'
 
 
-alias docker_clean_images='sudo docker rmi $(sudo docker images -a --filter=dangling=true -q)'
-alias docker_clean_ps='sudo docker rm $(sudo docker ps --filter=status=exited --filter=status=created -q)'
+alias docker_clean_images='sudo docker rmi $(sudo docker images --all -q)'
+alias docker_clean_ps='sudo docker rm $(sudo docker ps --all -q)'
 alias traceroute='mtr'
 alias unhibernate='service network-manager restart'
-alias typora='/home/y/Documents/Typora-linux-x64/Typora'
 
 alias l='ls -lah'
 alias ll='ls -lh'
@@ -29,3 +28,4 @@ alias t='tmux'
 alias gpg=gpg2
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias dock="echo 'FROM ubuntu\nCOPY . /home/root/\nWORKDIR /home/root' > .Dockerfile | docker build -t tmp -f .Dockerfile . && docker run -it tmp && rm .Dockerfile"
+alias xxd='hexyl'
