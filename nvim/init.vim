@@ -11,12 +11,12 @@ set laststatus=2
 set showcmd
 set cursorline
 
-"Key remaps
-inoremap hh <esc>
+"Key remaps :(
+"inoremap hh <esc>
 "Remap for term
-tnoremap hh <C-\><C-n>
-nore ; :
-nore , ;
+"tnoremap hh <C-\><C-n>
+"nore ; :
+"nore , ;
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 noremap! <C-BS> <C-w> "ctrl backspace
 noremap! <C-h> <C-w>
@@ -98,7 +98,7 @@ let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_er
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 
-au BufWrite *.go,*.py,*.sh,*.json,*.c,*.h,*.zsh :Autoformat
+"au BufWrite *.go,*.py,*.sh,*.json,*.c,*.h,*.zsh :Autoformat
 
 map <C-n> :NERDTreeToggle<CR>
 

@@ -81,6 +81,7 @@ function dir() {
     mkdir -p ${HOME}/.config
     mkdir -p ${HOME}/.builds
     mkdir -p ${HOME}/.config
+    mkdir -p ${HOME}/.emacs.d
 }
 # Move dotfiles
 function replace() {
@@ -94,6 +95,7 @@ function replace() {
     done
     sub "copying nvim"
     ln -sf "${PWD}/nvim" "${HOME}/.config/"
+    ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
 
 }
 
