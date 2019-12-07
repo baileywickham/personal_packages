@@ -14,7 +14,7 @@ set cursorline
 "Key remaps :(
 "inoremap hh <esc>
 "Remap for term
-"tnoremap hh <C-\><C-n>
+tnoremap hh <C-\><C-n>
 "nore ; :
 "nore , ;
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>

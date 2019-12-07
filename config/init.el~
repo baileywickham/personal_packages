@@ -16,11 +16,10 @@
   :config (which-key-mode))
 
 (use-package evil
-  :ensure t
   :config
   (evil-mode 1))
-
-(show-paren-mode 1)
+;(require 'helm)
+;(require 'lsp-mode)
 
 ;(require 'helm-config)
 

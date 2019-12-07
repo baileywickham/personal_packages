@@ -4,10 +4,10 @@ set showcmd
 set cursorline
 
 "Key remaps
-inoremap hh <esc>
+"inoremap hh <esc>
 nnoremap <F2> :e! ~/.vimrc<CR>
-nore ; :
-nore , ;
+"nore ; :
+"nore , ;
 
 set nu "line numbers
 set nobackup
