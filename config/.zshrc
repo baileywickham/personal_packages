@@ -77,9 +77,3 @@ if type nvim > /dev/null 2>&1; then
   alias vi='nvim'
   alias v='nvim'
 fi
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/home/y/workspace/builds/cquery/build/release/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export GO111MODULE=on
-export POLYXDR3=/home/y/workspace/polysat/polyxdr3/poly-xdrgen3

@@ -4,4 +4,5 @@ declare -a dotFile=(".zshrc"
 ".vimrc"
 ".gitignore_global"
 ".gitconfig"
+".zshenv"
 )

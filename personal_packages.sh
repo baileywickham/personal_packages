@@ -76,7 +76,10 @@ function install_nvim() {
 
 function dir() {
     task "Creating directories"
-    sudo mkdir -p /etc/udev/rules.d
+    if [ ! -z "$has_sudo" ];
+    then
+        sudo mkdir -p /etc/udev/rules.d
+    fi
     mkdir -p ${HOME}/.ssh
     mkdir -p ${HOME}/.config
     mkdir -p ${HOME}/.builds
@@ -147,6 +150,7 @@ function superuser () {
     task "Getting sudo permissions"
     sudo echo -n
     sub "sudo successful"
+    has_sudo = true
 }
 
 function main() {
