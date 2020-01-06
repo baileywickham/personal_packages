@@ -150,7 +150,7 @@ function superuser () {
     task "Getting sudo permissions"
     sudo echo -n
     sub "sudo successful"
-    has_sudo = true
+    has_sudo=true
 }
 
 function main() {
