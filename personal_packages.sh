@@ -237,10 +237,13 @@ function shell() {
     if [ -d "~/.oh-my-zsh" ]; then
         sub_sub "oh-my-zsh already installed"
     else
-        sub_sub "curling oh-my-zsh"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
-        sudo chsh -s /bin/zsh
-        git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k > /dev/null
+        git submodule init
+        sub_sub "linking oh-my-zsh"
+        ln -s "${PWD}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
+        # sub_sub "curling oh-my-zsh"
+        # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
+        # sudo chsh -s /bin/zsh
+        # git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k > /dev/null
     fi
 
 }
