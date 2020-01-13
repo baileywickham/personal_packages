@@ -43,3 +43,4 @@ au BufNewFile,BufRead *.py:
 
 autocmd BufNewFile,BufRead *.h setfiletype c
 autocmd BufNewFile,BufRead *.bailey_shell set filetype=sh
+set mouse=a

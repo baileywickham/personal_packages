@@ -43,7 +43,7 @@ ex ()
 
 
 #source ~/.powerlevel9k/powerlevel9k.zsh-theme
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 
@@ -52,6 +52,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     status
     background_jobs
     dir_writable
+    virtualenv
 )
 POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''

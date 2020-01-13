@@ -20,5 +20,7 @@
             "filetypes": ["go"]
         }
     },
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "python.venvPath": "~/.local/share/virtualenvs/",
+    "python.autoComplete.addBrackets":true,
 }

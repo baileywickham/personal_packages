@@ -8,4 +8,4 @@ export ARM_TOOLCHAIN_PATH="${BUILDROOT_PATH}/host/usr"
 export ARM_BIN_SUBPATH="bin/arm-linux-"
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.cargo/bin:$PATH"
-
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
