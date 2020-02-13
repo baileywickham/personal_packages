@@ -5,15 +5,10 @@
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #  exec tmux
 #fi
-#
-export TERM="xterm-256color"
-export EDITOR="vi"
+
 
 # Set f2 to edit zshrc
 bindkey -s "\eOQ" "vi ~/.zshrc \n"
-
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 export ZSH=$HOME/.oh-my-zsh
 

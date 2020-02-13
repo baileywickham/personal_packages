@@ -21,6 +21,10 @@ nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 noremap! <C-BS> <C-w> "ctrl backspace
 noremap! <C-h> <C-w>
 
+nnoremap <Space> i_<Esc>r
+"space inserts single character
+
+
 set nu "line numbers
 set nobackup
 set noerrorbells
@@ -29,6 +33,7 @@ set autoread "reads modified files
 set noswapfile
 set hidden
 set relativenumber
+set inccommand=nosplit
 
 " coc settings
 "set cmdheight=2
@@ -83,9 +88,10 @@ Plug 'luochen1990/rainbow'
 "Plug 'lervag/vimtex'
 "Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-"let g:rainbow_active=1
 
 syntax enable
 set background=dark
