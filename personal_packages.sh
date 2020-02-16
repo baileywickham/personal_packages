@@ -98,7 +98,11 @@ function replace() {
     done
     sub "copying nvim"
     ln -sf "${PWD}/nvim" "${HOME}/.config/"
+    sub "copying emacs config"
     ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
+    sub "copying fish configs"
+    ln -sf "${PWD}/config/omf" "${HOME}/.config/"
+    ln -sf "${PWD}/config/fish" "${HOME}/.config/"
 
 }
 
