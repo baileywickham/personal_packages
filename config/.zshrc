@@ -60,10 +60,13 @@ POWERLEVEL9K_VCS_GIT_HOOKS=(
     git-remotebranch
     git-tagname
 )
+POWERLEVEL9K_VI_INSERT_MODE_STRING='<<<'
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='>>>'
 
 
 plugins=(
     command-not-found
+    vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
