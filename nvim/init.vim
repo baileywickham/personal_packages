@@ -34,6 +34,7 @@ set noswapfile
 set hidden
 set relativenumber
 set inccommand=nosplit
+set mouse=a
 
 " coc settings
 "set cmdheight=2
