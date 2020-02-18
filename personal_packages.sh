@@ -207,7 +207,7 @@ function whichcpu() {
     awk -F: '$1=="model name\t" {print $2;exit;}' /proc/cpuinfo
 }
 function whichrepo(){
-    echo todo
+    awk -F@ '"\turl = git"==$1 {print $2;exit;}' ./.git/config
 }
 
 function neoneofetch() {
@@ -223,7 +223,7 @@ function neoneofetch() {
     echo -e "     ┈┈╲╳╳╳╳╳╱┈┈      ${BLUE}Kernel:${NC}         $(uname -r)"
     echo -e "     ┈┈┈╲╋╋╋╱┈┈┈      ${BLUE}Shell:${NC}          $SHELL"
     echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}            $(whichcpu)"
-    echo -e "     ┈┈┈┈▕▅▏┈┈┈┈      ${BLUE}Dotfiles:${NC}       TODO"
+    echo -e "     ┈┈┈┈▕▅▏┈┈┈┈      ${BLUE}Dotfiles:${NC}       $(whichrepo)"
     echo -e "   "
     echo -e ""
     echo -e "   "
