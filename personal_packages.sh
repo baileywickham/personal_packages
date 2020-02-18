@@ -97,7 +97,7 @@ function replace() {
         ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
     done
     sub "copying nvim"
-    ln -sf "${PWD}/nvim" "${HOME}/.config/"
+    ln -sf "${PWD}/config/nvim" "${HOME}/.config/"
     sub "copying emacs config"
     ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
     sub "copying fish configs"
