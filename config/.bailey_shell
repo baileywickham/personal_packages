@@ -29,3 +29,4 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias xxd='hexyl'
 alias ccat='pygmentize -g'
 alias v='nvim'
+alias :q='exit'
