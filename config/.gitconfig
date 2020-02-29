@@ -3,3 +3,6 @@
 	name = baileywickham
 [core]
 	excludesfile = /home/y/.gitignore_global
+
+[url "git+ssh://baileywickham@git.launchpad.net/"]
+    insteadof = lp
