@@ -2,9 +2,20 @@ function! SourceIfExists(file)
     if filereadable(expand(a:file))
         exe 'source' a:file
     else
-        echo "Counld not read file'
+        echo "Counld not read file"
     endif
 endfunction
+
+function! Imp(importname)
+    " force case sensitive
+    if &filetype ==? "go"
+        call go#import#SwitchImport(1, '', a:importname, '<bang>')
+    elseif &filetype ==? "python"
+        echo "python"
+    endif
+endfunction
+
+
 
 "sets powerline to turn on
 set laststatus=2
@@ -114,14 +125,8 @@ let g:go_auto_type_info = 1
 
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<F9>'
-"let vim_markdown_preview_toggle=3
+"let vim_markdown_prevew_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
-
-"if $USER == 'y'
-"    let g:python3_host_prog = '/home/y/.local/share/virtualenvs/y-Tr7e3Pwk/bin/python'
-"else
-"    let g:python3_host_prog = '/usr/bin/python3'
-"endif
 
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -134,15 +139,5 @@ let g:tex_conceal='abdgm'
 
 
 call SourceIfExists("$HOME/.config/nvim/coc.vim")
-
-
-"virtualenv autocomplete support
-py3 << EOF
-import os
-import sys
-
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    exec(open(activate_this).read(), dict(__file__=activate_this))
+command! -nargs=1 Import  call Imp('<args>')
 

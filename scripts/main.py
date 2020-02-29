@@ -1,8 +1,10 @@
-import shutil, argparse, os, subprocess
+import argparse
+import os
+import shutil
+import subprocess
 from pathlib import Path
 from sys import argv, exit
 
-import appends
 remote = False
 home = str(Path.home())
 
@@ -11,14 +13,14 @@ def copyFile(*, file, path):
     file = Path(file)
     shutil.copy2(file,path)
 
-def linkFile(file, loc=home): 
+def linkFile(file, loc=home):
     subprocess.Popen(['ln','-sf',os.getcwd()+f'/{file}',loc+f'/{file}'])
 
 
 def main():
     nvim()
     #bash()
-    tmux() 
+    tmux()
     #ssh()
     linkFile('.gitignore_global')
     #do git
@@ -27,9 +29,10 @@ def main():
         pass
         #copyFile(Path('70-utf.rules'),Path('/etc/udev/rules.d'/))
         #copyFile(Path('google-chrome.list',Path('/etc/apt/sources.list.d/google-chrome.list'))
-    
+
 def nvim():
-   
+    pass
+
 def tmux():
     if (home / Path('.vimrc')).exists() and (home / Path('.tmux.conf.local')).exists():
         os.remove(home / Path('.tmux.conf'))
@@ -54,4 +57,3 @@ def ssh():
 
 if __name__ == '__main__':
     main()
-
