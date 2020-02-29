@@ -1,5 +1,6 @@
 # Personal Packages
-Soon to be dotfiles
+My dotfiles and install scripts
+![img](https://raw.githubusercontent.com/baileywickham/personal_packages/master/files/screencap.png)
 
 ## Use
 The goal of this is to make my, and only my, life easier. What I mean by this is that I make assumptions about running Mint and wanting to install all the same packages as I do, including build neovim from scatch
