@@ -1,6 +1,6 @@
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_force_debug = 1
+"let g:coc_force_debug = 1
 set statusline^=%{coc#status()}
 
 "inoremap <silent><expr> <TAB>

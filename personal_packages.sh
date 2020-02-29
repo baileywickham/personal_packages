@@ -17,7 +17,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 function apt_install () {
-    for package in "$@"
+    for package in $@
     do
         sub_sub "$package"
         sudo apt-get -qq install "$package" > /dev/null
@@ -146,7 +146,7 @@ function initialize() {
         python3-pip \
         apt-transport-https \
         ca-certificates \
-        gnupg-agent &> /dev/null # this is bad, don't do this.
+        gnupg-agent # this is bad, don't do this.
 
     }
 
