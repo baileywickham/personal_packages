@@ -110,7 +110,7 @@ function replace() {
 function addSSHLink() {
     if [ ! -f  "~/.ssh/config" ]
     then
-        ln -s $PWD/sshconfig ~/.ssh/config
+        ./sshconfig/link.sh
     else
         echo "SSH Config already exists"
     fi
@@ -169,6 +169,7 @@ function main() {
     addKeyboard
     docker
     shell
+    addSSHLink
     replace
 }
 
