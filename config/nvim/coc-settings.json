@@ -16,7 +16,7 @@
         },
         "golang": {
             "command": "gopls",
-            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "rootPatterns": ["go.mod", ".vim/", ".git/"],
             "filetypes": ["go"]
         },
         "haskell": {
