@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 # stolen
 
 REPO_URL=`git remote -v | grep -m1 '^origin' | sed -Ene's#.*(https://[^[:space:]]*).*#\1#p'`
