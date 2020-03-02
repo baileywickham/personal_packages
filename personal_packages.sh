@@ -244,6 +244,8 @@ function shell() {
         git submodule init
         sub_sub "linking oh-my-zsh"
         ln -s "${PWD}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
+        ln -s "${HOME}/.oh-my-zsh" "${PWD}/oh-my-zsh/"
+
         # sub_sub "curling oh-my-zsh"
         # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
         # sudo chsh -s /bin/zsh
