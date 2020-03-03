@@ -99,10 +99,6 @@ fi
 # F2 to edit .bashrc
 bind '"\eOQ":"vim ~/.bashrc \n "'
 
-# Exports
-export PATH="$PATH:/opt/mssql-tools/bin"
-export PYTHONPATH=~/PYLIB:$PYTHONPATH
-
 ex ()
 {
   if [ -f $1 ] ; then
@@ -126,12 +122,12 @@ ex ()
 }
 
 #Sources
-if type nvim > /dev/null 2>&1; then                                         
+if type nvim > /dev/null 2>&1; then
     #progressivly more lazy
     alias vi='nvim'
     alias v='nvim'
     #alias =nvim
-else 
+else
     alias vi='vim'
     alias v='vim'
 fi
