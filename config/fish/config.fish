@@ -1,5 +1,4 @@
 source ~/.bailey_shell
-source ~/.zshenv
 
 set -g theme_show_exit_status yes
 set -g theme_display_date no

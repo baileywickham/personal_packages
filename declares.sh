@@ -5,7 +5,7 @@ declare -a dotFile=(".zshrc"
 ".vimrc"
 ".gitignore_global"
 ".gitconfig"
-".zshenv"
+".env"
 ".tmux.conf"
 ".tmux.conf.local"
 )

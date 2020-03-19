@@ -1,3 +1,4 @@
+source ~/.env
 alias python='python3'
 alias pip='pip3'
 
@@ -31,3 +32,4 @@ alias ccat='pygmentize -g'
 alias v='nvim'
 alias :q='exit'
 alias off='shutdown -P now'
+alias bc='bc -l'
