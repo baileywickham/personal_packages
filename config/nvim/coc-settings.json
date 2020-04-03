@@ -47,6 +47,6 @@
     "python.jediEnabled": false,
     "python.venvPath": "~/.local/share/virtualenvs/",
     "python.autoComplete.addBrackets":true,
-    "python.autoComplete.extraPaths" : ["~/.local/lib/python3.6/site-packages/"],
+    "python.autoComplete.extraPaths" : ["~/.local/lib/python3.6/site-packages/", "~/.local/lib/virtualenvs/*"],
     "python.pythonPath": "/usr/bin/python3",
 }

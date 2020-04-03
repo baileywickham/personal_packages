@@ -61,6 +61,7 @@ set hlsearch
 set smartcase
 set incsearch
 set wildmenu
+set wildignorecase
 "set ignorecase
 
 "set indent and plugins for filetype
