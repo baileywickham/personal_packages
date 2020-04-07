@@ -19,6 +19,10 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+let g:coc_snippet_prev = '<c-j>'
+let g:coc_snippet_next = '<c-k>'
+
+
 
 function! s:check_back_space() abort
   let col = col('.') - 1

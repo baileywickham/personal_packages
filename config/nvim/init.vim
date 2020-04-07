@@ -97,8 +97,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chiel92/vim-autoformat'
 Plug 'lilydjwg/colorizer'
 Plug 'luochen1990/rainbow'
-"Plug 'lervag/vimtex'
-"Plug 'KeitaNakamura/tex-conceal.vim'
+Plug 'lervag/vimtex'
+Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
@@ -133,7 +133,8 @@ let g:python3_host_prog = '/usr/bin/python3'
 "tex specific commands
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
+"let g:vimtex_quickfix_mode=0
+
 set conceallevel=1
 let g:tex_conceal='abdgm'
 
