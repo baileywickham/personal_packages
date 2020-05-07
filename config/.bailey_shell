@@ -8,8 +8,9 @@ alias obse='watchman-make -p "*test*.py" --run "python3 *test*.py"'
 alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'
 
 
-#alias docker_clean_images='sudo docker rmi $(sudo docker images --all -q)'
-#alias docker_clean_ps='sudo docker rm $(sudo docker ps --all -q)'
+alias docker_clean_images='sudo docker rmi $(sudo docker images --all -q)'
+alias docker_clean_ps='sudo docker rm $(sudo docker ps --all -q)'
+alias docker_stop_ps='sudo docker stop $(sudo docker ps --all -q)'
 alias traceroute='mtr'
 alias unhibernate='service network-manager restart'
 

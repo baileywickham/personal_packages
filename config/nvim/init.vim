@@ -29,10 +29,11 @@ tnoremap hh <C-\><C-n>
 "nore ; :
 "nore , ;
 nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
+nnoremap <F1> :e! ~/.config/nvim/<CR>
 noremap! <C-BS> <C-w> "ctrl backspace
 noremap! <C-h> <C-w>
 
-nnoremap <Space> i_<Esc>r
+"nnoremap <Space> i_<Esc>r
 "space inserts single character
 
 
@@ -84,6 +85,8 @@ autocmd BufNewFile,BufRead *.h setfiletype c
 autocmd BufNewFile,BufRead *.bailey_shell set filetype=sh
 
 autocmd BufWritePre * %s/\s\+$//e
+
+autocmd FileType yaml,yml setlocal et ts=2 sw=2 sts=0
 
 
 call plug#begin('~/.vim/plugged')
@@ -141,4 +144,4 @@ let g:tex_conceal='abdgm'
 
 call SourceIfExists("$HOME/.config/nvim/coc.vim")
 command! -nargs=1 Import  call Imp('<args>')
-
+"command! configure e ~/.config/nvim
