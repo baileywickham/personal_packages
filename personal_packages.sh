@@ -83,8 +83,8 @@ function dir() {
     mkdir -p ${HOME}/.ssh
     mkdir -p ${HOME}/.config
     mkdir -p ${HOME}/.builds
-    mkdir -p ${HOME}/.config
     mkdir -p ${HOME}/.emacs.d
+    ln -s "${PWD}/bin/" "${HOME}/bin"
 }
 # Move dotfiles
 function replace() {
