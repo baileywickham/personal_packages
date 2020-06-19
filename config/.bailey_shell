@@ -3,7 +3,7 @@ alias python='python3'
 alias pip='pip3'
 
 alias df='df -h'
-#alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
+alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
 alias obse='watchman-make -p "*test*.py" --run "python3 *test*.py"'
 alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'
 
