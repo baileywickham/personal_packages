@@ -6,3 +6,5 @@
 
 [url "git+ssh://baileywickham@git.launchpad.net/"]
     insteadof = lp
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret

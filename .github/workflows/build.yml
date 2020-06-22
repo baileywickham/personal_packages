@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v1	
+    - uses: actions/checkout@v1
     - name: Run a one-line script
       run: ./personal_packages.sh -a
+
+    - name: Super-Linter
+      uses: github/super-linter@v2.1.0
