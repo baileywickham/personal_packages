@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:18.04
 
 # Create user to simulate non root
 RUN useradd -ms /bin/bash user
@@ -9,8 +9,8 @@ COPY . /home/user
 WORKDIR /home/user
 
 # Install packages req
-RUN apt-get update -qq > /dev/null
-RUN apt-get install -qq \
+RUN apt-get update -qq > /dev/null && rm -rf /var/lib/apt/lists/* \
+    && apt-get install -y -qq \
     build-essential \
     gcc \
     curl \

@@ -63,9 +63,9 @@ function install_nvim() {
 
 
     plug
-    (git clone https://github.com/neovim/neovim.git ${HOME}/.builds/neovim) &> /dev/null
+    (git clone https://github.com/neovim/neovim.git "${HOME}"/.builds/neovim) &> /dev/null
     sub "Building nvim"
-    (cd ${HOME}/.builds/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install) &> /dev/null
+    (cd "${HOME}"/.builds/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install) &> /dev/null
     sub "Installing nvim sub packages"
     sub_sub "Installing neovim python support"
     pip3 install --user neovim &> /dev/null
@@ -80,10 +80,10 @@ function dir() {
     then
         sudo mkdir -p /etc/udev/rules.d
     fi
-    mkdir -p ${HOME}/.ssh
-    mkdir -p ${HOME}/.config
-    mkdir -p ${HOME}/.builds
-    mkdir -p ${HOME}/.emacs.d
+    mkdir -p "${HOME}"/.ssh
+    mkdir -p "${HOME}"/.config
+    mkdir -p "${HOME}"/.builds
+    mkdir -p "${HOME}"/.emacs.d
     ln -s "${PWD}/bin/" "${HOME}/bin"
 }
 # Move dotfiles
@@ -187,7 +187,7 @@ function docker() {
 
         sub "Creating docker group"
         sudo groupadd docker
-        sudo usermod -aG docker $(whoami)
+        sudo usermod -aG docker "$(whoami)"
         sudo rm -rf ~/.docker
 
     fi
@@ -240,7 +240,7 @@ function shell() {
     sub "Installing Packages"
     apt_install zsh
     sub "Installing oh-my-zsh"
-    if [ -d "~/.oh-my-zsh" ]; then
+    if [ -d "$HOME/.oh-my-zsh" ]; then
         sub_sub "oh-my-zsh already installed"
     else
         git submodule init
@@ -276,7 +276,7 @@ while getopts "pcadh:" OPT; do
             help
             ;;
         *)
-            echo ${OPT}
+            echo "${OPT}"
             echo "Incorrect option provided"
             help
             exit 1
