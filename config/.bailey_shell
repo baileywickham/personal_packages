@@ -25,7 +25,6 @@ alias sudo='sudo '
 alias 357='cd /home/y/workspace/357'
 alias t='tmux'
 
-alias gpg=gpg2
 #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d \"'
 alias dock="echo 'FROM ubuntu\nCOPY . /home/root/\nWORKDIR /home/root' > .Dockerfile | docker build -t tmp -f .Dockerfile . && docker run -it tmp && rm .Dockerfile"
