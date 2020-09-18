@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo docker build -t test . && sudo docker run -it test
+sudo docker build -t personal_packages . && sudo docker run -it personal_packages
