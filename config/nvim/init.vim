@@ -80,6 +80,11 @@ au BufNewFile,BufRead *.py:
             \ set shiftwidth=4
             \ set expandtab
 
+if has("autocmd")
+    au BufReadPost *.rkt,*.rktl set filetype=scheme
+endif
+
+
 autocmd FileType c,cpp setlocal equalprg=clang-format
 autocmd BufNewFile,BufRead *.h setfiletype c
 autocmd BufNewFile,BufRead *.bailey_shell set filetype=sh
@@ -105,6 +110,7 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
+Plug 'wlangstroth/vim-racket'
 call plug#end()
 
 syntax enable
