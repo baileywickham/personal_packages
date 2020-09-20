@@ -27,8 +27,7 @@ alias t='tmux'
 
 #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d \"'
-alias dock="echo 'FROM ubuntu\nCOPY . /home/root/\nWORKDIR /home/root' > /tmp/.Dockerfile | docker build -t tmp -f tmp/.Dockerfile . && docker run -it tmp && rm .Dockerfile"
-
+#alias dock="echo 'FROM ubuntu\nCOPY . /home/root/\nWORKDIR /home/root' > /tmp/.Dockerfile | docker build -t tmp -f tmp/.Dockerfile . && docker run -it tmp && rm .Dockerfile"
 #alias dock="docker build -t tmp -f-<<EOF FROM ubuntu
 #COPY . /home/root/
 #WORKDIR /home/root
