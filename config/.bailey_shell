@@ -4,7 +4,7 @@ alias pip='pip3'
 
 alias df='df -h'
 alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
-alias obse='watchman-make -p "*test*.py" --run "python3 *test*.py"'
+alias obse='watchman-make -p "*.rkt" --run "racket *.rkt"'
 alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'
 
 
@@ -39,3 +39,4 @@ alias v='nvim'
 alias :q='exit'
 alias off='shutdown -P now'
 alias bc='bc -l'
+alias o='xdg-open '

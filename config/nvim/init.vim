@@ -110,7 +110,8 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
-Plug 'wlangstroth/vim-racket'
+Plug 'wlangstroth/vim-racket' "vim autocomplete
+"Plug 'jpalardy/vim-slime'
 call plug#end()
 
 syntax enable
@@ -149,4 +150,6 @@ let g:tex_conceal='abdgm'
 
 call SourceIfExists("$HOME/.config/nvim/coc.vim")
 command! -nargs=1 Import  call Imp('<args>')
+
+let g:slime_target = "tmux"
 "command! configure e ~/.config/nvim
