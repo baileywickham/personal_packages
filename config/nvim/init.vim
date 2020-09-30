@@ -32,6 +32,9 @@ nnoremap <F2> :e! ~/.config/nvim/init.vim<CR>
 nnoremap <F1> :e! ~/.config/nvim/<CR>
 noremap! <C-BS> <C-w> "ctrl backspace
 noremap! <C-h> <C-w>
+noremap Q <Nop>
+"ex mode is never useful
+
 
 "nnoremap <Space> i_<Esc>r
 "space inserts single character
@@ -112,6 +115,8 @@ Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'wlangstroth/vim-racket' "vim autocomplete
 "Plug 'jpalardy/vim-slime'
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/lh-brackets'
 call plug#end()
 
 syntax enable
@@ -147,9 +152,15 @@ let g:vimtex_view_method='zathura'
 set conceallevel=1
 let g:tex_conceal='abdgm'
 
+let g:marker_define_jump_mappings=0
+imap <M-f> <Plug>MarkersJumpF
+map <M-f> <Plug>MarkersJumpF
+imap <M-b> <Plug>MarkersJumpB
+map <M-b> <Plug>MarkersJumpB
+
+"let g:cb_disable_default = { 'n': 'i' }
+"let g:cb_disable_default = { '[': 'nv', '{': 'nv' }
+
 
 call SourceIfExists("$HOME/.config/nvim/coc.vim")
 command! -nargs=1 Import  call Imp('<args>')
-
-let g:slime_target = "tmux"
-"command! configure e ~/.config/nvim
