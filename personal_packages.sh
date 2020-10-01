@@ -84,7 +84,7 @@ function dir() {
     mkdir -p "${HOME}"/.config
     mkdir -p "${HOME}"/.builds
     mkdir -p "${HOME}"/.emacs.d
-    ln -s "${PWD}/bin/" "${HOME}/bin"
+    ln -s "${PWD}/bin/" "${HOME}"
 }
 # Move dotfiles
 function replace() {
@@ -118,7 +118,7 @@ function addSSHLink() {
 
 function add2FA() {
     task "copying 2fa"
-    cp ./files/70-u2f.rules /etc/udev/rules.d/
+    sudo cp ./files/70-u2f.rules /etc/udev/rules.d/
 }
 
 function addKeyboard() {

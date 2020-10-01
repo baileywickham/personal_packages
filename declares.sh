@@ -8,4 +8,5 @@ declare -a dotFile=(".zshrc"
 ".env"
 ".tmux.conf"
 ".tmux.conf.local"
+".p10k.zsh"
 )
