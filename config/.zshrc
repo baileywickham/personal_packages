@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -44,31 +45,28 @@ ex ()
 }
 
 
-#source ~/.powerlevel9k/powerlevel9k.zsh-theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    status
-    background_jobs
-    dir_writable
-    virtualenv
-)
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_ETC_ICON=''
-POWERLEVEL9K_VCS_GIT_HOOKS=(
-    #vcs-detect-changes
-    git-aheadbehind
-    git-stash
-    git-remotebranch
-    git-tagname
-)
-POWERLEVEL9K_VI_INSERT_MODE_STRING='<<<'
-POWERLEVEL9K_VI_COMMAND_MODE_STRING='>>>'
+#POWERLEVEL9K_MODE='nerdfont-complete'
+#
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+#    status
+#    background_jobs
+#    dir_writable
+#    virtualenv
+#)
+#POWERLEVEL9K_HOME_ICON=''
+#POWERLEVEL9K_HOME_SUB_ICON=''
+#POWERLEVEL9K_FOLDER_ICON=''
+#POWERLEVEL9K_ETC_ICON=''
+#POWERLEVEL9K_VCS_GIT_HOOKS=(
+#    #vcs-detect-changes
+#    git-aheadbehind
+#    git-stash
+#    git-remotebranch
+#    git-tagname
+#)
 
 
 plugins=(
@@ -87,4 +85,6 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -Uz compinit
-compinit
+#compinit
+
+#zprof

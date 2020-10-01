@@ -158,7 +158,7 @@ map <M-f> <Plug>MarkersJumpF
 imap <M-b> <Plug>MarkersJumpB
 map <M-b> <Plug>MarkersJumpB
 
-"let g:cb_disable_default = { 'n': 'i' }
+let g:cb_disable_default = { '''': 'i' }
 "let g:cb_disable_default = { '[': 'nv', '{': 'nv' }
 
 
