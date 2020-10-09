@@ -35,44 +35,6 @@ function sub_sub () {
     echo -e "      ${RED}[*]${NC} $1"
 }
 
-function plug () {
-    # install vim-plug
-    sub "Installing plug"
-    curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    curl -sfLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    }
-
-function install_nvim() {
-    task "Installing nvim"
-    sub "Installing packages"
-
-    apt_install cmake \
-        pkg-config \
-        libtool \
-        m4 \
-        unzip \
-        libtool-bin \
-        gettext \
-        automake \
-        nodejs \
-        yarn \
-        npm &> /dev/null
-
-
-    plug
-    (git clone https://github.com/neovim/neovim.git "${HOME}"/.builds/neovim) &> /dev/null
-    sub "Building nvim"
-    (cd "${HOME}"/.builds/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install) &> /dev/null
-    sub "Installing nvim sub packages"
-    sub_sub "Installing neovim python support"
-    pip3 install --user neovim &> /dev/null
-    nvim +PlugInstall +qa &> /dev/null
-    sub_sub "Installing bash language server"
-    sudo npm i -g bash-language-server &> /dev/null
-}
 
 function dir() {
     task "Creating directories"
@@ -87,7 +49,7 @@ function dir() {
     ln -s "${PWD}/bin/" "${HOME}"
 }
 # Move dotfiles
-function replace() {
+function move_dotfiles() {
     # Create directories
     dir
     task "Replacing config files"
@@ -121,7 +83,7 @@ function add2FA() {
     sudo cp ./files/70-u2f.rules /etc/udev/rules.d/
 }
 
-function addKeyboard() {
+function keyboard() {
     task "copying keyboard"
     sudo cp ./files/keyboard /etc/default
 }
@@ -148,7 +110,7 @@ function initialize() {
         ca-certificates \
         gnupg-agent # this is bad, don't do this.
 
-    git submodule init
+    git submodule update
 }
 
 function superuser () {
@@ -164,42 +126,28 @@ function main() {
     initialize
     dir
     add2FA
+    keyboard
     addSSHLink
-    install_nvim
-    addKeyboard
-    docker
-    shell
-    addSSHLink
-    replace
+    move_dotfiles
+    # This sources all files in modules
+    # running the function with the filename
+    # ex: in modules/test.sh, the test function will be called
+    for file in modules/*.sh
+    do
+        source $file
+        _name=${file%.*}
+        #name=${x%%.*}
+        name=$(basename $_name)
+        eval $name
+    done
 }
 
-function docker() {
-    task "Installing docker"
-    if command -v docker > /dev/null;
-    then
-        sub "Docker already installed";
-    else
-        sub "Adding keys"
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >/dev/null
-        sudo apt-get update -qq > /dev/null
-        apt_install docker-ce docker-ce-cli containerd.io
-
-        sub "Creating docker group"
-        sudo groupadd docker
-        sudo usermod -aG docker "$(whoami)"
-        sudo rm -rf ~/.docker
-
-    fi
-
-}
 
 function help() {
-    echo "-a : all, Install all features including all configs, docker, zsh, go..."
-    echo "-p : plug, Install plug.vim and plug.nvim"
-    echo "-d : docker, Install docker"
-    echo "-c : configs, Install just config files"
-
+    printf "personal_packages.sh a dotfiles install script\n"
+    printf  "\t-a : all, Install all features including all configs, docker, zsh, go...\n"
+    printf  "\t-p : plug, Install plug.vim and plug.nvim\n"
+    printf  "\t-c : configs, Install just config files\n"
 }
 
 function whichos() {
@@ -214,17 +162,17 @@ function whichrepo(){
 
 function neoneofetch() {
     echo "----------------------------------------------------------------------------------------------------------------"
-    echo ""
-    echo -e "  "
-    echo -e "   "
-    echo -e "  "
-    echo -e "  "
+    echo -e ""
+    echo -e ""
+    echo -e ""
+    echo -e ""
+    echo -e ""
     echo -e "     ┈┈╱▔▔▔▔▔╲┈┈      ${BLUE}User:${NC}           $(whoami)"
     echo -e "     ┈▕╋╋╋╋╋╋╋▏┈      ${BLUE}Hostname:${NC}       $(hostname)"
     echo -e "     ┈▕╳╳╳╳╳╳╳▏┈      ${BLUE}Distro:${NC}         $(whichos)"
     echo -e "     ┈┈╲╳╳╳╳╳╱┈┈      ${BLUE}Kernel:${NC}         $(uname -r)"
     echo -e "     ┈┈┈╲╋╋╋╱┈┈┈      ${BLUE}Shell:${NC}          $SHELL"
-    echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}            $(whichcpu)"
+    echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}           $(whichcpu)"
     echo -e "     ┈┈┈┈▕▅▏┈┈┈┈      ${BLUE}Dotfiles:${NC}       $(whichrepo)"
     echo -e "   "
     echo -e ""
@@ -235,42 +183,14 @@ function neoneofetch() {
 
 }
 
-function shell() {
-    task "Installing zsh"
-    sub "Installing Packages"
-    apt_install zsh
-    sub "Installing oh-my-zsh"
-    if [ -d "$HOME/.oh-my-zsh" ]; then
-        sub_sub "oh-my-zsh already installed"
-    else
-        git submodule init
-        sub_sub "linking oh-my-zsh"
-        ln -s "${PWD}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
-        ln -s "${HOME}/.oh-my-zsh" "${PWD}/oh-my-zsh/"
-
-        # sub_sub "curling oh-my-zsh"
-        # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) >/dev/null" "" --unattended
-        # sudo chsh -s /bin/zsh
-        # git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k > /dev/null
-    fi
-
-}
-
-
 
 while getopts "pcadh:" OPT; do
     case "${OPT}" in
         a)
             main
             ;;
-        p)
-            plug
-            ;;
-        d)
-            docker
-            ;;
         c)
-            replace
+            move_dotfiles
             ;;
         h)
             help
