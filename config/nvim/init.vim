@@ -21,6 +21,7 @@ endfunction
 set laststatus=2
 set showcmd
 set cursorline
+set colorcolumn=79
 
 "Key remaps :(
 "inoremap hh <esc>
@@ -33,8 +34,8 @@ nnoremap <F1> :e! ~/.config/nvim/<CR>
 noremap! <C-BS> <C-w> "ctrl backspace
 noremap! <C-h> <C-w>
 noremap Q <Nop>
+vnoremap <CR> "+y
 "ex mode is never useful
-
 
 "nnoremap <Space> i_<Esc>r
 "space inserts single character
@@ -106,7 +107,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'JamshedVesuna/vim-markdown-preview' " f9? to preview
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Chiel92/vim-autoformat'
-Plug 'lilydjwg/colorizer'
+"Plug 'lilydjwg/colorizer'
 Plug 'luochen1990/rainbow'
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
