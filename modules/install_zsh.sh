@@ -10,8 +10,8 @@ function install_zsh() {
     else
         git submodule init
         sub_sub "linking oh-my-zsh"
-        ln -s "${PWD}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
-        ln -s "${HOME}/.oh-my-zsh" "${PWD}/oh-my-zsh/"
+        ln -s "${WORKDIR}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
+        #ln -s "${HOME}/.oh-my-zsh" "${PWD}/oh-my-zsh/"
     fi
 }
 
