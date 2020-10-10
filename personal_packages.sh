@@ -4,6 +4,8 @@
 # - add warning layer
 # - copy stderror output to waring output
 
+set -euo pipefail
+
 trap exit SIGINT
 
 if [ "$EUID" -eq "0" ] &&  ! (grep -Fq "docker" /proc/1/cgroup) ; then
