@@ -114,6 +114,7 @@ function initialize() {
         gnupg-agent # this is bad, don't do this.
 
     sub_sub "Update Submodules"
+    git submodule init
     git submodule update
 }
 

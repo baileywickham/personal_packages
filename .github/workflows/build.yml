@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout submodules
-      uses: textbook/git-checkout-submodule-action@master
+      #    - name: Checkout submodules
+      #uses: textbook/git-checkout-submodule-action@master
 
     - uses: actions/checkout@v1
     - name: Run install script
