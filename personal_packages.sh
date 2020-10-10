@@ -113,6 +113,7 @@ function initialize() {
         ca-certificates \
         gnupg-agent # this is bad, don't do this.
 
+    sub_sub "Update Submodules"
     git submodule update
 }
 
