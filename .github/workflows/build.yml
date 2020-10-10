@@ -6,16 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-
-      #    - name: Checkout submodules
-      #      uses: srt32/git-actions@v0.0.3
-      #      with:
-      #        args: git submodule update --init --recursive
-    - name: Checkout submodules
-      uses: textbook/git-checkout-submodule-action@master
-      with:
-        remote: true
+    - uses: actions/checkout@v2
+      submodules: recursive
 
     - name: Run install script
       run: ./personal_packages.sh -a
