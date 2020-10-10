@@ -125,27 +125,6 @@ function superuser () {
     has_sudo=true
 }
 
-function main() {
-    neoneofetch
-    superuser
-    initialize
-    dir
-    add2FA
-    keyboard
-    addSSHLink
-    move_dotfiles
-    # This sources all files in modules
-    # running the function with the filename
-    # ex: in modules/test.sh, the test function will be called
-    for file in modules/*.sh
-    do
-        source $file
-        _name=${file%.*}
-        #name=${x%%.*}
-        name=$(basename $_name)
-        eval $name
-    done
-}
 
 
 function help() {
@@ -188,6 +167,27 @@ function neoneofetch() {
 
 }
 
+function main() {
+    neoneofetch
+    superuser
+    initialize
+    dir
+    add2FA
+    keyboard
+    addSSHLink
+    move_dotfiles
+    # This sources all files in modules
+    # running the function with the filename
+    # ex: in modules/test.sh, the test function will be called
+    for file in modules/*.sh
+    do
+        source $file
+        _name=${file%.*}
+        #name=${x%%.*}
+        name=$(basename $_name)
+        eval $name
+    done
+}
 
 while getopts "pcadh:" OPT; do
     case "${OPT}" in
