@@ -41,15 +41,19 @@ function sub_sub () {
 
 function dir() {
     task "Creating directories"
-    if [ ! -z "$has_sudo" ];
-    then
+    if [ ! -z "$has_sudo" ]; then
         sudo mkdir -p /etc/udev/rules.d
     fi
+
     mkdir -p "${HOME}"/.ssh
     mkdir -p "${HOME}"/.config
     mkdir -p "${HOME}"/.builds
     mkdir -p "${HOME}"/.emacs.d
-    ln -s "${PWD}/bin/" "${HOME}"
+
+    if [[ ! -a "${HOME}/min" ]]; then
+        sub_sub "Linking bin"
+        ln -s "${WORKDIR}/bin" "${HOME}"
+    fi
 }
 # Move dotfiles
 function move_dotfiles() {
