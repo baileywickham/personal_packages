@@ -4,7 +4,7 @@
 # - add warning layer
 # - copy stderror output to waring output
 
-set -euo pipefail
+set -uo pipefail
 
 trap exit SIGINT
 
@@ -15,6 +15,7 @@ fi
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 WORKDIR=$(pwd)
@@ -27,6 +28,15 @@ function apt_install () {
     done
 }
 
+function apt_update () {
+    if [ ! -z "$has_sudo" ]; then
+        sudo apt-get update -qq
+    else
+        err "sudo needed"
+        exit 1
+    fi
+}
+
 function task () {
     echo -e " ${GREEN}[*]${NC} $1"
 }
@@ -36,6 +46,9 @@ function sub () {
 }
 function sub_sub () {
     echo -e "      ${RED}[*]${NC} $1"
+}
+function err () {
+    echo -e " ${ORANGE}[x] $1 ${NC}"
 }
 
 
@@ -52,7 +65,7 @@ function dir() {
     )
     for d in ${directories[@]}; do
         if [[ ! -a "${HOME}/${d}" ]]; then
-            sub_sub "making ${d}"
+            sub_sub "creating ${d}"
             mkdir -p "${HOME}/${d}"
         else
             sub_sub "dir already exists: ${d}"
@@ -108,7 +121,7 @@ function initialize() {
     # get the packages that will be used for other packages
     task "Initializing install"
     sub "Installing packages"
-    sudo apt-get update > /dev/null
+    apt_update
     apt_install apt-utils \
         gcc \
         build-essential \
@@ -222,7 +235,7 @@ while getopts "pcadh:" OPT; do
     esac
 done
 
-if [[ $1 == "" ]]; then
+if [[ -z $1 ]]; then
     help
     exit
 fi
