@@ -15,7 +15,7 @@ RUN apt-get update -qq > /dev/null  \
     gcc \
     curl \
     git \
-    sudo > /dev/null
+    sudo
 
 USER user
 ENV DEBIAN_FRONTEND=noninteractive

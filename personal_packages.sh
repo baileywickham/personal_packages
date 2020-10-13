@@ -45,12 +45,21 @@ function dir() {
         sudo mkdir -p /etc/udev/rules.d
     fi
 
-    mkdir -p "${HOME}"/.ssh
-    mkdir -p "${HOME}"/.config
-    mkdir -p "${HOME}"/.builds
-    mkdir -p "${HOME}"/.emacs.d
+    directories=(".ssh"
+        ".config"
+        ".builds"
+        ".emacs.d"
+    )
+    for d in ${directories[@]}; do
+        if [[ ! -a "${HOME}/${d}" ]]; then
+            sub_sub "making ${d}"
+            mkdir -p "${HOME}/${d}"
+        else
+            sub_sub "dir already exists: ${d}"
+        fi
+    done
 
-    if [[ ! -a "${HOME}/min" ]]; then
+    if [[ ! -a "${HOME}/bin" ]]; then
         sub_sub "Linking bin"
         ln -s "${WORKDIR}/bin" "${HOME}"
     fi
