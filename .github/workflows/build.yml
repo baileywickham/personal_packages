@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: recursive
-        tokes: ${{ secrets.personal_packages }}
+        token: ${{ secrets.personal_packages }}
 
     - name: Run install script
       run: ./personal_packages.sh -a
