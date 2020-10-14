@@ -146,11 +146,6 @@ function add2FA() {
     sudo cp ./files/70-u2f.rules /etc/udev/rules.d/
 }
 
-function keyboard() {
-    task "copying keyboard"
-    sudo cp ./files/keyboard /etc/default
-}
-
 function initialize() {
     # get the packages that will be used for other packages
     task "Initializing install"
@@ -201,7 +196,6 @@ function main() {
     initialize
     dir
     add2FA
-    keyboard
     addSSHLink
     move_dotfiles
     # This sources all files in modules
