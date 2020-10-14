@@ -1,4 +1,5 @@
 # Personal Packages
+![build](https://github.com/baileywickham/personal_packages/workflows/CI/badge.svg)
 My dotfiles and install scripts
 
 ![img](https://raw.githubusercontent.com/baileywickham/personal_packages/master/files/screencap.png)
