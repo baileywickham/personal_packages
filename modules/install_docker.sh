@@ -11,8 +11,12 @@ function install_docker() {
         apt_install docker-ce docker-ce-cli containerd.io
 
         sub "Creating docker group"
-        sudo groupadd docker
-        sudo usermod -aG docker "$(whoami)"
+        if grep -q "^docker:" /etc/group; then
+            echo "docker group exists"
+        else
+            sudo groupadd docker
+            sudo usermod -aG docker "$(whoami)"
+        fi
         # Why this line?
         sudo rm -rf ~/.docker
     fi

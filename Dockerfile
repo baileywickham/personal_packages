@@ -9,8 +9,8 @@ COPY . /home/user
 WORKDIR /home/user
 
 # Install packages req
-RUN apt-get update -qq > /dev/null  \
-    && apt-get install -y -qq \
+RUN apt-get update -qqq > /dev/null
+RUN apt-get install -y -qqq \
     build-essential \
     gcc \
     curl \

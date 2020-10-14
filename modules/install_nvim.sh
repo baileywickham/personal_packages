@@ -32,14 +32,19 @@ function install_nvim() {
         automake \
         nodejs \
         yarn \
-        npm &> /dev/null
+        npm
 
 
-    (git clone https://github.com/neovim/neovim.git "${HOME}"/.builds/neovim) &> /dev/null
+    git clone -q https://github.com/neovim/neovim.git "${HOME}"/.builds/neovim
+
     sub "Building nvim"
-    (cd "${HOME}/.builds/neovim" && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install) &> /dev/null
+    make -C "${HOME}/.builds/neovim/" --silent CMAKE_BUILD_TYPE=RelWithDebInfo &> /dev/null
+    sudo make -C "${HOME}/.builds/neovim/" --silent install &> /dev/null
+
     sub "Installing nvim sub packages"
     sub_sub "Installing neovim python support"
-    pip3 install --user neovim &> /dev/null
+    pip3 install -qqq --user neovim
+
+    bashlangserver
 }
 

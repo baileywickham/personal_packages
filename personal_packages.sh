@@ -20,6 +20,53 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 WORKDIR=$(pwd)
 
+function task () {
+    echo -e " ${GREEN}[*]${NC} $1"
+}
+
+function sub () {
+    echo -e "   ${BLUE}[*]${NC} $1"
+}
+function sub_sub () {
+    echo -e "      ${RED}[*]${NC} $1"
+}
+function err () {
+    echo -e " ${ORANGE}[x] $1 ${NC}"
+}
+
+function whichos() {
+    awk -F= '$1=="PRETTY_NAME" { print $2 ;}' /etc/os-release | tr -d \"
+}
+function whichcpu() {
+    awk -F: '$1=="model name\t" {print $2;exit;}' /proc/cpuinfo
+}
+function whichrepo(){
+    awk -F@ '"\turl = git"==$1 {print $2;exit;}' ./.git/config
+}
+
+function neoneofetch() {
+    echo "----------------------------------------------------------------------------------------------------------------"
+    echo -e ""
+    echo -e ""
+    echo -e ""
+    echo -e ""
+    echo -e ""
+    echo -e "     ┈┈╱▔▔▔▔▔╲┈┈      ${BLUE}User:${NC}           $(whoami)"
+    echo -e "     ┈▕╋╋╋╋╋╋╋▏┈      ${BLUE}Hostname:${NC}       $(hostname)"
+    echo -e "     ┈▕╳╳╳╳╳╳╳▏┈      ${BLUE}Distro:${NC}         $(whichos)"
+    echo -e "     ┈┈╲╳╳╳╳╳╱┈┈      ${BLUE}Kernel:${NC}         $(uname -r)"
+    echo -e "     ┈┈┈╲╋╋╋╱┈┈┈      ${BLUE}Shell:${NC}          $SHELL"
+    echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}           $(whichcpu)"
+    echo -e "     ┈┈┈┈▕▅▏┈┈┈┈      ${BLUE}Dotfiles:${NC}       $(whichrepo)"
+    echo -e "   "
+    echo -e ""
+    echo -e "   "
+    echo ""
+    echo "----------------------------------------------------------------------------------------------------------------"
+    echo ""
+
+}
+
 function apt_install () {
     for package in $@
     do
@@ -37,19 +84,6 @@ function apt_update () {
     fi
 }
 
-function task () {
-    echo -e " ${GREEN}[*]${NC} $1"
-}
-
-function sub () {
-    echo -e "   ${BLUE}[*]${NC} $1"
-}
-function sub_sub () {
-    echo -e "      ${RED}[*]${NC} $1"
-}
-function err () {
-    echo -e " ${ORANGE}[x] $1 ${NC}"
-}
 
 
 function dir() {
@@ -160,38 +194,6 @@ function help() {
     printf  "\t-c : configs, Install just config files\n"
 }
 
-function whichos() {
-    awk -F= '$1=="PRETTY_NAME" { print $2 ;}' /etc/os-release
-}
-function whichcpu() {
-    awk -F: '$1=="model name\t" {print $2;exit;}' /proc/cpuinfo
-}
-function whichrepo(){
-    awk -F@ '"\turl = git"==$1 {print $2;exit;}' ./.git/config
-}
-
-function neoneofetch() {
-    echo "----------------------------------------------------------------------------------------------------------------"
-    echo -e ""
-    echo -e ""
-    echo -e ""
-    echo -e ""
-    echo -e ""
-    echo -e "     ┈┈╱▔▔▔▔▔╲┈┈      ${BLUE}User:${NC}           $(whoami)"
-    echo -e "     ┈▕╋╋╋╋╋╋╋▏┈      ${BLUE}Hostname:${NC}       $(hostname)"
-    echo -e "     ┈▕╳╳╳╳╳╳╳▏┈      ${BLUE}Distro:${NC}         $(whichos)"
-    echo -e "     ┈┈╲╳╳╳╳╳╱┈┈      ${BLUE}Kernel:${NC}         $(uname -r)"
-    echo -e "     ┈┈┈╲╋╋╋╱┈┈┈      ${BLUE}Shell:${NC}          $SHELL"
-    echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}           $(whichcpu)"
-    echo -e "     ┈┈┈┈▕▅▏┈┈┈┈      ${BLUE}Dotfiles:${NC}       $(whichrepo)"
-    echo -e "   "
-    echo -e ""
-    echo -e "   "
-    echo ""
-    echo "----------------------------------------------------------------------------------------------------------------"
-    echo ""
-
-}
 
 function main() {
     neoneofetch
@@ -215,7 +217,7 @@ function main() {
     done
 }
 
-while getopts "pcadh:" OPT; do
+while getopts "pcadnh:" OPT; do
     case "${OPT}" in
         a)
             main
@@ -226,6 +228,9 @@ while getopts "pcadh:" OPT; do
         h)
             help
             ;;
+        n)
+            neoneofetch
+            ;;
         *)
             echo "${OPT}"
             echo "Incorrect option provided"
@@ -235,7 +240,7 @@ while getopts "pcadh:" OPT; do
     esac
 done
 
-if [[ -z $1 ]]; then
+if [[ $# -le 0 ]]; then
     help
     exit
 fi
