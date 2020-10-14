@@ -3,6 +3,15 @@ My dotfiles and install scripts
 
 ![img](https://raw.githubusercontent.com/baileywickham/personal_packages/master/files/screencap.png)
 
+## Layout
+- `bin/` scripts for my machine
+- `config/` my dotfiles
+- `files/` config files, keyboard layout, etc...
+- `modules/` specific install scripts
+- `scripts/` useful scripts for this repo
+
+To add an install script, add a `.sh` file to `modules/`. The `personal_packages.sh` script automaticly call the function matching the name of the file for all files in the `modules` directory. Ex: `install_zsh` in `modules/install_zsh.sh` will be automaticly called. 
+
 ## Use
 Run `./personal_packages.sh -h` to see the options available.
 
@@ -15,10 +24,10 @@ cd ~/workspace/personal_packages && ./personal_packages.sh -a
 ```
 To install the packages and move the dotfiles.
 
-### 'Features'
+### Features
 This installs my custom keyboard, bashrc, vimrc, tmux.conf, 2fa files and all packages I want.
 
-### Docker
+## Docker
 Use:
 ```bash
 ./dock.sh
