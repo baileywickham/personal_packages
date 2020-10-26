@@ -10,7 +10,6 @@ function install_zsh() {
     else
         sub_sub "linking oh-my-zsh"
         ln -s "${WORKDIR}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
-        #ln -s "${HOME}/.oh-my-zsh" "${PWD}/oh-my-zsh/"
     fi
 }
 

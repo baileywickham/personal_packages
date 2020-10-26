@@ -22,8 +22,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 source ~/.bailey_shell
 
-ex ()
-{
+ex () {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
@@ -44,30 +43,12 @@ ex ()
   fi
 }
 
+git-search () {
+    git grep $1 $(git rev-list --all)
+}
+
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-#POWERLEVEL9K_MODE='nerdfont-complete'
-#
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-#    status
-#    background_jobs
-#    dir_writable
-#    virtualenv
-#)
-#POWERLEVEL9K_HOME_ICON=''
-#POWERLEVEL9K_HOME_SUB_ICON=''
-#POWERLEVEL9K_FOLDER_ICON=''
-#POWERLEVEL9K_ETC_ICON=''
-#POWERLEVEL9K_VCS_GIT_HOOKS=(
-#    #vcs-detect-changes
-#    git-aheadbehind
-#    git-stash
-#    git-remotebranch
-#    git-tagname
-#)
-
 
 plugins=(
     command-not-found docker docker-compose
