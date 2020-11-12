@@ -18,7 +18,8 @@ GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
-WORKDIR=$(pwd)
+PPACKAGES=$(pwd)
+has_sudo=false
 
 function task () {
     echo -e " ${GREEN}[*]${NC} $1"
@@ -116,6 +117,8 @@ function move_dotfiles() {
     # Create directories
     dir
     task "Replacing config files"
+    sub "Updating env with new PPACKAGES"
+    sed -i "s/export PPACKAGES=/export PPACKAGES=${PPACKAGES}"
     source ./declares.sh
     for i in ${!dotFile[@]}; do
         sub "copying ${dotFile[i]}"

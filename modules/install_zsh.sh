@@ -9,7 +9,7 @@ function install_zsh() {
         sub_sub "oh-my-zsh already installed"
     else
         sub_sub "linking oh-my-zsh"
-        ln -s "${WORKDIR}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
+        ln -s "${PPACKAGES}/oh-my-zsh/" "${HOME}/.oh-my-zsh"
     fi
 }
 
