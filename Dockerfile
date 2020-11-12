@@ -7,6 +7,7 @@ RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
     chmod 0440 /etc/sudoers.d/user
 COPY . /home/user
 WORKDIR /home/user
+RUN chown -R user /home/user
 
 # Install packages req
 RUN apt-get update -qqq > /dev/null

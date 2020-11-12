@@ -1,0 +1,6 @@
+#!/bin/bash
+# Create a docker container here, copying in everything from the current working directory
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+docker build -t $(basename $(pwd)) -f "$DIR/Dockerfile" . && docker run -it $(basename $(pwd))

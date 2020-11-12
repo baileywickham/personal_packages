@@ -109,7 +109,7 @@ function dir() {
 
     if [[ ! -a "${HOME}/bin" ]]; then
         sub_sub "Linking bin"
-        ln -s "${WORKDIR}/bin" "${HOME}"
+        ln -s "${PPACKAGES}/bin" "${HOME}"
     fi
 }
 # Move dotfiles
@@ -118,7 +118,7 @@ function move_dotfiles() {
     dir
     task "Replacing config files"
     sub "Updating env with new PPACKAGES"
-    sed -i "s/export PPACKAGES=/export PPACKAGES=${PPACKAGES}"
+    sed -i "s/PPACKAGES=/PPACKAGES=${PPACKAGES//\//\\/}/g" ./config/.env
     source ./declares.sh
     for i in ${!dotFile[@]}; do
         sub "copying ${dotFile[i]}"

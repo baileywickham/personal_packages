@@ -1,2 +1,0 @@
-#!/bin/bash
-docker build -t $(basename $(pwd)) . && docker run -it $(basename $(pwd))
