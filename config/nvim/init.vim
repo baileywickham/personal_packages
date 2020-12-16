@@ -92,6 +92,7 @@ endif
 autocmd FileType c,cpp setlocal equalprg=clang-format
 autocmd BufNewFile,BufRead *.h setfiletype c
 autocmd BufNewFile,BufRead *.bailey_shell set filetype=sh
+autocmd BufNewFile,BufRead *.dxuq set filetype=racket
 
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -116,8 +117,9 @@ Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'wlangstroth/vim-racket' "vim autocomplete
 "Plug 'jpalardy/vim-slime'
-Plug 'LucHermitte/lh-vim-lib'
-Plug 'LucHermitte/lh-brackets'
+"Plug 'LucHermitte/lh-vim-lib'
+"Plug 'LucHermitte/lh-brackets'
+Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 syntax enable
