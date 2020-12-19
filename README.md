@@ -1,5 +1,6 @@
 # Personal Packages
 ![build](https://github.com/baileywickham/personal_packages/workflows/CI/badge.svg)
+
 My dotfiles and install scripts
 
 ![img](https://raw.githubusercontent.com/baileywickham/personal_packages/master/files/screencap.png)
@@ -11,6 +12,7 @@ My dotfiles and install scripts
 - `modules/` specific install scripts
 - `scripts/` useful scripts for this repo
 
+### Modules
 To add an install script, add a `.sh` file to `modules/`. The `personal_packages.sh` script automaticly call the function matching the name of the file for all files in the `modules` directory. Ex: `install_zsh` in `modules/install_zsh.sh` will be automaticly called. 
 
 ## Use
