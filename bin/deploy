@@ -1,0 +1,13 @@
+#!/bin/bash
+while [[ "$(pwd)" != "/" ]]; do
+    if [[ -f "deploy.sh" ]]; then
+        echo "calling $(pwd)/deploy.sh"
+        ./deploy.sh
+        exit
+    fi
+    cd ..
+done
+
+echo "deploy.sh not found, exiting"
+
+
