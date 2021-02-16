@@ -115,11 +115,11 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
-Plug 'wlangstroth/vim-racket' "vim autocomplete
+"Plug 'wlangstroth/vim-racket' "vim autocomplete
 "Plug 'jpalardy/vim-slime'
 "Plug 'LucHermitte/lh-vim-lib'
 "Plug 'LucHermitte/lh-brackets'
-Plug 'elixir-editors/vim-elixir'
+"Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 syntax enable
