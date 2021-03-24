@@ -41,5 +41,5 @@ alias off='shutdown -P now'
 alias bc='bc -l'
 alias o='xdg-open '
 alias rysnc='rsync --progress -h -v -r'
-alias dxuq='mix run scripts/dxuq.exs <'
 alias dep=deploy
+alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
