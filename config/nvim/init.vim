@@ -35,6 +35,7 @@ noremap! <C-BS> <C-w> "ctrl backspace
 noremap! <C-h> <C-w>
 noremap Q <Nop>
 vnoremap <CR> "+y
+set shell=zsh\ -l
 "ex mode is never useful
 
 "nnoremap <Space> i_<Esc>r
@@ -115,7 +116,7 @@ Plug 'KeitaNakamura/tex-conceal.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
-"Plug 'wlangstroth/vim-racket' "vim autocomplete
+Plug 'wlangstroth/vim-racket' "vim autocomplete
 "Plug 'jpalardy/vim-slime'
 "Plug 'LucHermitte/lh-vim-lib'
 "Plug 'LucHermitte/lh-brackets'
