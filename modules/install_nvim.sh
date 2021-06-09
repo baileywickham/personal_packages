@@ -35,11 +35,11 @@ function install_nvim() {
         npm
 
 
-    git clone -q https://github.com/neovim/neovim.git "${HOME}"/.builds/neovim
+    git clone -q https://github.com/neovim/neovim.git "${BUILDS}"/neovim
 
     sub "Building nvim"
-    make -C "${HOME}/.builds/neovim/" --silent CMAKE_BUILD_TYPE=RelWithDebInfo &> /dev/null
-    sudo make -C "${HOME}/.builds/neovim/" --silent install &> /dev/null
+    make -C "${BUILDS}/neovim/" --silent CMAKE_BUILD_TYPE=RelWithDebInfo &> /dev/null
+    sudo make -C "${BUILDS}/neovim/" --silent install &> /dev/null
 
     sub "Installing nvim sub packages"
     sub_sub "Installing neovim python support"

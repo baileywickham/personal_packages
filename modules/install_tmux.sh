@@ -7,16 +7,16 @@ function install_tmux() {
     install_libevent
 
     sub "Building tmux"
-    git clone https://github.com/tmux/tmux.git "${HOME}/.builds/tmux"
-    (cd "${HOME}/.builds/tmux"
+    git clone https://github.com/tmux/tmux.git "${BUILDS}/tmux"
+    (cd "${BUILDS}/tmux"
     sh ./autogen.sh
     ./configure && make && sudo make install)
     apt_install zsh
 }
 
 function install_libevent() {
-    git clone https://github.com/libevent/libevent.git "${HOME}/.builds/libevent"
-    (cd "${HOME}/.builds/libevent"
+    git clone https://github.com/libevent/libevent.git "${BUILDS}/libevent"
+    (cd "${BUILDS}/libevent"
     ./autogen.sh
     ./configure
     make

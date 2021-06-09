@@ -43,3 +43,5 @@ alias o='xdg-open '
 alias rysnc='rsync --progress -h -v -r'
 alias dep=deploy
 alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
+alias z3='~/Downloads/z3-4.8.10-x64-ubuntu-18.04/bin/z3'
+alias cadical='/home/y/workspace/rosette-123-805-kitchen/cadical/build/cadical'

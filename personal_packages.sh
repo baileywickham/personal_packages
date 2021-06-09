@@ -19,6 +19,7 @@ ORANGE='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 PPACKAGES=$(pwd)
+BUILDS="${HOME}/builds"
 has_sudo=false
 
 function task () {
@@ -72,7 +73,7 @@ function apt_install () {
     for package in $@
     do
         sub_sub "$package"
-        sudo apt-get -qq install "$package" > /dev/null
+        sudo apt-get -qqq install "$package" > /dev/null
     done
 }
 
@@ -95,7 +96,7 @@ function dir() {
 
     directories=(".ssh"
         ".config"
-        ".builds"
+        $BUILDS
         ".emacs.d"
     )
     for d in ${directories[@]}; do
