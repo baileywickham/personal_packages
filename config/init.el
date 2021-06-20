@@ -18,8 +18,11 @@
 (use-package evil
   :ensure t
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  :init
+  (setq evil-want-C-u-scroll t))
 
+(setq show-paren-delay 0)
 (show-paren-mode 1)
 
 ;(require 'helm-config)
