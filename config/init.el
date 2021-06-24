@@ -1,44 +1,43 @@
-(require 'package)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+
 
 (setq initial-buffer-choice "~/todo.org")
 
 (require 'use-package)
-
-(use-package org
-  :init
-  (when (fboundp 'electric-indent-mode) (electric-indent-mode -1)))
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-;; (unless package-archive-contents    ;; Refresh the packages descriptions
-;;  (package-refresh-contents))
-(setq package-load-list '(all))     ;; List of packages to load
-(package-initialize)
-
-;;(when (not (package-installed-p 'use-package))
-;;  (package-refresh-contents)
-;;  (package-install 'use-package))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(markdown-mode clojure-mode evil-org which-key use-package)))
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
 
 
 (load-file "~/.emacs.d/configs/sensible-defaults.el")
 (sensible-defaults/use-all-settings)
 (sensible-defaults/use-all-keybindings)
+
+(straight-use-package 'helm)
+(helm-mode 1)
+(setq org-confirm-babel-evaluate 'nil)
+(setq org-babel-python-command "python3")
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+
+(straight-use-package 'company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (use-package evil
   :init
@@ -64,7 +63,6 @@
 (setq visible-bell nil)
 
 (use-package evil-org
-  :ensure t
   :after org
   :hook (org-mode . (lambda () evil-org-mode))
   :config
@@ -75,7 +73,6 @@
 (add-to-list 'auto-mode-alist '("\\.fusion\\'" . clojure-mode))
 
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
