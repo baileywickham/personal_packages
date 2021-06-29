@@ -11,33 +11,37 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(setq initial-buffer-choice "~/orgs/todo.org")
 
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
-
-
-(setq initial-buffer-choice "~/todo.org")
-
 (require 'use-package)
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+
+(straight-use-package 'helm)
+(helm-mode 1)
+
+(straight-use-package 'company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+
+;(straight-use-package 'ox-tufte)
+;(require 'ox-tufte)
+(setq make-backup-files nil)
 
 
 (load-file "~/.emacs.d/configs/sensible-defaults.el")
 (sensible-defaults/use-all-settings)
 (sensible-defaults/use-all-keybindings)
 
-(straight-use-package 'helm)
-(helm-mode 1)
+
 (setq org-confirm-babel-evaluate 'nil)
 (setq org-babel-python-command "python3")
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)))
 
-(straight-use-package 'company-mode)
-(add-hook 'after-init-hook 'global-company-mode)
 
 (use-package evil
   :init
@@ -62,15 +66,9 @@
 
 (setq visible-bell nil)
 
-(use-package evil-org
-  :after org
-  :hook (org-mode . (lambda () evil-org-mode))
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
-
 (use-package clojure-mode)
 (add-to-list 'auto-mode-alist '("\\.fusion\\'" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.ion\\'" . clojure-mode))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
