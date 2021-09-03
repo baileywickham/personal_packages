@@ -129,6 +129,7 @@ function move_dotfiles() {
     ln -sf "${PWD}/config/nvim" "${HOME}/.config/"
     sub "copying emacs config"
     ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
+    ln -sf "${PWD}/config/init.el" "${HOME}"
     sub "copying fish configs"
     ln -sf "${PWD}/config/omf" "${HOME}/.config/"
     ln -sf "${PWD}/config/fish" "${HOME}/.config/"

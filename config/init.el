@@ -1,74 +1,64 @@
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(setq initial-buffer-choice "~/orgs/todo.org")
-
-(straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
-(require 'use-package)
 (require 'package)
+(setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+	     '("melpa" . "https://melpa.org/packages/") t)
 
-(straight-use-package 'helm)
-(helm-mode 1)
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(straight-use-package 'company-mode)
-(add-hook 'after-init-hook 'global-company-mode)
+(setq initial-buffer-choice "~/workspace/CategoryTheory/cat.org")
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+(set-default 'truncate-lines t)
 
-;(straight-use-package 'ox-tufte)
-;(require 'ox-tufte)
+
+(use-package helm
+  :ensure t
+  :config
+  (helm-mode 1))
+
+(setq vc-follow-symlinks t)
 (setq make-backup-files nil)
-
-
-(load-file "~/.emacs.d/configs/sensible-defaults.el")
-(sensible-defaults/use-all-settings)
-(sensible-defaults/use-all-keybindings)
-
 
 (setq org-confirm-babel-evaluate 'nil)
 (setq org-babel-python-command "python3")
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((python . t)))
+ '((python . t)
+   (shell . t)))
 
 
 (use-package evil
+  :ensure t
   :init
   (setq evil-want-C-u-scroll t)
   :config
   (evil-mode 1))
 
 (use-package org
+  :ensure t
   :init
-  (setq truncate-lines 'nil))
+  (setq truncate-lines t))
+  ;(setq truncate-lines 'nil))
 
 
 (use-package undo-tree
+  :ensure t
   :config
   (global-undo-tree-mode))
+
 (use-package dracula-theme
+  :ensure t
   :config
   (load-theme 'dracula t))
 (use-package which-key
+  :ensure t
   :init
   (which-key-mode))
 
 (setq visible-bell nil)
-
-(use-package clojure-mode)
-(add-to-list 'auto-mode-alist '("\\.fusion\\'" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.ion\\'" . clojure-mode))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
