@@ -1,5 +1,9 @@
 #!/bin/bash
 # Create a docker container here, copying in everything from the current working directory
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    echo "Start a docker container with the contents of the current directory"
+    exit 0
+fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
