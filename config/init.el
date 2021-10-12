@@ -35,7 +35,9 @@
   :init
   (setq evil-want-C-u-scroll t)
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  :init
+  (setq evil-want-C-u-scroll t))
 
 (use-package org
   :ensure t
@@ -59,6 +61,8 @@
   (which-key-mode))
 
 (setq visible-bell nil)
+(setq show-paren-delay 0)
+(show-paren-mode 1)
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
