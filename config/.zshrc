@@ -14,13 +14,18 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 #  exec tmux
 #fi
 
+if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Linux Mint" ]]; then
+    export LOCATION="mint"
+fi
+
 
 # Set f2 to edit zshrc
 bindkey -s "\eOQ" "vi ~/.zshrc \n"
 
 export ZSH=$HOME/.oh-my-zsh
 
-source ~/.bailey_shell
+source $HOME/.env
+source $HOME/.aliases
 
 ex () {
   if [ -f $1 ] ; then

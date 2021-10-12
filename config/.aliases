@@ -1,4 +1,3 @@
-source ~/.env
 alias python='python3'
 alias pip='pip3'
 
@@ -21,7 +20,6 @@ alias  ....='cd ../../..'
 alias  .....='cd ../../../..'
 alias  ......='cd ../../../../..'
 alias sudo='sudo '
-alias 357='cd /home/y/workspace/357'
 alias t='tmux'
 
 #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -32,7 +30,6 @@ alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | tr -d \"'
 #WORKDIR /home/root
 #EOF
 # . && docker run -it tmp && rm .Dockerfile"
-alias xxd='hexyl'
 alias ccat='pygmentize -g'
 alias v='nvim'
 alias :q='exit'
@@ -42,5 +39,3 @@ alias o='xdg-open '
 alias rysnc='rsync --progress -h -v -r'
 alias dep=deploy
 alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
-alias z3='~/Downloads/z3-4.8.10-x64-ubuntu-18.04/bin/z3'
-alias cadical='/home/y/workspace/rosette-123-805-kitchen/cadical/build/cadical'
