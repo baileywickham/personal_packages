@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Create user to simulate non root
 RUN useradd -ms /bin/bash user
 RUN mkdir /etc/sudoers.d/
@@ -19,7 +21,6 @@ RUN apt-get install -y -qqq \
     sudo
 
 USER user
-ENV DEBIAN_FRONTEND=noninteractive
 #ENTRYPOINT ./personal_packages.sh -a
 
 #COPY /etc/apt/sources.list /etc/apt/sources.list

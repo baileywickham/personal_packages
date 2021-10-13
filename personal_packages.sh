@@ -69,30 +69,32 @@ function neoneofetch() {
 
 }
 
+
+function with_sudo () {
+    if [ -z "$has_sudo" ]; then
+        superuser
+    fi
+    sudo "$@"
+}
+
 function apt_install () {
     for package in $@
     do
         sub_sub "$package"
-        sudo apt-get -qqq install "$package" > /dev/null
+        DEBIAN_FRONTEND=noninteractive
+        with_sudo -E apt-get -qqq install -y "$package" > /dev/null
     done
 }
 
 function apt_update () {
-    if [ ! -z "$has_sudo" ]; then
-        sudo apt-get update -qq
-    else
-        err "sudo needed"
-        exit 1
-    fi
+    with_sudo apt-get update -qq
 }
 
 
 
-function dir() {
+function create_directories() {
     task "Creating directories"
-    if [ ! -z "$has_sudo" ]; then
-        sudo mkdir -p /etc/udev/rules.d
-    fi
+    with_sudo mkdir -p /etc/udev/rules.d
 
     directories=(".ssh"
         ".config"
@@ -116,11 +118,21 @@ function dir() {
 # Move dotfiles
 function move_dotfiles() {
     # Create directories
-    dir
+    dotFile=(".zshrc"
+        ".aliases"
+        ".bashrc"
+        ".vimrc"
+        ".gitignore_global"
+        ".gitconfig"
+        ".env"
+        ".tmux.conf"
+        ".tmux.conf.local"
+        ".p10k.zsh"
+    )
+    create_directories
     task "Replacing config files"
     sub "Updating env with new PPACKAGES"
     sed -i "s/PPACKAGES=/PPACKAGES=${PPACKAGES//\//\\/}/g" ./config/.env
-    source ./declares.sh
     for i in ${!dotFile[@]}; do
         sub "copying ${dotFile[i]}"
         ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
@@ -148,7 +160,7 @@ function addSSHLink() {
 
 function add2FA() {
     task "copying 2fa"
-    sudo cp ./files/70-u2f.rules /etc/udev/rules.d/
+    with_sudo cp ./files/70-u2f.rules /etc/udev/rules.d/
 }
 
 function initialize() {
@@ -171,7 +183,7 @@ function initialize() {
         python3-pip \
         apt-transport-https \
         ca-certificates \
-        gnupg-agent # this is bad, don't do this.
+        gnupg-agent
 
     sub_sub "Update Submodules"
     git submodule init
@@ -199,7 +211,7 @@ function main() {
     neoneofetch
     superuser
     initialize
-    dir
+    create_directories
     add2FA
     addSSHLink
     move_dotfiles
