@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 alias python='python3'
 alias pip='pip3'
 
@@ -39,3 +40,4 @@ alias o='xdg-open '
 alias rysnc='rsync --progress -h -v -r'
 alias dep=deploy
 alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
+alias myipv4='curl https://ipinfo.io/ip'
