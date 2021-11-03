@@ -4,6 +4,8 @@
 # - add warning layer
 # - copy stderror output to waring output
 
+source utils.sh
+
 set -uo pipefail
 
 trap exit SIGINT
@@ -13,28 +15,8 @@ if [ "$EUID" -eq "0" ] &&  ! (grep -Fq "docker" /proc/1/cgroup) ; then
     exit
 fi
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
 PPACKAGES=$(pwd)
 BUILDS="${HOME}/builds"
-has_sudo=false
-
-function task () {
-    echo -e " ${GREEN}[*]${NC} $1"
-}
-
-function sub () {
-    echo -e "   ${BLUE}[*]${NC} $1"
-}
-function sub_sub () {
-    echo -e "      ${RED}[*]${NC} $1"
-}
-function err () {
-    echo -e " ${ORANGE}[x] $1 ${NC}"
-}
 
 function whichos() {
     awk -F= '$1=="PRETTY_NAME" { print $2 ;}' /etc/os-release | tr -d \"
@@ -68,28 +50,6 @@ function neoneofetch() {
     echo ""
 
 }
-
-
-function with_sudo () {
-    if [ -z "$has_sudo" ]; then
-        superuser
-    fi
-    sudo "$@"
-}
-
-function apt_install () {
-    for package in $@
-    do
-        sub_sub "$package"
-        DEBIAN_FRONTEND=noninteractive
-        with_sudo -E apt-get -qqq install -y "$package" > /dev/null
-    done
-}
-
-function apt_update () {
-    with_sudo apt-get update -qq
-}
-
 
 
 function create_directories() {
@@ -189,14 +149,6 @@ function initialize() {
     git submodule init
     git submodule update
 }
-
-function superuser () {
-    task "Getting sudo permissions"
-    sudo echo -n
-    sub "sudo successful"
-    has_sudo=true
-}
-
 
 
 function help() {
