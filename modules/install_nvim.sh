@@ -13,7 +13,7 @@ function plug () {
 
 function bashlangserver() {
     sub_sub "Installing bash language server"
-    sudo npm i -g bash-language-server &> /dev/null
+    with_sudo npm i -g bash-language-server &> /dev/null
 }
 
 function install_nvim() {
@@ -39,7 +39,7 @@ function install_nvim() {
 
     sub "Building nvim"
     make -C "${BUILDS}/neovim/" --silent CMAKE_BUILD_TYPE=RelWithDebInfo &> /dev/null
-    sudo make -C "${BUILDS}/neovim/" --silent install &> /dev/null
+    with_sudo make -C "${BUILDS}/neovim/" --silent install &> /dev/null
 
     sub "Installing nvim sub packages"
     sub_sub "Installing neovim python support"

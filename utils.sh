@@ -25,7 +25,7 @@ function err () {
 
 function with_sudo () {
     if [ -z "$has_sudo" ]; then
-        superuser
+        get_sudo_permissions
     fi
     sudo "$@"
 }
@@ -44,7 +44,7 @@ function apt_update () {
 }
 
 
-function superuser () {
+function get_sudo_permissions () {
     task "Getting sudo permissions"
     sudo echo -n
     sub "sudo successful"

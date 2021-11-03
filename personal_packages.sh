@@ -161,7 +161,6 @@ function help() {
 
 function main() {
     neoneofetch
-    superuser
     initialize
     create_directories
     add2FA
