@@ -17,6 +17,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Linux Mint" ]]; then
     export LOCATION="mint"
 fi
+if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Ubuntu" ]]; then
+    export LOCATION="ubuntu"
+fi
 
 
 # Set f2 to edit zshrc
@@ -54,7 +57,11 @@ git-search () {
 }
 
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ $LOCATION == "mint" ]]; then
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+elif [[ $LOCATION == "mint" ]]; then
+    ZSH_THEME="bira"
+fi
 
 plugins=(
     command-not-found docker docker-compose
@@ -72,6 +79,3 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -Uz compinit
-#compinit
-
-#zprof

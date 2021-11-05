@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This whole file is a really bad idea. DO NOT copy any of this code.
 #TODO handle errors, that would probably be good
 # - add warning layer
@@ -62,12 +62,8 @@ function create_directories() {
         ".emacs.d"
     )
     for d in ${directories[@]}; do
-        if [[ ! -a "${HOME}/${d}" ]]; then
-            sub_sub "creating ${d}"
-            mkdir -p "${HOME}/${d}"
-        else
-            sub_sub "dir already exists: ${d}"
-        fi
+        sub_sub "creating ${d}"
+        mkdir -p "${HOME}/${d}"
     done
 
     if [[ ! -a "${HOME}/bin" ]]; then
@@ -78,7 +74,7 @@ function create_directories() {
 # Move dotfiles
 function move_dotfiles() {
     # Create directories
-    dotFile=(".zshrc"
+    dotFiles=(".zshrc"
         ".aliases"
         ".bashrc"
         ".vimrc"
@@ -93,9 +89,9 @@ function move_dotfiles() {
     task "Replacing config files"
     sub "Updating env with new PPACKAGES"
     sed -i "s/PPACKAGES=/PPACKAGES=${PPACKAGES//\//\\/}/g" ./config/.env
-    for i in ${!dotFile[@]}; do
-        sub "copying ${dotFile[i]}"
-        ln -sf "${PWD}/config/${dotFile[i]}" "${HOME}/${dotFile[i]}"
+    for i in ${!dotFiles[@]}; do
+        sub "copying ${dotFiles[i]}"
+        ln -sf "${PWD}/config/${dotFiles[i]}" "${HOME}/${dotFiles[i]}"
     done
     sub "copying nvim"
     ln -sf "${PWD}/config/nvim" "${HOME}/.config/"
@@ -123,7 +119,7 @@ function add2FA() {
     with_sudo cp ./files/70-u2f.rules /etc/udev/rules.d/
 }
 
-function initialize() {
+function install_packages() {
     # get the packages that will be used for other packages
     task "Initializing install"
     sub "Installing packages"
@@ -156,12 +152,13 @@ function help() {
     printf  "\t-a : all, Install all features including all configs, docker, zsh, go...\n"
     printf  "\t-p : plug, Install plug.vim and plug.nvim\n"
     printf  "\t-c : configs, Install just config files\n"
+    printf  "\t-m : minimal, Install just files needed for a server\n"
 }
 
 
 function main() {
     neoneofetch
-    initialize
+    install_packages
     create_directories
     add2FA
     addSSHLink
@@ -179,7 +176,27 @@ function main() {
     done
 }
 
-while getopts "pcadnh:" OPT; do
+function minimal() {
+    local dotFiles=(".zshrc"
+    ".aliases"
+    ".vimrc"
+    ".env")
+
+    create_directories
+    task "Replacing config files"
+    sub "Updating env with new PPACKAGES"
+    sed -i "s/PPACKAGES=/PPACKAGES=${PPACKAGES//\//\\/}/g" ./config/.env
+    for i in ${!dotFiles[@]}; do
+        sub "copying ${dotFiles[i]}"
+        ln -sf "${PWD}/config/${dotFiles[i]}" "${HOME}/${dotFiles[i]}"
+    done
+
+    source modules/install_zsh.sh
+    install_zsh
+
+}
+
+while getopts "pcmadnh:" OPT; do
     case "${OPT}" in
         a)
             main
@@ -192,6 +209,9 @@ while getopts "pcadnh:" OPT; do
             ;;
         n)
             neoneofetch
+            ;;
+        m)
+            minimal
             ;;
         *)
             echo "${OPT}"
