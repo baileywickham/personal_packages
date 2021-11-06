@@ -10,8 +10,7 @@ function install_tmux() {
     git clone https://github.com/tmux/tmux.git "${BUILDS}/tmux"
     (cd "${BUILDS}/tmux"
     sh ./autogen.sh
-    ./configure && make && sudo make install)
-    apt_install zsh
+    ./configure && make && sudo make install) &>/dev/null
 }
 
 function install_libevent() {
@@ -20,5 +19,5 @@ function install_libevent() {
     ./autogen.sh
     ./configure
     make
-    sudo make install)
+    sudo make install) &> /dev/null
 }

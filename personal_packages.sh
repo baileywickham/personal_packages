@@ -4,6 +4,18 @@
 # - add warning layer
 # - copy stderror output to waring output
 
+function help() {
+    printf "personal_packages.sh a dotfiles install script\n"
+    printf  "\t--install : Install all features including all configs, docker, zsh, go...\n"
+    printf  "\t--configs : configs, Install just config files\n"
+    printf  "\t--minimal : minimal, Install just files needed for a server\n"
+}
+
+if [[ $# -le 0 ]]; then
+    help
+    exit
+fi
+
 source utils.sh
 
 set -uo pipefail
@@ -146,13 +158,6 @@ function install_packages() {
 }
 
 
-function help() {
-    printf "personal_packages.sh a dotfiles install script\n"
-    printf  "\t-a : all, Install all features including all configs, docker, zsh, go...\n"
-    printf  "\t-p : plug, Install plug.vim and plug.nvim\n"
-    printf  "\t-c : configs, Install just config files\n"
-    printf  "\t-m : minimal, Install just files needed for a server\n"
-}
 
 
 function main() {
@@ -195,33 +200,35 @@ function minimal() {
 
 }
 
-while getopts "pcmadnh:" OPT; do
-    case "${OPT}" in
-        a)
+while [[ $# -gt 0 && ${1} ]]; do
+    case "${1}" in
+        --install)
             main
+            shift
             ;;
-        c)
+
+        --configs)
             move_dotfiles
+            shift
             ;;
-        h)
-            help
-            ;;
-        n)
+        --neoneofetch | -n)
             neoneofetch
+            shift
             ;;
-        m)
+        --minimal)
             minimal
+            shift
+            ;;
+
+        --help | -h)
+            help
+            break;
             ;;
         *)
-            echo "${OPT}"
-            echo "Incorrect option provided"
-            help
-            exit 1
+            echo "Incorrect option provided: ${1}"
+            break
             ;;
     esac
 done
 
-if [[ $# -le 0 ]]; then
-    help
-    exit
-fi
+

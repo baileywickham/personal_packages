@@ -12,7 +12,7 @@ jobs:
         token: ${{ secrets.personal_packages }}
 
     - name: Run install script
-      run: ./personal_packages.sh -a
+      run: ./personal_packages.sh --install
 
       #    - name: Super-Linter
       #uses: github/super-linter@v2.1.0

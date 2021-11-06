@@ -13,10 +13,21 @@ My dotfiles and install scripts
 - `scripts/` useful scripts for this repo
 
 ### Modules
-To add an install script, add a `.sh` file to `modules/`. The `personal_packages.sh` script automaticly call the function matching the name of the file for all files in the `modules` directory. Ex: `install_zsh` in `modules/install_zsh.sh` will be automaticly called. 
+To add an install script, add a `.sh` file to `modules/`. The `personal_packages.sh` script automaticly call the function matching the name of the file for all files in the `modules` directory. Ex: `install_zsh` in `modules/install_zsh.sh` will be automaticly called.
 
 ## Use
 Run `./personal_packages.sh -h` to see the options available.
+
+Commonly used bash utils are stored in the utils.sh file, they can be included in any repo with the following script.
+```bash
+if [ -f utils.sh ]; then
+    source utils.sh
+else
+    curl -s https://raw.githubusercontent.com/baileywickham/personal_packages/master/utils.sh > utils.sh
+    source utils.sh
+fi
+```
+
 
 ### Running
 There should be as few dependencies as possible to the actual script, bash and git are all you need
@@ -39,3 +50,4 @@ This repo includes a dockerfile and a script, ```dock.sh``` which runs the docke
 
 ## One liners
 `curl https://raw.githubusercontent.com/baileywickham/personal_packages/master/files/keyboard > /etc/default/keyboard`
+

@@ -6,6 +6,7 @@ ORANGE='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 has_sudo=false
+apt_updated=""
 
 
 function task () {
