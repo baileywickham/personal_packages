@@ -31,6 +31,11 @@ function with_sudo () {
 }
 
 function apt_install () {
+    sub "Installing packages with APT"
+    if [ -z "$apt_updated" ]; then
+        apt_update
+    fi
+
     for package in $@
     do
         sub_sub "$package"
@@ -40,7 +45,9 @@ function apt_install () {
 }
 
 function apt_update () {
+    sub "Updating APT"
     with_sudo apt-get update -qq
+    apt_updated=true
 }
 
 

@@ -123,7 +123,6 @@ function install_packages() {
     # get the packages that will be used for other packages
     task "Initializing install"
     sub "Installing packages"
-    apt_update
     apt_install apt-utils \
         gcc \
         build-essential \
