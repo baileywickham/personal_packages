@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-# This whole file is a really bad idea. DO NOT copy any of this code.
 #TODO handle errors, that would probably be good
 # - add warning layer
 # - copy stderror output to waring output
 
 function help() {
-    printf "personal_packages.sh a dotfiles install script\n"
-    printf  "\t--install : Install all features including all configs, docker, zsh, go...\n"
-    printf  "\t--configs : configs, Install just config files\n"
-    printf  "\t--minimal : minimal, Install just files needed for a server\n"
+    cat << EOF
+personal_packages.sh a dotfiles install script
+   --install : Install all features including all configs, docker, zsh, go...
+   --configs : configs, Install just config files
+   --minimal : minimal, Install just files needed for a server
+EOF
 }
 
 if [[ $# -le 0 ]]; then

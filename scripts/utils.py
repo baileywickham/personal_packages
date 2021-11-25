@@ -30,7 +30,9 @@ def do(thing, cwd=None):
 
 @runIn('/home/y/')
 def test():
-    print(do('''ls -lah
-    echo 'hi' '''))
+    print(do('''
+    ls -lah
+    echo 'hi'
+    '''))
 
 test()

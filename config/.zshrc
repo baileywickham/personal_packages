@@ -64,7 +64,10 @@ elif [[ $LOCATION == "mint" ]]; then
 fi
 
 plugins=(
-    command-not-found docker docker-compose
+    poetry
+    command-not-found
+    docker
+    docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
