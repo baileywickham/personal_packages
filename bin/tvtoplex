@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ "$#" -ne 1 ]; then
-    echo "usage: move_to_plex.sh <directory or file>"
-    exit 1
-fi
-
-rsync --progress -h -v -r "$1" plex:/media/z/z/TV\\\ series/

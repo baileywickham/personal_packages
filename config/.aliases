@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-alias python='python3'
+#alias python='python3.10'
 alias pip='pip3'
 
 alias df='df -h'
