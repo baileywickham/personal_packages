@@ -13,6 +13,8 @@
 (show-paren-mode 1)
 (set-default 'truncate-lines t)
 
+(setq select-enable-clipboard t)
+
 
 (use-package helm
   :ensure t
@@ -35,9 +37,7 @@
   :init
   (setq evil-want-C-u-scroll t)
   :config
-  (evil-mode 1)
-  :init
-  (setq evil-want-C-u-scroll t))
+  (evil-mode 1))
 
 (use-package org
   :ensure t

@@ -59,6 +59,7 @@ git-search () {
 
 if [[ $LOCATION == "mint" ]]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
+    . "$HOME/.cargo/env"
 elif [[ $LOCATION == "mint" ]]; then
     ZSH_THEME="bira"
 fi
@@ -82,3 +83,4 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -Uz compinit
+

@@ -135,3 +135,4 @@ fi
 source ~/.bailey_shell
 
 
+. "$HOME/.cargo/env"

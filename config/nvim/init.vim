@@ -49,7 +49,6 @@ set autowrite "writes on make
 set autoread "reads modified files
 set noswapfile
 set hidden
-set relativenumber
 set inccommand=nosplit
 
 " coc settings
@@ -85,9 +84,9 @@ au BufNewFile,BufRead *.py:
             \ set shiftwidth=4
             \ set expandtab
 
-if has("autocmd")
-    au BufReadPost *.rkt,*.rktl set filetype=scheme
-endif
+"//if has("autocmd")
+"//    au BufReadPost *.rkt,*.rktl set filetype=scheme
+"//endif
 
 
 autocmd FileType c,cpp setlocal equalprg=clang-format
@@ -117,6 +116,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'wlangstroth/vim-racket' "vim autocomplete
+Plug 'rust-lang/rust.vim'
 "Plug 'jpalardy/vim-slime'
 "Plug 'LucHermitte/lh-vim-lib'
 "Plug 'LucHermitte/lh-brackets'
