@@ -12,6 +12,7 @@ alias docker_clean_images='sudo docker rmi $(sudo docker images --all -q)'
 alias docker_clean_ps='sudo docker rm $(sudo docker ps --all -q)'
 alias docker_stop_ps='sudo docker stop $(sudo docker ps --all -q)'
 alias unhibernate='service network-manager restart'
+alias hibernate='sudo pm-hibernate || sudo systemctl hibernate'
 
 alias l='ls -lah'
 alias ll='ls -lh'

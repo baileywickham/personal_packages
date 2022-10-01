@@ -6,16 +6,6 @@ function! SourceIfExists(file)
     endif
 endfunction
 
-function! Imp(importname)
-    " force case sensitive
-    if &filetype ==? "go"
-        call go#import#SwitchImport(1, '', a:importname, '<bang>')
-    elseif &filetype ==? "python"
-        echo "python"
-    endif
-endfunction
-
-
 
 "sets powerline to turn on
 set laststatus=2
