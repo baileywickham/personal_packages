@@ -143,17 +143,11 @@ function install_packages() {
         curl \
         git \
         wget   \
-        gnupg  \
-        gnupg1 \
-        gnupg2 \
         software-properties-common \
         python3-dev \
         python3-pip \
-        apt-transport-https \
-        ca-certificates \
-        gnupg-agent
 
-    sub_sub "Update Submodules"
+        sub_sub "Update Submodules"
     git submodule init
     git submodule update
 }
