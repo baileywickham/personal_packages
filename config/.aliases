@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#alias python='python3.10'
+alias python='python3'
 alias pip='pip3'
 
 alias df='df -h'
@@ -12,7 +12,7 @@ alias docker_clean_images='sudo docker rmi $(sudo docker images --all -q)'
 alias docker_clean_ps='sudo docker rm $(sudo docker ps --all -q)'
 alias docker_stop_ps='sudo docker stop $(sudo docker ps --all -q)'
 alias unhibernate='service network-manager restart'
-alias hibernate='sudo pm-hibernate || sudo systemctl hibernate'
+alias hibernate='sudo systemctl hibernate'
 
 alias l='ls -lah'
 alias ll='ls -lh'

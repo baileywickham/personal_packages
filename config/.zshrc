@@ -20,6 +20,7 @@ fi
 if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Ubuntu" ]]; then
     export LOCATION="ubuntu"
 fi
+export LOCATION="mint"
 
 
 # Set f2 to edit zshrc
@@ -59,7 +60,6 @@ git-search () {
 
 if [[ $LOCATION == "mint" ]]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
-    . "$HOME/.cargo/env"
 elif [[ $LOCATION == "mint" ]]; then
     ZSH_THEME="bira"
 fi
@@ -88,3 +88,10 @@ autoload -Uz compinit
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+bindkey "\e[1;5D" backward-word
+bindkey "\e[1;5C" forward-word
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
