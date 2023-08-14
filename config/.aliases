@@ -43,3 +43,4 @@ alias dep=deploy
 alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
 alias myipv4='curl https://ipinfo.io/ip'
 alias compile=/home/y/workspace/CSC431/mini/compile.sh
+alias v=nvim
