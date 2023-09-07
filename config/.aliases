@@ -8,9 +8,11 @@ alias obse='watchman-make -p "*.rkt" --run "racket *.rkt"'
 alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'
 
 
+alias docker_prune="sudo docker system prune -a -f"
 alias docker_clean_images='sudo docker rmi $(sudo docker images --all -q)'
 alias docker_clean_ps='sudo docker rm $(sudo docker ps --all -q)'
 alias docker_stop_ps='sudo docker stop $(sudo docker ps --all -q)'
+alias docker_clean_volumes='docker volume rm $(docker volume ls -q)'
 alias unhibernate='service network-manager restart'
 alias hibernate='sudo systemctl hibernate'
 
