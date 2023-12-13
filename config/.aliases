@@ -43,3 +43,5 @@ alias o='xdg-open '
 alias rysnc='rsync --progress -h -v -r'
 alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
 alias myipv4='curl https://ipinfo.io/ip'
+alias pn=pnpm
+alias shmig='shmig -d baileywickham'

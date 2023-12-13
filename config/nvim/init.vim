@@ -1,3 +1,4 @@
+set mouse=
 function! SourceIfExists(file)
     if filereadable(expand(a:file))
         exe 'source' a:file
@@ -102,7 +103,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'luochen1990/rainbow'
 Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'wlangstroth/vim-racket' "vim autocomplete
