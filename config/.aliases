@@ -6,6 +6,7 @@ alias df='df -h'
 alias cover='for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m'
 alias obse='watchman-make -p "*.rkt" --run "racket *.rkt"'
 alias observe='watchman-make -p "*test*.py" --run "for file in *test*.py; do coverage3 run -p $file; done; coverage combine; coverage3 report -m"'
+alias m=make
 
 
 alias docker_prune="sudo docker system prune -a -f"
@@ -43,5 +44,8 @@ alias o='xdg-open '
 alias rysnc='rsync --progress -h -v -r'
 alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
 alias myipv4='curl https://ipinfo.io/ip'
+
 alias pn=pnpm
 alias shmig='shmig -d baileywickham'
+alias pl=pulumi
+alias cn=cnsl
