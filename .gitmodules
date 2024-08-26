@@ -1,6 +1,3 @@
-[submodule "oh-my-zsh"]
-	path = oh-my-zsh
-	url = git@github.com:baileywickham/oh-my-zsh.git
 [submodule "sshconfig"]
 	path = sshconfig
 	url = git@github.com:baileywickham/sshconfig.git

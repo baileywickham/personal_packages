@@ -37,10 +37,14 @@ set nu "line numbers
 set nobackup
 set noerrorbells
 set autowrite "writes on make
+
+au BufReadPost cnsl set syntax=bash
+
 set autoread "reads modified files
 set noswapfile
 set hidden
 set inccommand=nosplit
+set nowrap
 
 " coc settings
 "set cmdheight=2

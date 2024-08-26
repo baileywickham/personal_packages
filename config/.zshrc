@@ -14,13 +14,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 #  exec tmux
 #fi
 
-if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Linux Mint" ]]; then
-    export LOCATION="mint"
-fi
-if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Ubuntu" ]]; then
-    export LOCATION="ubuntu"
-fi
-export LOCATION="mint"
+# if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Linux Mint" ]]; then
+#     export LOCATION="mint"
+# fi
+# if [[ "$(awk -F=  '{ print $2 }' /etc/os-release | head -n 1 | tr -d \")" == "Ubuntu" ]]; then
+#     export LOCATION="ubuntu"
+# fi
+# export LOCATION="mint"
 
 
 # Set f2 to edit zshrc
@@ -59,17 +59,11 @@ git-search () {
 }
 
 
-if [[ $LOCATION == "mint" ]]; then
-    ZSH_THEME="powerlevel10k/powerlevel10k"
-elif [[ $LOCATION == "mint" ]]; then
-    ZSH_THEME="bira"
-fi
-
+ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     poetry
     command-not-found
-    docker
-    docker-compose
+    direnv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -92,17 +86,33 @@ export NVM_DIR="$HOME/.nvm"
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+source ~/workspace/toolbox/activate.sh
+#eval "$(direnv hook zsh)"
+
+source <(temporal completion zsh)
+
 # pnpm
-export PNPM_HOME="/home/work/.local/share/pnpm"
+export PNPM_HOME="/Users/baileywickham/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# bun completions
+[ -s "/Users/baileywickham/.oh-my-zsh/completions/_bun" ] && source "/Users/baileywickham/.oh-my-zsh/completions/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+eval "$(jump shell)"
+
+
+. "$HOME/.cargo/env"
+source "$HOME/.rye/env"
+
