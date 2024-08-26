@@ -67,7 +67,6 @@ function neoneofetch() {
 
 function create_directories() {
     task "Creating directories"
-    with_sudo mkdir -p /etc/udev/rules.d
 
     directories=(".ssh"
         ".config"

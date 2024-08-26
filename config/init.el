@@ -8,7 +8,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(setq initial-buffer-choice "~/workspace/CategoryTheory/cat.org")
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 (set-default 'truncate-lines t)
@@ -70,3 +69,15 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(which-key dracula-theme undo-tree evil helm)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

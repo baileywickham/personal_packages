@@ -1,12 +1,23 @@
 [user]
 	email = baileywickham@gmail.com
 	name = baileywickham
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHOWcMHjoKR3leGpTX/9q9suTboagTTDq1MAPCO+iK8S
 [core]
 	excludesfile = /home/y/.gitignore_global
 
 [url "git+ssh://baileywickham@git.launchpad.net/"]
     insteadof = lp
-[credential]
-	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+#[credential]
+    #helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 [init]
 	defaultBranch = main
+[push]
+    autoSetupRemote = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
+[rebase]
+	autosquash = true
