@@ -54,14 +54,9 @@ ex () {
   fi
 }
 
-git-search () {
-    git grep $1 $(git rev-list --all)
-}
-
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
-    poetry
     command-not-found
     direnv
 )
@@ -91,8 +86,7 @@ bindkey "\e[1;5C" forward-word
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-source ~/workspace/toolbox/activate.sh
-#eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
 
 source <(temporal completion zsh)
 
@@ -104,15 +98,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# bun completions
-[ -s "/Users/baileywickham/.oh-my-zsh/completions/_bun" ] && source "/Users/baileywickham/.oh-my-zsh/completions/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-eval "$(jump shell)"
-
-
-. "$HOME/.cargo/env"
-source "$HOME/.rye/env"
-
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+source ~/.iterm2_shell_integration.zsh
