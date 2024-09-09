@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
-#TODO handle errors, that would probably be good
-# - add warning layer
-# - copy stderror output to waring output
+
+set -euo pipefail
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
 
 function help() {
     cat << EOF
 personal_packages.sh a dotfiles install script
    --install : Install all features including all configs, docker, zsh, go...
    --configs : configs, Install just config files
-   --minimal : minimal, Install just files needed for a server
 EOF
 }
 
@@ -19,7 +26,6 @@ fi
 
 source utils.sh
 
-set -uo pipefail
 
 trap exit SIGINT
 
@@ -34,9 +40,6 @@ BUILDS="${HOME}/builds"
 function whichos() {
     awk -F= '$1=="PRETTY_NAME" { print $2 ;}' /etc/os-release | tr -d \"
 }
-function whichcpu() {
-    awk -F: '$1=="model name\t" {print $2;exit;}' /proc/cpuinfo
-}
 function whichrepo(){
     awk -F@ '"\turl = git"==$1 {print $2;exit;}' ./.git/config
 }
@@ -50,10 +53,10 @@ function neoneofetch() {
     echo -e ""
     echo -e "     ┈┈╱▔▔▔▔▔╲┈┈      ${BLUE}User:${NC}           $(whoami)"
     echo -e "     ┈▕╋╋╋╋╋╋╋▏┈      ${BLUE}Hostname:${NC}       $(hostname)"
-    echo -e "     ┈▕╳╳╳╳╳╳╳▏┈      ${BLUE}Distro:${NC}         $(whichos)"
+    echo -e "     ┈▕╳╳╳╳╳╳╳▏┈      ${BLUE}Distro:${NC}         $(machine)"
     echo -e "     ┈┈╲╳╳╳╳╳╱┈┈      ${BLUE}Kernel:${NC}         $(uname -r)"
     echo -e "     ┈┈┈╲╋╋╋╱┈┈┈      ${BLUE}Shell:${NC}          $SHELL"
-    echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}           $(whichcpu)"
+    echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}            "
     echo -e "     ┈┈┈┈▕▅▏┈┈┈┈      ${BLUE}Dotfiles:${NC}       $(whichrepo)"
     echo -e "   "
     echo -e ""
@@ -100,7 +103,7 @@ function move_dotfiles() {
     create_directories
     task "Replacing config files"
     sub "Updating env with new PPACKAGES"
-    sed -i "s/PPACKAGES=/PPACKAGES=${PPACKAGES//\//\\/}/g" ./config/.env
+    # sed -i "s/PPACKAGES=/PPACKAGES=${PPACKAGES//\//\\/}/g" ./config/.env
     for i in ${!dotFiles[@]}; do
         sub "copying ${dotFiles[i]}"
         ln -sf "${PWD}/config/${dotFiles[i]}" "${HOME}/${dotFiles[i]}"
@@ -108,11 +111,8 @@ function move_dotfiles() {
     sub "copying nvim"
     ln -sf "${PWD}/config/nvim" "${HOME}/.config/"
     sub "copying emacs config"
-    ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
-    ln -sf "${PWD}/config/init.el" "${HOME}"
-    sub "copying fish configs"
-    ln -sf "${PWD}/config/omf" "${HOME}/.config/"
-    ln -sf "${PWD}/config/fish" "${HOME}/.config/"
+    # ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
+    # ln -sf "${PWD}/config/init.el" "${HOME}"
 
 }
 
@@ -126,12 +126,7 @@ function addSSHLink() {
     fi
 }
 
-function add2FA() {
-    task "copying 2fa"
-    with_sudo cp ./files/70-u2f.rules /etc/udev/rules.d/
-}
-
-function install_packages() {
+function install_packages_linux() {
     # get the packages that will be used for other packages
     task "Initializing install"
     sub "Installing packages"
@@ -147,52 +142,42 @@ function install_packages() {
         python3-pip \
 
         sub_sub "Update Submodules"
-    git submodule init
-    git submodule update
 }
 
+function install_packages_osx() {
+    brew install fzf fd ripgrep gnu-sed
+}
 
-
+function install_omz() {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
 
 function main() {
+    git submodule init
+    git submodule update
     neoneofetch
-    install_packages
     create_directories
-    add2FA
+    if [[ $machine == "Linux" ]]; then
+        install_packages_linux
+    elif [[ $machine == "Mac" ]]; then
+        install_packages_osx
+    fi
     addSSHLink
     move_dotfiles
     # This sources all files in modules
     # running the function with the filename
     # ex: in modules/test.sh, the test function will be called
-    for file in modules/*.sh
-    do
-        source $file
-        _name=${file%.*}
-        #name=${x%%.*}
-        name=$(basename $_name)
-        eval $name
-    done
+    # this must be done because we only have a global scope, so we can't just use main
+    # for file in modules/*.sh
+    # do
+    #     source $file
+    #     _name=${file%.*}
+    #     #name=${x%%.*}
+    #     name=$(basename $_name)
+    #     eval $name
+    # done
 }
 
-function minimal() {
-    local dotFiles=(".zshrc"
-    ".aliases"
-    ".vimrc"
-    ".env")
-
-    create_directories
-    task "Replacing config files"
-    sub "Updating env with new PPACKAGES"
-    sed -i "s/PPACKAGES=/PPACKAGES=${PPACKAGES//\//\\/}/g" ./config/.env
-    for i in ${!dotFiles[@]}; do
-        sub "copying ${dotFiles[i]}"
-        ln -sf "${PWD}/config/${dotFiles[i]}" "${HOME}/${dotFiles[i]}"
-    done
-
-    source modules/install_zsh.sh
-    install_zsh
-
-}
 
 while [[ $# -gt 0 && ${1} ]]; do
     case "${1}" in
@@ -209,11 +194,6 @@ while [[ $# -gt 0 && ${1} ]]; do
             neoneofetch
             shift
             ;;
-        --minimal)
-            minimal
-            shift
-            ;;
-
         --help | -h)
             help
             break;

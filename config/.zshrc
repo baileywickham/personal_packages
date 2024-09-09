@@ -101,4 +101,5 @@ esac
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-source ~/.iterm2_shell_integration.zsh
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+eval "$(starship init zsh)"
