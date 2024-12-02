@@ -145,7 +145,7 @@ function install_packages_linux() {
 }
 
 function install_packages_osx() {
-    brew install fzf fd ripgrep gnu-sed
+    brew install fzf fd ripgrep gnu-sed autojump direnv
 }
 
 function install_omz() {
