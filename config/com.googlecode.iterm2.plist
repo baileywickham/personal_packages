@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Default Bookmark Guid</key>
-	<string>1849348A-5657-4FA7-828E-FEEC9FA3D2F1</string>
+	<string>8BDD2053-07BA-48C1-935C-17583DD0F5BF</string>
 	<key>GlobalKeyMap</key>
 	<dict>
 		<key>0x19-0x60000</key>
@@ -161,9 +161,9 @@
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
-	<key>NeverWarnAboutShortLivedSessions_1849348A-5657-4FA7-828E-FEEC9FA3D2F1</key>
+	<key>NeverWarnAboutShortLivedSessions_8BDD2053-07BA-48C1-935C-17583DD0F5BF</key>
 	<true/>
-	<key>NeverWarnAboutShortLivedSessions_1849348A-5657-4FA7-828E-FEEC9FA3D2F1_selection</key>
+	<key>NeverWarnAboutShortLivedSessions_8BDD2053-07BA-48C1-935C-17583DD0F5BF_selection</key>
 	<integer>0</integer>
 	<key>New Bookmarks</key>
 	<array>
@@ -1098,7 +1098,7 @@
 				<real>0.062745098039215685</real>
 			</dict>
 			<key>Guid</key>
-			<string>1849348A-5657-4FA7-828E-FEEC9FA3D2F1</string>
+			<string>8BDD2053-07BA-48C1-935C-17583DD0F5BF</string>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
 			<key>Idle Code</key>
@@ -1166,7 +1166,7 @@
 			<key>Prompt Before Closing 2</key>
 			<false/>
 			<key>Right Option Key Sends</key>
-			<integer>2</integer>
+			<integer>0</integer>
 			<key>Rows</key>
 			<integer>25</integer>
 			<key>Screen</key>
@@ -1287,10 +1287,6 @@
 			<string>/Users/baileywickham</string>
 		</dict>
 	</array>
-	<key>OpenArrangementAtStartup</key>
-	<false/>
-	<key>OpenNoWindowsAtStartup</key>
-	<true/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>

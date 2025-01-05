@@ -22,4 +22,4 @@ RUN chown -R user /home/user
 
 USER user
 
-#ENTRYPOINT ./personal_packages.sh -a
+ENTRYPOINT ./personal_packages.sh --install

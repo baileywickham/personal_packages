@@ -4,11 +4,11 @@ set -euo pipefail
 
 unameOut="$(uname -s)"
 case "${unameOut}" in
-    Linux*)     machine=Linux;;
-    Darwin*)    machine=Mac;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
-    *)          machine="UNKNOWN:${unameOut}"
+    Linux*)     MACHINE=Linux;;
+    Darwin*)    MACHINE=Mac;;
+    CYGWIN*)    MACHINE=Cygwin;;
+    MINGW*)     MACHINE=MinGw;;
+    *)          MACHINE="UNKNOWN:${unameOut}"
 esac
 
 function help() {
@@ -65,7 +65,7 @@ function neoneofetch() {
     echo -e ""
     echo -e "     ┈┈╱▔▔▔▔▔╲┈┈      ${BLUE}User:${NC}           $(whoami)"
     echo -e "     ┈▕╋╋╋╋╋╋╋▏┈      ${BLUE}Hostname:${NC}       $(hostname)"
-    echo -e "     ┈▕╳╳╳╳╳╳╳▏┈      ${BLUE}Distro:${NC}         $(machine)"
+    echo -e "     ┈▕╳╳╳╳╳╳╳▏┈      ${BLUE}Distro:${NC}         ${MACHINE}"
     echo -e "     ┈┈╲╳╳╳╳╳╱┈┈      ${BLUE}Kernel:${NC}         $(uname -r)"
     echo -e "     ┈┈┈╲╋╋╋╱┈┈┈      ${BLUE}Shell:${NC}          $SHELL"
     echo -e "     ┈┈┈┈╲▂╱┈┈┈┈      ${BLUE}CPU:${NC}            "
@@ -157,6 +157,7 @@ function install_packages_linux() {
 }
 
 function install_packages_osx() {
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew install fzf fd ripgrep gnu-sed autojump direnv
 }
 
@@ -169,9 +170,9 @@ function main() {
     git submodule update
     neoneofetch
     create_directories
-    if [[ $machine == "Linux" ]]; then
+    if [[ $MACHINE == "Linux" ]]; then
         install_packages_linux
-    elif [[ $machine == "Mac" ]]; then
+    elif [[ $MACHINE == "Mac" ]]; then
         install_packages_osx
     fi
     addSSHLink
