@@ -1,4 +1,4 @@
-#zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -81,7 +81,8 @@ export NVM_DIR="$HOME/.nvm"
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -100,8 +101,11 @@ esac
 
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-#eval "$(starship init zsh)"
+
 source <(minikube completion zsh)
 source <(fzf --zsh)
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export JAVA_HOME=/opt/homebrew/opt/openjdk

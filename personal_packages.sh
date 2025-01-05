@@ -37,6 +37,18 @@ fi
 PPACKAGES=$(pwd)
 BUILDS="${HOME}/builds"
 
+function setupMac() {
+    chflags nohidden ~/Library
+    # show hidden files
+    defaults write com.apple.finder AppleShowAllFiles YES
+
+    # add pathbar to title
+    defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+    # restart finder
+    killall Finder;
+}
+
 function whichos() {
     awk -F= '$1=="PRETTY_NAME" { print $2 ;}' /etc/os-release | tr -d \"
 }
@@ -145,7 +157,7 @@ function install_packages_linux() {
 }
 
 function install_packages_osx() {
-    brew install fzf fd ripgrep gnu-sed
+    brew install fzf fd ripgrep gnu-sed autojump direnv
 }
 
 function install_omz() {
