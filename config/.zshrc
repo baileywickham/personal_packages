@@ -102,4 +102,6 @@ esac
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
+source <(minikube completion zsh)
+source <(fzf --zsh)
