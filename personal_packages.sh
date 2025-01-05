@@ -122,10 +122,12 @@ function move_dotfiles() {
     done
     sub "copying nvim"
     ln -sf "${PWD}/config/nvim" "${HOME}/.config/"
-    sub "copying emacs config"
     # ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
     # ln -sf "${PWD}/config/init.el" "${HOME}"
-
+    sub "copying ghostty config"
+    ghostty_dir="${HOME}/Library/Application Support/com.mitchellh.ghostty"
+    mkdir -p "${ghostty_dir}"
+    ln -sf "${PWD}/config/ghostty.config" "${ghostty_dir}/config"
 }
 
 
