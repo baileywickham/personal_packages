@@ -9,6 +9,10 @@ fi
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 #Start tmux
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #  exec tmux
@@ -63,7 +67,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-if type nvim > /dev/null 2>&1; then
+if command_exists nvim; then
   #progressivly more lazy
   alias vi='nvim'
   alias v='nvim'
@@ -81,15 +85,16 @@ export NVM_DIR="$HOME/.nvm"
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-eval "$(direnv hook zsh)"
+if command_exists direnv; then
+    eval "$(direnv hook zsh)"
+fi
 
-source <(temporal completion zsh)
+if command_exists temporal; then
+    source <(temporal completion zsh)
+fi
 
 # pnpm
 export PNPM_HOME="/Users/baileywickham/Library/pnpm"
@@ -105,6 +110,9 @@ esac
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
-source <(fzf --zsh)
+if command_exists fzf; then
+    source <(fzf --zsh)
+fi
+
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk

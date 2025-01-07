@@ -47,7 +47,6 @@ alias myipv4='curl https://ipinfo.io/ip'
 
 alias pn=pnpm
 alias pnx='pnpm exec'
-alias shmig='shmig -d baileywickham'
 alias pl=pulumi
 alias tsx='pnpm exec tsx'
 alias prisma='pnx prisma'
