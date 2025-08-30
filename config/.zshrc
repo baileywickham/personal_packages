@@ -116,3 +116,8 @@ fi
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/baileywickham/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
