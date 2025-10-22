@@ -45,7 +45,7 @@ alias rysnc='rsync --progress -h -v -r'
 alias bfg='java -jar ~/.builds/bfg-1.14.0.jar'
 alias myipv4='curl https://ipinfo.io/ip'
 
-alias pn=pnpm
+alias p=pnpm
 alias pnx='pnpm exec'
 alias pl='pnpm exec pulumi'
 alias tsx='pnpm exec tsx'
@@ -55,3 +55,4 @@ alias g=git
 alias gam='git commit --amend --no-edit -a'
 alias rgb='git for-each-ref --sort=-committerdate refs/heads/ | head -n 10'
 alias timeout=gtimeout
+alias k=kubectl

@@ -1,4 +1,7 @@
 
+# Profiling (uncomment to profile startup time)
+# zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -29,6 +32,11 @@ command_exists() {
 
 # Set f2 to edit zshrc
 bindkey -s "\eOQ" "vi ~/.zshrc \n"
+
+# Oh-My-Zsh performance optimizations
+DISABLE_AUTO_UPDATE="true"
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
 
 export ZSH=$HOME/.oh-my-zsh
 
@@ -76,7 +84,13 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Optimized completion initialization (only rebuild once per day)
 autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -85,8 +99,6 @@ export NVM_DIR="$HOME/.nvm"
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C" forward-word
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 if command_exists direnv; then
     eval "$(direnv hook zsh)"
@@ -108,16 +120,14 @@ esac
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 if command_exists fzf; then
     source <(fzf --zsh)
 fi
 
+source /Users/baileywickham/workspace/platform/bin/wt-completion.bash
+
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# Docker CLI completions
 fpath=(/Users/baileywickham/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
