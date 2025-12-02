@@ -56,3 +56,8 @@ alias gam='git commit --amend --no-edit -a'
 alias rgb='git for-each-ref --sort=-committerdate refs/heads/ | head -n 10'
 alias timeout=gtimeout
 alias k=kubectl
+alias chat='claude --add-dir ~/workspace/platform-gitops'
+alias chat='claude --add-dir ~/workspace/platform-gitops --add-dir ~/workspace/bwtesting-gitops'
+alias claude='claude --add-dir ~/workspace/platform-gitops'
+alias claude='claude --add-dir ~/workspace/platform-gitops --add-dir ~/workspace/bwtesting-gitops'
+alias gst='git status'

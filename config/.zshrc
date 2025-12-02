@@ -126,6 +126,7 @@ if command_exists fzf; then
 fi
 
 source /Users/baileywickham/workspace/platform/bin/wt-completion.bash
+source /Users/baileywickham/workspace/platform/bin/bastion-completion.bash
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk
