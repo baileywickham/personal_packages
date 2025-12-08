@@ -1,0 +1,119 @@
+#!/bin/bash
+
+# Handle help command
+if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$1" = "help" ]; then
+  echo "Usage: wt <command> [options]"
+  echo ""
+  echo "Commands:"
+  echo "  wt <branch-name> [base-branch]  Create or enter a worktree"
+  echo "  wt list                         List all worktrees"
+  echo "  wt rm <name>                    Remove a worktree"
+  echo "  wt pull <name>                  Pull worktree to current directory"
+  echo "  wt prune                        Prune stale worktree references"
+  echo "  wt main                         Return to main worktree"
+  echo "  wt help                         Show this help message"
+  exit 0
+fi
+
+# Handle list command
+if [ "$1" = "list" ] || [ "$1" = "-l" ]; then
+  git worktree list
+  exit 0
+fi
+
+# Handle prune command
+if [ "$1" = "prune" ]; then
+  git worktree prune
+  echo "Pruned stale worktree references"
+  exit 0
+fi
+
+# Handle remove command
+if [ "$1" = "rm" ] || [ "$1" = "-r" ]; then
+  if [ -z "$2" ]; then
+    echo "Usage: wt rm <worktree-name>"
+    exit 1
+  fi
+  if [ -d ".wt/$2" ]; then
+    git worktree remove ".wt/$2"
+    echo "Removed worktree: .wt/$2"
+  else
+    echo "Worktree .wt/$2 does not exist"
+    exit 1
+  fi
+  exit 0
+fi
+
+# Handle pull command
+if [ "$1" = "pull" ]; then
+  if [ -z "$2" ]; then
+    echo "Usage: wt pull <worktree-name>"
+    exit 1
+  fi
+  if [ ! -d ".wt/$2" ]; then
+    echo "Worktree .wt/$2 does not exist"
+    exit 1
+  fi
+
+  # Store the branch name
+  branch_name="$2"
+  made_temp_commit=false
+
+  # Go to worktree and commit any uncommitted changes
+  cd ".wt/$branch_name" || exit 1
+
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo "Committing uncommitted changes in worktree..."
+    git add -A
+    git commit -m "WIP: Temporary commit for wt pull"
+    made_temp_commit=true
+  fi
+
+  # Go back to main directory
+  cd - > /dev/null || exit 1
+
+  # Remove the worktree
+  echo "Removing worktree..."
+  git worktree remove ".wt/$branch_name"
+
+  # Checkout the branch
+  echo "Checking out $branch_name..."
+  git checkout "$branch_name"
+
+  # Undo the temp commit if we made one, keeping changes uncommitted
+  if [ "$made_temp_commit" = true ]; then
+    echo "Restoring uncommitted changes..."
+    git reset HEAD~1
+  fi
+
+  echo "Successfully pulled worktree $branch_name to current directory"
+  exit 0
+fi
+
+# Handle main/back command
+if [ "$1" = "main" ] || [ "$1" = "back" ]; then
+  # Find the main worktree (the one without a branch name in parentheses at root)
+  main_path=$(git worktree list | grep -v '\.wt/' | head -n1 | awk '{print $1}')
+  cd "$main_path" && claude
+  exit 0
+fi
+
+# Check if branch name provided
+if [ -z "$1" ]; then
+  echo "Usage: wt <branch-name> [base-branch]"
+  echo "       wt list              # List all worktrees"
+  echo "       wt rm <name>         # Remove a worktree"
+  echo "       wt prune             # Prune stale worktrees"
+  echo "       wt main              # Return to main worktree"
+  exit 1
+fi
+
+# Get base branch (default to current branch or main)
+base_branch="${2:-main}"
+
+# Create or enter worktree
+if [ -d ".wt/$1" ]; then
+  cd .wt/$1 && claude
+else
+  git worktree add .wt/$1 $base_branch -b $1 && cd .wt/$1 && claude
+fi
