@@ -94,7 +94,7 @@ fi
 if [ "$1" = "main" ] || [ "$1" = "back" ]; then
   # Find the main worktree (the one without a branch name in parentheses at root)
   main_path=$(git worktree list | grep -v '\.wt/' | head -n1 | awk '{print $1}')
-  cd "$main_path" && claude
+  cd "$main_path" && claude --dangerously-skip-permissions
   exit 0
 fi
 
@@ -113,7 +113,7 @@ base_branch="${2:-main}"
 
 # Create or enter worktree
 if [ -d ".wt/$1" ]; then
-  cd .wt/$1 && claude
+  cd .wt/$1 && claude --dangerously-skip-permissions
 else
-  git worktree add .wt/$1 $base_branch -b $1 && cd .wt/$1 && claude
+  git worktree add .wt/$1 $base_branch -b $1 && cd .wt/$1 && claude --dangerously-skip-permissions
 fi
