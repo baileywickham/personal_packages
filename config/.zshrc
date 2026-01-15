@@ -119,14 +119,20 @@ esac
 
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
+
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="$PATH:/Users/baileywickham/workspace/bobbiecorp/bin"
 
 if command_exists fzf; then
     source <(fzf --zsh)
 fi
 
-source /Users/baileywickham/workspace/platform/bin/wt-completion.bash
-source /Users/baileywickham/workspace/platform/bin/bastion-completion.bash
+if command_exists migrate; then
+    eval "$(migrate completion zsh)"
+fi
+
+source ~/bin/wt-completion.bash
+eval "$(~/workspace/bobbiecorp/bin/bastion completion zsh)"
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk

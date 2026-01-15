@@ -1,33 +1,9 @@
 {
     "languageserver": {
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"]
-        },
         "golang": {
             "command": "gopls",
             "rootPatterns": ["go.mod", ".vim/", ".git/"],
             "filetypes": ["go"]
-        },
-        "haskell": {
-            "command": "hie-wrapper",
-            "args": ["--lsp"],
-            "rootPatterns": [
-                "stack.yaml",
-                "cabal.config",
-                "package.yaml"
-            ],
-            "filetypes": [
-                "hs",
-                "lhs",
-                "haskell"
-            ],
-            "initializationOptions": {
-                "languageServerHaskell": {
-                    "hlintOn": true
-                }
-            }
         },
         "dockerfile": {
             "command": "docker-langserver",
