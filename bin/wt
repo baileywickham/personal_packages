@@ -1,5 +1,73 @@
 #!/bin/bash
 
+# Database configuration
+DB_HOST="${DB_HOST:-localhost}"
+DB_PORT="${DB_PORT:-5432}"
+DB_USER="${DB_USER:-postgres}"
+DB_PASSWORD="${DB_PASSWORD:-postgres}"
+DB_DEFAULT="${DB_DEFAULT:-postgres}"
+
+# Resolve the main repo root (works from inside worktrees too)
+get_main_repo_root() {
+  local git_common_dir
+  git_common_dir="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)"
+  dirname "$git_common_dir"
+}
+
+get_repo_name() {
+  basename "$(get_main_repo_root)"
+}
+
+# Worktrees live as siblings: ../<repo>-worktrees/<branch>
+get_worktrees_dir() {
+  local repo_root
+  repo_root="$(get_main_repo_root)"
+  echo "$(dirname "$repo_root")/$(get_repo_name)-worktrees"
+}
+
+get_worktree_path() {
+  echo "$(get_worktrees_dir)/$1"
+}
+
+# Helper function to create a database for a worktree
+create_worktree_db() {
+  local branch_name="$1"
+  # Sanitize branch name for database name (replace -, / with _, lowercase)
+  local db_name="wt_$(echo "$branch_name" | tr '-/' '__' | tr '[:upper:]' '[:lower:]')"
+
+  echo "Creating database: $db_name" >&2
+  PGPASSWORD="$DB_PASSWORD" psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_DEFAULT" -c "CREATE DATABASE $db_name;" >/dev/null 2>&1 || echo "Database $db_name already exists" >&2
+
+  echo "$db_name"
+}
+
+# Helper function to drop a worktree database
+drop_worktree_db() {
+  local branch_name="$1"
+  local db_name="wt_$(echo "$branch_name" | tr '-/' '__' | tr '[:upper:]' '[:lower:]')"
+
+  echo "Dropping database: $db_name"
+  PGPASSWORD="$DB_PASSWORD" psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_DEFAULT" -c "DROP DATABASE IF EXISTS $db_name;" 2>/dev/null
+}
+
+# Helper function to create worktree .envrc
+create_worktree_envrc() {
+  local worktree_path="$1"
+  local db_name="$2"
+  local repo_root="$3"
+
+  # Source the main repo's .envrc explicitly (source_up won't find it as a sibling)
+  cat > "$worktree_path/.envrc" << EOF
+# Source the main repo's .envrc
+source_env "$repo_root/.envrc"
+
+# Override DATABASE_URL for this worktree
+export DATABASE_URL="postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$db_name"
+EOF
+
+  echo "Created .envrc with DATABASE_URL pointing to $db_name"
+}
+
 # Handle help command
 if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$1" = "help" ]; then
   echo "Usage: wt <command> [options]"
@@ -7,11 +75,16 @@ if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$1" = "help" ]; then
   echo "Commands:"
   echo "  wt <branch-name> [base-branch]  Create or enter a worktree"
   echo "  wt list                         List all worktrees"
-  echo "  wt rm <name>                    Remove a worktree"
+  echo "  wt rm <name>                    Remove a worktree (also drops database)"
   echo "  wt pull <name>                  Pull worktree to current directory"
   echo "  wt prune                        Prune stale worktree references"
-  echo "  wt main                         Return to main worktree"
   echo "  wt help                         Show this help message"
+  echo ""
+  echo "Worktrees are created as sibling directories: ../<repo>-worktrees/<branch>"
+  echo "Each worktree gets its own PostgreSQL database (wt_<branch_name>)"
+  echo ""
+  echo "Creating a new worktree sets up the directory and database."
+  echo "Entering an existing worktree launches Claude automatically."
   exit 0
 fi
 
@@ -34,11 +107,13 @@ if [ "$1" = "rm" ] || [ "$1" = "-r" ]; then
     echo "Usage: wt rm <worktree-name>"
     exit 1
   fi
-  if [ -d ".wt/$2" ]; then
-    git worktree remove ".wt/$2"
-    echo "Removed worktree: .wt/$2"
+  wt_path="$(get_worktree_path "$2")"
+  if [ -d "$wt_path" ]; then
+    git worktree remove "$wt_path"
+    echo "Removed worktree: $wt_path"
+    drop_worktree_db "$2"
   else
-    echo "Worktree .wt/$2 does not exist"
+    echo "Worktree not found: $wt_path"
     exit 1
   fi
   exit 0
@@ -50,17 +125,16 @@ if [ "$1" = "pull" ]; then
     echo "Usage: wt pull <worktree-name>"
     exit 1
   fi
-  if [ ! -d ".wt/$2" ]; then
-    echo "Worktree .wt/$2 does not exist"
+  wt_path="$(get_worktree_path "$2")"
+  if [ ! -d "$wt_path" ]; then
+    echo "Worktree not found: $wt_path"
     exit 1
   fi
 
-  # Store the branch name
   branch_name="$2"
   made_temp_commit=false
 
-  # Go to worktree and commit any uncommitted changes
-  cd ".wt/$branch_name" || exit 1
+  cd "$wt_path" || exit 1
 
   if ! git diff --quiet || ! git diff --cached --quiet; then
     echo "Committing uncommitted changes in worktree..."
@@ -69,18 +143,14 @@ if [ "$1" = "pull" ]; then
     made_temp_commit=true
   fi
 
-  # Go back to main directory
   cd - > /dev/null || exit 1
 
-  # Remove the worktree
   echo "Removing worktree..."
-  git worktree remove ".wt/$branch_name"
+  git worktree remove "$wt_path"
 
-  # Checkout the branch
   echo "Checking out $branch_name..."
   git checkout "$branch_name"
 
-  # Undo the temp commit if we made one, keeping changes uncommitted
   if [ "$made_temp_commit" = true ]; then
     echo "Restoring uncommitted changes..."
     git reset HEAD~1
@@ -90,30 +160,33 @@ if [ "$1" = "pull" ]; then
   exit 0
 fi
 
-# Handle main/back command
-if [ "$1" = "main" ] || [ "$1" = "back" ]; then
-  # Find the main worktree (the one without a branch name in parentheses at root)
-  main_path=$(git worktree list | grep -v '\.wt/' | head -n1 | awk '{print $1}')
-  cd "$main_path" && claude --dangerously-skip-permissions
-  exit 0
-fi
-
 # Check if branch name provided
 if [ -z "$1" ]; then
   echo "Usage: wt <branch-name> [base-branch]"
-  echo "       wt list              # List all worktrees"
-  echo "       wt rm <name>         # Remove a worktree"
-  echo "       wt prune             # Prune stale worktrees"
-  echo "       wt main              # Return to main worktree"
+  echo "       wt list | rm | pull | prune | help"
   exit 1
 fi
 
-# Get base branch (default to current branch or main)
 base_branch="${2:-main}"
+wt_path="$(get_worktree_path "$1")"
 
-# Create or enter worktree
-if [ -d ".wt/$1" ]; then
-  cd .wt/$1 && claude --dangerously-skip-permissions
+if [ -d "$wt_path" ]; then
+  # Existing worktree — enter and launch Claude
+  cd "$wt_path" && direnv allow && claude --dangerously-skip-permissions
 else
-  git worktree add .wt/$1 $base_branch -b $1 && cd .wt/$1 && claude --dangerously-skip-permissions
+  # New worktree — create and set up, but don't launch Claude
+  repo_root="$(get_main_repo_root)"
+  mkdir -p "$(get_worktrees_dir)"
+  git worktree add "$wt_path" "$base_branch" -b "$1"
+
+  db_name=$(create_worktree_db "$1")
+  create_worktree_envrc "$wt_path" "$db_name" "$repo_root"
+
+  cd "$wt_path" && direnv allow
+
+  echo ""
+  echo "Worktree ready: $wt_path"
+  echo "To start working:"
+  echo "  cd $wt_path"
+  echo "  claude --dangerously-skip-permissions"
 fi

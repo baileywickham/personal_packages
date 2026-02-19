@@ -57,8 +57,6 @@ alias rgb='git for-each-ref --sort=-committerdate refs/heads/ | head -n 10'
 alias timeout=gtimeout
 alias k=kubectl
 alias chat='claude'
-alias chatd='claude --dangerously-skip-permissions'
-alias gst='git status'
+alias gs='git status'
 alias gp='git push'
 alias mig=migrate
-alias c=chatd

@@ -133,6 +133,7 @@ fi
 
 source ~/bin/wt-completion.bash
 eval "$(~/workspace/bobbiecorp/bin/bastion completion zsh)"
+eval "$(~/workspace/bobbiecorp/bin/secrets completion zsh)"
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk

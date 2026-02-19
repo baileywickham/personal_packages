@@ -1,0 +1,18 @@
+#!/bin/bash
+
+opts=()
+prompt=()
+
+for arg in "$@"; do
+  if [[ "$arg" == -* ]]; then
+    opts+=("$arg")
+  else
+    prompt+=("$arg")
+  fi
+done
+
+if [ ${#prompt[@]} -gt 0 ]; then
+  exec claude --dangerously-skip-permissions "${opts[@]}" "${prompt[*]}"
+else
+  exec claude --dangerously-skip-permissions "${opts[@]}"
+fi
