@@ -1,2 +1,2 @@
-npm view $1 version
-
+#!/usr/bin/env bash
+npm view "$1" version

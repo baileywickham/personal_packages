@@ -11,7 +11,7 @@ case "${unameOut}" in
     *)          MACHINE="UNKNOWN:${unameOut}"
 esac
 
-function help() {
+function usage() {
     cat << EOF
 personal_packages.sh a dotfiles install script
    --install : Install all features including all configs, docker, zsh, go...
@@ -20,7 +20,7 @@ EOF
 }
 
 if [[ $# -le 0 ]]; then
-    help
+    usage
     exit
 fi
 
@@ -29,7 +29,7 @@ source utils.sh
 
 trap exit SIGINT
 
-if [ "$EUID" -eq "0" ] &&  ! (grep -Fq "docker" /proc/1/cgroup) ; then
+if [ "$EUID" -eq "0" ] && [ -f /proc/1/cgroup ] && ! (grep -Fq "docker" /proc/1/cgroup) ; then
     echo "Please do not run as root"
     exit
 fi
@@ -154,8 +154,9 @@ function install_packages_linux() {
         software-properties-common \
         python3-dev \
         python3-pip \
+        zsh
 
-        sub_sub "Update Submodules"
+    sub_sub "Update Submodules"
 }
 
 function install_packages_osx() {
@@ -164,7 +165,12 @@ function install_packages_osx() {
 }
 
 function install_omz() {
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+        task "Installing Oh My Zsh"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    else
+        task "Oh My Zsh already installed"
+    fi
 }
 
 function main() {
@@ -178,6 +184,7 @@ function main() {
         install_packages_osx
     fi
     addSSHLink
+    install_omz
     move_dotfiles
     # This sources all files in modules
     # running the function with the filename
@@ -210,7 +217,7 @@ while [[ $# -gt 0 && ${1} ]]; do
             shift
             ;;
         --help | -h)
-            help
+            usage
             break;
             ;;
         *)

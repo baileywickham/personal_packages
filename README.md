@@ -29,14 +29,10 @@ fi
 ```
 
 
-### Running
-There should be as few dependencies as possible to the actual script, bash and git are all you need
+### Quick setup
 ```bash
-sudo apt install git
-git clone https://github.com/baileywickham/personal_packages.git ~/workspace/personal_packages && \
-cd ~/workspace/personal_packages && ./personal_packages.sh -a
+git clone https://github.com/baileywickham/personal_packages.git ~/workspace/personal_packages && cd ~/workspace/personal_packages && ./personal_packages.sh --install
 ```
-To install the packages and move the dotfiles.
 
 ### Features
 This installs my custom keyboard, bashrc, vimrc, tmux.conf, 2fa files and all packages I want.
