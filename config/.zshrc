@@ -75,6 +75,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# GNU coreutils ls needs --color, not -G (which is BSD)
+alias ls='ls --color=auto'
+
 if command_exists nvim; then
   #progressivly more lazy
   alias vi='nvim'

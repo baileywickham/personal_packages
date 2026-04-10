@@ -61,3 +61,4 @@ alias gs='git status'
 alias gp='git push'
 alias mig=migrate
 alias claude='claude --dangerously-skip-permissions'
+alias co='codex --yolo'
