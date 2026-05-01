@@ -59,6 +59,7 @@ alias k=kubectl
 alias chat='claude'
 alias gs='git status'
 alias gp='git push'
+alias gd='git diff'
 alias mig=migrate
 alias claude='claude --dangerously-skip-permissions'
 alias co='codex --yolo'
