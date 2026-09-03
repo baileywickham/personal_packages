@@ -3,14 +3,15 @@
     "DO_NOT_TRACK": ""
   },
   "attribution": {
-    "commit": ""
+    "commit": "",
+    "sessionUrl": false
   },
   "permissions": {
     "allow": [],
     "deny": [],
     "defaultMode": "bypassPermissions"
   },
-  "model": "claude-fable-5[1m]",
+  "model": "fable[1m]",
   "hooks": {},
   "statusLine": {
     "type": "command",
@@ -22,9 +23,9 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": false,
     "swift-lsp@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "imessage@claude-plugins-official": true,
-    "obsidian@obsidian-skills": true
+    "imessage@claude-plugins-official": false,
+    "obsidian@obsidian-skills": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "obsidian-skills": {
@@ -32,14 +33,20 @@
         "source": "github",
         "repo": "kepano/obsidian-skills"
       }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
     }
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-daltonized",
   "editorMode": "normal",
   "agentPushNotifEnabled": false,
-  "voiceEnabled": true,
-  "tui": "fullscreen"
+  "voiceEnabled": true
 }
