@@ -156,5 +156,3 @@ export MAILBOX_DEVBOX_CLI='go run -C /Users/baileywickham/workspace/devbox-mvp .
 # devbox zsh tab completion (subcommands, flags, and live box names).
 source <(devbox completion zsh)
 
-# geo CLI (github.com/baileywickham/geo): Go binaries + OpenRouteService key.
-export PATH="$HOME/go/bin:$PATH"
