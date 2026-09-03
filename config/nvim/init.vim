@@ -112,6 +112,10 @@ Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'wlangstroth/vim-racket' "vim autocomplete
 Plug 'rust-lang/rust.vim'
+"python (native LSP, see lua/python.lua)
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'main', 'do': ':TSUpdate'}
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
 "Plug 'jpalardy/vim-slime'
 "Plug 'LucHermitte/lh-vim-lib'
 "Plug 'LucHermitte/lh-brackets'
@@ -162,4 +166,5 @@ let g:cb_disable_default = { '''': 'i' }
 
 
 call SourceIfExists("$HOME/.config/nvim/coc.vim")
+lua require('python')
 command! -nargs=1 Import  call Imp('<args>')

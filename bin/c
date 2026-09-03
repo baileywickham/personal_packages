@@ -12,7 +12,7 @@ for arg in "$@"; do
 done
 
 if [ ${#prompt[@]} -gt 0 ]; then
-  exec claude --dangerously-skip-permissions "${opts[@]}" "${prompt[*]}"
+  exec claude "${opts[@]}" "${prompt[*]}"
 else
-  exec claude --dangerously-skip-permissions "${opts[@]}"
+  exec claude "${opts[@]}"
 fi

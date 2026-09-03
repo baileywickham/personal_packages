@@ -142,3 +142,19 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk
 # Docker CLI completions
 fpath=(/Users/baileywickham/.docker/completions $fpath)
+
+# devbox/mailbox: mailbox still runs from source via `go run`. devbox/devboxctl
+# are installed binaries in ~/bin (already on PATH) so shell tab completion is
+# instant — `go run` recompiled on every <TAB> (~0.9s). Reinstall after pulling:
+#   GOBIN="$HOME/bin" go install -C /Users/baileywickham/workspace/devbox-mvp ./cmd/devbox ./cmd/devboxctl
+# DEVBOX_CONFIG_DIR="$PWD" keeps the working dir for devbox.json discovery, since
+# `go run -C` changes cwd. MAILBOX_DEVBOX_CLI lets mailbox's devbox adapter shell
+# out to the devbox client via go run too (a shell alias is invisible to its exec).
+alias mailbox='DEVBOX_CONFIG_DIR="$PWD" go run -C /Users/baileywickham/workspace/devbox-mvp ./cmd/mailbox'
+export MAILBOX_DEVBOX_CLI='go run -C /Users/baileywickham/workspace/devbox-mvp ./cmd/devbox'
+
+# devbox zsh tab completion (subcommands, flags, and live box names).
+source <(devbox completion zsh)
+
+# geo CLI (github.com/baileywickham/geo): Go binaries + OpenRouteService key.
+export PATH="$HOME/go/bin:$PATH"
