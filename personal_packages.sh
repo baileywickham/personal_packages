@@ -128,6 +128,19 @@ function move_dotfiles() {
     ghostty_dir="${HOME}/Library/Application Support/com.mitchellh.ghostty"
     mkdir -p "${ghostty_dir}"
     ln -sf "${PWD}/config/ghostty.config" "${ghostty_dir}/config"
+    sub "copying claude config"
+    mkdir -p "${HOME}/.claude"
+    for f in settings.json CLAUDE.md keybindings.json; do
+        ln -sf "${PWD}/config/claude/${f}" "${HOME}/.claude/${f}"
+    done
+    # skills dir: link each skill individually so machine-local skills
+    # (e.g. symlinks into other repos) can coexist with the tracked ones
+    # Codex reads the same SKILL.md format from ~/.codex/skills, so link there too
+    mkdir -p "${HOME}/.claude/skills" "${HOME}/.codex/skills"
+    for d in "${PWD}"/config/claude/skills/*/; do
+        ln -sfn "${d%/}" "${HOME}/.claude/skills/$(basename "${d}")"
+        ln -sfn "${d%/}" "${HOME}/.codex/skills/$(basename "${d}")"
+    done
 }
 
 
