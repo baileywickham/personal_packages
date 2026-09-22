@@ -16,13 +16,18 @@ today". (An older, retired `TODO.md` sits in `Archive/`. The finance action
 list that used to live at `claude/finance/Action list - now.md` was merged
 into TODO.md / TODO eventually.md on 2026-08-05 and deleted.) Rules:
 
-- Sections: **Today**, **This Week**, **Done**.
-- New items get the date added: `- [ ] (2026-08-04) call the bank`.
+- Sections: **Open** (one list) and **Done**.
+- New items get the date added: `- [ ] call the bank ➕ 2026-08-04` (optional
+  `📅 2026-09-15` due date, `🔁 every week` repeat).
 - Finished items get checked and moved to Done with the completion date:
-  `- [x] (added 2026-08-04, done 2026-08-05) call the bank`.
+  `- [x] call the bank ➕ 2026-08-04 ✅ 2026-08-05`; dropped ones become
+  `- [-] … ❌ 2026-08-05`.
 - Always modify/append — never overwrite, clear, or delete items.
-- If Today has stale items from previous days, ask Bailey whether to move them
-  to This Week or Done — don't reshuffle his priorities silently.
+- One short line per item: verb first, ~120 characters max, no status updates or
+  evidence inside the line (rewrite it instead). Don't create a note to hold a
+  TODO's context; link an existing note only if one already covers it.
+- Don't reshuffle his priorities silently: ask before moving an open item to
+  TODO eventually or Done.
 
 Someday/no-deadline items go in `~/workspace/obsidian/personal/TODO eventually.md`
 (sections: **Eventually**, **Done**; same dating and append-only rules). When
