@@ -154,5 +154,5 @@ alias mailbox='DEVBOX_CONFIG_DIR="$PWD" go run -C /Users/baileywickham/workspace
 export MAILBOX_DEVBOX_CLI='go run -C /Users/baileywickham/workspace/devbox-mvp ./cmd/devbox'
 
 # devbox zsh tab completion (subcommands, flags, and live box names).
-source <(devbox completion zsh)
+(( $+commands[devbox] )) && source <(devbox completion zsh)
 
