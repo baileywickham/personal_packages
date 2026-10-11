@@ -12,9 +12,14 @@ Reads Messages.app history on this Mac with [imsg](https://github.com/openclaw/i
 ## Prerequisites
 
 - `imsg` on PATH. If missing: `brew install steipete/tap/imsg`.
-- The terminal needs Full Disk Access (it has it on Bailey's Mac). An
-  `authorization denied` / `unable to open database` error means it was revoked:
-  tell Bailey to re-grant it in System Settings → Privacy & Security → Full Disk Access.
+- The process running Claude Code needs Full Disk Access (it has it on Bailey's Mac).
+  In desktop-app sessions that is not Claude.app but the Claude Code bundle it spawns,
+  `~/Library/Application Support/Claude/claude-code/<ver>/<hash>/claude.app`
+  (bundle id com.anthropic.claude-code, shown as "Claude Code"; granted 2026-10-07).
+  An `authorization denied (code: 23)` / `unable to open database` error means the grant
+  is missing: `open -R` the current bundle and have Bailey drag it into System Settings →
+  Privacy & Security → Full Disk Access. Fallbacks: `sqlite3 -readonly
+  ~/Library/Messages/chat.db`, or search in Messages.app via Skylight.
 
 ## Reading
 
