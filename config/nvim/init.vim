@@ -125,7 +125,7 @@ call plug#end()
 syntax enable
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+silent! colorscheme solarized
 
 "add coc to airline
 let g:airline_theme='solarized'

@@ -181,7 +181,7 @@ function install_packages_osx() {
     brew install fzf fd ripgrep gnu-sed autojump direnv uv neovim node tree-sitter-cli
     brew tap baileywickham/tap
     # nvim's python3_host_prog points at this venv (see config/nvim/init.vim)
-    uv venv "${HOME}/.local/share/nvim/py3"
+    uv venv --allow-existing "${HOME}/.local/share/nvim/py3"
     uv pip install --python "${HOME}/.local/share/nvim/py3/bin/python" pynvim
     # python LSP/format/debug tools used by config/nvim/lua/python.lua
     uv tool install basedpyright

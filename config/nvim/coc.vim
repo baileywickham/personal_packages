@@ -1,4 +1,4 @@
-set statusline^=%{coc#status()}
+set statusline^=%{get(g:,'did_coc_loaded',0)?coc#status():''}
 "
 "
 " Insert <tab> when previous text is space, refresh completion if not.
