@@ -120,6 +120,16 @@ function move_dotfiles() {
         sub "copying ${dotFiles[i]}"
         ln -sf "${PWD}/config/${dotFiles[i]}" "${HOME}/${dotFiles[i]}"
     done
+    sub "copying ssh config"
+    mkdir -p "${HOME}/.ssh/config.d"
+    chmod 700 "${HOME}/.ssh"
+    ln -sfn "${PWD}/config/ssh/config" "${HOME}/.ssh/config"
+    ln -sfn "${PWD}/sshconfig/config" "${HOME}/.ssh/config.d/hosts"
+    op_sock="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    if [[ $MACHINE == "Mac" ]]; then
+        mkdir -p "${HOME}/.1password"
+        ln -sfn "${op_sock}" "${HOME}/.1password/agent.sock"
+    fi
     sub "copying nvim"
     ln -sf "${PWD}/config/nvim" "${HOME}/.config/"
     # ln -sf "${PWD}/config/init.el" "${HOME}/.emacs.d/"
@@ -143,15 +153,6 @@ function move_dotfiles() {
     done
 }
 
-
-function addSSHLink() {
-    if [ ! -f  "~/.ssh/config" ]
-    then
-        ./sshconfig/link.sh
-    else
-        echo "SSH Config already exists"
-    fi
-}
 
 function install_packages_linux() {
     # get the packages that will be used for other packages
@@ -224,7 +225,6 @@ function main() {
     elif [[ $MACHINE == "Mac" ]]; then
         install_packages_osx
     fi
-    addSSHLink
     install_omz
     move_dotfiles
     install_nvim_plugins

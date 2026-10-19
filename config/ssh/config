@@ -1,0 +1,8 @@
+# Hosts live in the sshconfig submodule, linked into config.d by personal_packages.sh
+Include ~/.ssh/config.d/*
+
+# All keys are in 1Password. personal_packages.sh links the macOS agent socket to
+# 1Password's Linux path so this works on both; hosts without 1Password fall back
+# to the default agent.
+Match exec "test -S ~/.1password/agent.sock"
+    IdentityAgent ~/.1password/agent.sock
