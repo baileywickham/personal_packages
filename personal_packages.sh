@@ -178,11 +178,26 @@ function install_packages_osx() {
     fi
     # a fresh install isn't on PATH yet
     command -v brew >/dev/null || eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew install fzf fd ripgrep gnu-sed autojump direnv uv neovim
+    brew install fzf fd ripgrep gnu-sed autojump direnv uv neovim node tree-sitter-cli
     brew tap baileywickham/tap
     # nvim's python3_host_prog points at this venv (see config/nvim/init.vim)
     uv venv "${HOME}/.local/share/nvim/py3"
     uv pip install --python "${HOME}/.local/share/nvim/py3/bin/python" pynvim
+    # python LSP/format/debug tools used by config/nvim/lua/python.lua
+    uv tool install basedpyright
+    uv tool install ruff
+    uv tool install debugpy
+}
+
+# needs config/nvim linked first (move_dotfiles)
+function install_nvim_plugins() {
+    command -v nvim >/dev/null || return 0
+    task "Installing nvim plugins"
+    plug_vim="${HOME}/.local/share/nvim/site/autoload/plug.vim"
+    [ -f "${plug_vim}" ] || curl -fLo "${plug_vim}" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    nvim --headless +PlugInstall +qall
+    nvim --headless "+lua require('nvim-treesitter').install({'python'}):wait(300000)" +qall
 }
 
 function install_omz() {
@@ -212,6 +227,7 @@ function main() {
     addSSHLink
     install_omz
     move_dotfiles
+    install_nvim_plugins
     # This sources all files in modules
     # running the function with the filename
     # ex: in modules/test.sh, the test function will be called
