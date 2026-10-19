@@ -180,7 +180,6 @@ function install_packages_osx() {
     command -v brew >/dev/null || eval "$(/opt/homebrew/bin/brew shellenv)"
     brew install fzf fd ripgrep gnu-sed autojump direnv uv
     brew tap baileywickham/tap
-    brew install --cask baileywickham/tap/skylight baileywickham/tap/apple-mcp baileywickham/tap/artwall
     # nvim's python3_host_prog points at this venv (see config/nvim/init.vim)
     uv venv "${HOME}/.local/share/nvim/py3"
     uv pip install --python "${HOME}/.local/share/nvim/py3/bin/python" pynvim
