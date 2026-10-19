@@ -192,6 +192,11 @@ function install_omz() {
     else
         task "Oh My Zsh already installed"
     fi
+    p10k_dir="${HOME}/.oh-my-zsh/custom/themes/powerlevel10k"
+    if [ ! -d "${p10k_dir}" ]; then
+        sub "Installing powerlevel10k"
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${p10k_dir}"
+    fi
 }
 
 function main() {

@@ -135,8 +135,9 @@ if command_exists migrate; then
 fi
 
 source ~/bin/wt-completion.bash
-eval "$(~/workspace/bobbiecorp/bin/bastion completion zsh)"
-eval "$(~/workspace/bobbiecorp/bin/secrets completion zsh)"
+for c in bastion secrets; do
+    [[ -x ~/workspace/bobbiecorp/bin/$c ]] && eval "$(~/workspace/bobbiecorp/bin/$c completion zsh)"
+done
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/homebrew/opt/openjdk
