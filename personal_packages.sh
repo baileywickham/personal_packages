@@ -178,7 +178,7 @@ function install_packages_osx() {
     fi
     # a fresh install isn't on PATH yet
     command -v brew >/dev/null || eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew install fzf fd ripgrep gnu-sed autojump direnv uv
+    brew install fzf fd ripgrep gnu-sed autojump direnv uv neovim
     brew tap baileywickham/tap
     # nvim's python3_host_prog points at this venv (see config/nvim/init.vim)
     uv venv "${HOME}/.local/share/nvim/py3"
