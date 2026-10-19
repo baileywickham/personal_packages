@@ -145,7 +145,7 @@ let vim_markdown_preview_hotkey='<F9>'
 "let vim_markdown_prevew_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = expand('~/.local/share/nvim/py3/bin/python')
 
 "tex specific commands
 let g:tex_flavor='latex'

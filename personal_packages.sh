@@ -174,7 +174,10 @@ function install_packages_linux() {
 
 function install_packages_osx() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install fzf fd ripgrep gnu-sed autojump direnv
+    brew install fzf fd ripgrep gnu-sed autojump direnv uv
+    # nvim's python3_host_prog points at this venv (see config/nvim/init.vim)
+    uv venv "${HOME}/.local/share/nvim/py3"
+    uv pip install --python "${HOME}/.local/share/nvim/py3/bin/python" pynvim
 }
 
 function install_omz() {

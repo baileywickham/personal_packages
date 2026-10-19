@@ -76,6 +76,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client:supports_method('textDocument/completion') then
+      -- Only auto-open after '.', not on brackets/quotes; never preselect.
+      client.server_capabilities.completionProvider.triggerCharacters = { '.' }
+      vim.bo[ev.buf].completeopt = 'menu,menuone,noselect,popup'
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
 
